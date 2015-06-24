@@ -33,29 +33,3 @@ dependencies {
 	compile 'org.testng:testng:6.9.4'
 }
 
-task runJUnitTestCases(type: Test) {
-    testLogging {
-        events "started", "passed", "failed"
-    }
-
-    include suites
-
-    systemProperties.put('primaryUserName', primaryUserName)
-    systemProperties.put('primaryUserPassword', primaryUserPassword)
-}
-
-task runTestNGTestCases(type: Test) {
-
-    useTestNG()
-
-    testLogging {
-        events "started", "passed", "failed", "skipped"
-    }
-
-    options {
-        suites(suites)
-    }
-
-    systemProperties.put('primaryUserName', primaryUserName)
-    systemProperties.put('primaryUserPassword', primaryUserPassword)	
-}
