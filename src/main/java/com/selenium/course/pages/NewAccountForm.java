@@ -16,6 +16,10 @@ import com.selenium.course.framework.DriverManager;
 public class NewAccountForm extends CommonForm{
 	private WebDriver driver;
 	private WebDriverWait wait;
+	private String accountName,parentAccount, accountNumber, accountSite, type, 
+					Industry, revenue, rating, phone, fax, webSite, tickerSymbol, 
+					ownership, employes,billCity, billState, billZip, billCountry,
+					shipCity, shipState, shipZip, shipCountry;
 	
 	
 	@FindBy(xpath = "//h2[contains(.,' New Account')]")
@@ -42,6 +46,7 @@ public class NewAccountForm extends CommonForm{
 			wait.withTimeout(15, TimeUnit.SECONDS);
 		}
 	}
+	
 	
 	public AccountDetail createNewAccount(String accountName, String parentAccount, String accountNumber, String accountSite, 
 							String type, String Industry, String revenue, String rating, String phone, String fax, String webSite, 
@@ -74,5 +79,37 @@ public class NewAccountForm extends CommonForm{
 		clickSaveAccount();
 		
 		return new AccountDetail();
+	}
+	
+	public NewAccountForm(NewAccountBuilder builder) {
+		this.accountName = builder.getAccount();
+    }
+	
+	public AccountDetail createAccount() {
+		if (!accountName.isEmpty()) {
+			setAccountName(accountName);
+			setParentAccount(parentAccount);
+			setAccountNumber(accountNumber);
+			setAccountSite(accountSite);
+			selectType(type);
+			selectIndustry(Industry);
+			setAnnualRevenue(revenue);
+			selectRating(rating);
+			setPhone(phone);
+			setFax(fax);
+			setWebSite(webSite);
+			setTickerSymbol(tickerSymbol);
+			selectOwnership(ownership);
+			setEmployees(employes);
+			setBillingCity(billCity);
+			setBillingState(billState);
+			setBillingZip(billZip);
+			setBillingCountry(billCountry);
+			setShippingCity(shipCity);
+			setShippingState(shipState);
+			setShippingZip(shipZip);
+			setShippingCountry(shipCountry);
+		}
+		return clickSaveAccount();
 	}
 }

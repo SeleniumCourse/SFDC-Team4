@@ -53,37 +53,28 @@ public class LoginPage {
 	    }
 	
 	public void setEmailTxt(String email) {
-        try {
-            
         	userTxt.clear();
         	userTxt.sendKeys(email);
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
             driver.switchTo().defaultContent();
-        }
     }
 	
 	public void setPasswordTxt(String password) {
-        try {
             passwordTxt.clear();
             passwordTxt.sendKeys(password);
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
             driver.switchTo().defaultContent();
-        }
     }
 
 	public MainApp clickLoginBtn() {
-        try {
         	loginBtn.click();
-        	
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            driver.switchTo().defaultContent();
-        }
         return new MainApp(driver);
     }
+	
+	public MainApp loginAsPrimaryUser() {
+		String email = "gcavero@hotmail.com";
+        String password = "Gus.jala1";
+		 setEmailTxt(email);
+		 setPasswordTxt(password);	
+		 return clickLoginBtn();
+		
+	}
 }

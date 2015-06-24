@@ -25,16 +25,18 @@ public class CreateCampaign {
 	@Before
     public void setUp() {
 		loginPage = new LoginPage();
-    	String email = "gcavero@hotmail.com";
-        String password = "Gus.jala1";
-        campaingName = "newCampaing";
-        mainApp = loginPage.loginAs(email, password);
+		mainApp = loginPage.loginAsPrimaryUser();
+//    	String email = "gcavero@hotmail.com";
+//        String password = "Gus.jala1";
+//        campaingName = "newCampaing";
+//        mainApp = loginPage.loginAs(email, password);
         pageMenuBar = mainApp.goToPageMenuBar();
         campaignsPage = pageMenuBar.clickCampaings();
     }
 	
 	@Test
     public void testUntitled() {
+		campaingName = "NewCampaign";
 		newCampaignForm = campaignsPage.clickNewCampaign();
 		campaingDetail = newCampaignForm.createNewCampaign(campaingName, true);
 		

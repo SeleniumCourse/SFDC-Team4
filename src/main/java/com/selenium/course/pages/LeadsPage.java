@@ -92,11 +92,11 @@ public class LeadsPage {
 	}
 	
 	public void SelectFields() {
-		Select fromMultiSelect =
+		selectBox =
                 new Select(driver.findElement(By.id("colselector_select_0")));
 		
-		fromMultiSelect.selectByVisibleText("First Name");
-        fromMultiSelect.selectByVisibleText("Last Name");
+		selectBox.selectByVisibleText("First Name");
+		selectBox.selectByVisibleText("Last Name");
         
         addFields.click();
 	}
