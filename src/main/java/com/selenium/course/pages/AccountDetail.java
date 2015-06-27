@@ -11,7 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 import com.selenium.course.framework.DriverManager;
 
 public class AccountDetail {
@@ -30,17 +31,21 @@ public class AccountDetail {
     @CacheLookup
 	WebElement deleteBtn;
 	
+	@FindBy(name = "edit")
+    @CacheLookup
+	WebElement editBtn;
+	
 	public AccountDetail() {
 		wait = DriverManager.getInstance().getWait();
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
+			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(accountDetailLabel));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
+			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
 	}
 	
@@ -53,6 +58,11 @@ public class AccountDetail {
 		Alert alert = driver.switchTo().alert();
         alert.accept();
         return new AccountsPage();
+	}
+	
+	public AccountEdit clickEdit() {
+		editBtn.click();
+		return new AccountEdit();
 	}
 
 }

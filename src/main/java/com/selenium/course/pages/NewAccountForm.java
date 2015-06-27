@@ -10,19 +10,23 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 import com.selenium.course.framework.DriverManager;
+import com.selenium.course.pages.EnumsList.Steps;
 
 public class NewAccountForm extends CommonForm{
 	private WebDriver driver;
 	private WebDriverWait wait;
-	private String accountName,parentAccount, accountNumber, accountSite, type, 
-					Industry, revenue, rating, phone, fax, webSite, tickerSymbol, 
-					ownership, employes,billCity, billState, billZip, billCountry,
-					shipCity, shipState, shipZip, shipCountry;
+	private Map<Steps, IAutomationStep> strategyMap;
 	
+	private NewAccountBuilder newAccountBuilder;
+	List<Steps> strategies;
 	
-	@FindBy(xpath = "//h2[contains(.,' New Account')]")
+	@FindBy(xpath = "//h1[contains(.,'Account Edit:')]")
     @CacheLookup
 	WebElement newAccountTitle;
 	
@@ -30,86 +34,52 @@ public class NewAccountForm extends CommonForm{
     @CacheLookup
 	WebElement saveBtn;
 	
-	
-	
 	public NewAccountForm() {
 		this.driver = driver;
 		wait = DriverManager.getInstance().getWait();
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
+			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(newAccountTitle));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
+			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
-	}
-	
-	
-	public AccountDetail createNewAccount(String accountName, String parentAccount, String accountNumber, String accountSite, 
-							String type, String Industry, String revenue, String rating, String phone, String fax, String webSite, 
-							String tickerSymbol, String ownership, String employes, String billCity, String  billState, String billZip, 
-							String billCountry, String shipCity, String shipState, String shipZip, String shipCountry) {
-		
-		
-		setAccountName(accountName);
-		setParentAccount(parentAccount);
-		setAccountNumber(accountNumber);
-		setAccountSite(accountSite);
-		selectType(type);
-		selectIndustry(Industry);
-		setAnnualRevenue(revenue);
-		selectRating(rating);
-		setPhone(phone);
-		setFax(fax);
-		setWebSite(webSite);
-		setTickerSymbol(tickerSymbol);
-		selectOwnership(ownership);
-		setEmployees(employes);
-		setBillingCity(billCity);
-		setBillingState(billState);
-		setBillingZip(billZip);
-		setBillingCountry(billCountry);
-		setShippingCity(shipCity);
-		setShippingState(shipState);
-		setShippingZip(shipZip);
-		setShippingCountry(shipCountry);
-		clickSaveAccount();
-		
-		return new AccountDetail();
 	}
 	
 	public NewAccountForm(NewAccountBuilder builder) {
-		this.accountName = builder.getAccount();
+		this.newAccountBuilder = builder;
+		this.strategies = builder.strategies;
+		
+		this.strategyMap = new HashMap<>();
+		strategyMap.put(Steps.ACCOUNT, () -> setAccountName(builder.account));
+		strategyMap.put(Steps.PARENT_ACCOUNT, () -> setParentAccount(builder.parentAccount));
+		strategyMap.put(Steps.NUMBER, () -> setAccountNumber(builder.accountNumber));
+		strategyMap.put(Steps.ACCOUNT_SITE, () -> setAccountSite(builder.accountSite));
+		strategyMap.put(Steps.TYPE, () -> selectType(builder.type));
+		strategyMap.put(Steps.INDUSTRY, () -> selectIndustry(builder.Industry));
+		strategyMap.put(Steps.REVENUE, () -> setAnnualRevenue(builder.revenue));
+		strategyMap.put(Steps.RATING, () -> selectRating(builder.rating));
+		strategyMap.put(Steps.PHONE, () -> setPhone(builder.phone));
+		strategyMap.put(Steps.WEBSITE, () -> setWebSite(builder.webSite));
+		strategyMap.put(Steps.FAX, () -> setFax(builder.fax));
+		strategyMap.put(Steps.TICKERSYMBOL, () -> setTickerSymbol(builder.tickerSymbol));
+		strategyMap.put(Steps.OWNERSHIP, () -> selectOwnership(builder.ownership));
+		strategyMap.put(Steps.EMPLOYES, () -> setEmployees(builder.employes));
+		strategyMap.put(Steps.BILLCITY, () -> setBillingCity(builder.billCity));
+		strategyMap.put(Steps.BILLSTATE, () -> setBillingState(builder.billState));
+		strategyMap.put(Steps.BILLZIP, () -> setBillingZip(builder.billZip));
+		strategyMap.put(Steps.BILLCOUNTRY, () -> setBillingCountry(builder.billCountry));
+		strategyMap.put(Steps.SHIPCITY, () -> setShippingCity(builder.shipCity));
+		strategyMap.put(Steps.SHIPSTATE, () -> setShippingState(builder.shipState));
+		strategyMap.put(Steps.SHIPZIP, () -> setShippingZip(builder.shipZip));
+		strategyMap.put(Steps.SHIPCOUNTRY, () -> setShippingCountry(builder.shipCountry));
     }
 	
 	public AccountDetail createAccount() {
-		if (!accountName.isEmpty()) {
-			setAccountName(accountName);
-			setParentAccount(parentAccount);
-			setAccountNumber(accountNumber);
-			setAccountSite(accountSite);
-			selectType(type);
-			selectIndustry(Industry);
-			setAnnualRevenue(revenue);
-			selectRating(rating);
-			setPhone(phone);
-			setFax(fax);
-			setWebSite(webSite);
-			setTickerSymbol(tickerSymbol);
-			selectOwnership(ownership);
-			setEmployees(employes);
-			setBillingCity(billCity);
-			setBillingState(billState);
-			setBillingZip(billZip);
-			setBillingCountry(billCountry);
-			setShippingCity(shipCity);
-			setShippingState(shipState);
-			setShippingZip(shipZip);
-			setShippingCountry(shipCountry);
-		}
+		strategies.forEach(elem -> strategyMap.get(elem).performTask());		
 		return clickSaveAccount();
 	}
 }

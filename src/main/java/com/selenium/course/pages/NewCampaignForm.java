@@ -1,7 +1,11 @@
 package com.selenium.course.pages;
 
+import static com.selenium.course.common.CommonUIMethods.check;
+import static com.selenium.course.common.CommonUIMethods.uncheck;
+
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -10,8 +14,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.DriverManager;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class NewCampaignForm extends CommonForm{
 	private WebDriver driver;
@@ -38,24 +43,35 @@ public class NewCampaignForm extends CommonForm{
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
+			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(newCampaignsTitle));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
+			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
 	}
 	
-	public CampaingDetail createNewCampaign(String name, boolean status) {
-		setCampaignName(name);
-		setStatus(status);
-		clickSaveCampaign();
+	// Methods to create Campaings
+	public NewCampaignForm setCampaignName(String name) {
+		campaignNameField.clear();
+		campaignNameField.sendKeys(name);
+		return this;
+	}
+
+	public NewCampaignForm setStatus(boolean status) {
+		if (status) {
+			check(By.id("cpn16"));
+		} else {
+			uncheck(By.id("cpn16"));
+		}
+		return this;
+	}
+
+	public CampaingDetail clickSaveCampaign() {
+		saveBtn.click();
 		return new CampaingDetail();
 	}
-	
-	
-	
 	
 
 }
