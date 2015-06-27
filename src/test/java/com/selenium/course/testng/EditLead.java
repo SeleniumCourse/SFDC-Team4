@@ -20,6 +20,14 @@ import com.selenium.course.pages.NewLeadForm;
 import com.selenium.course.pages.PageMenuBar;
 import com.selenium.course.pages.ToolBar;
 
+/**
+ * Title:
+ * Edit Lead
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class EditLead {
 	
 	private LoginPage loginPage;

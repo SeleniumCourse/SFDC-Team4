@@ -14,6 +14,14 @@ import com.selenium.course.pages.MainApp;
 import com.selenium.course.pages.NewCampaignForm;
 import com.selenium.course.pages.PageMenuBar;
 
+/**
+ * Title:
+ * Edit Campaign
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class EditCampaign {
 	private LoginPage loginPage;
 	private MainApp mainApp;
