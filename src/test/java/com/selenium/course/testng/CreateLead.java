@@ -1,10 +1,8 @@
-package com.selenium.course.junit;
+package com.selenium.course.testng;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.*;
 
 import com.selenium.course.pages.CampaingDetail;
 import com.selenium.course.pages.CampaingsPage;
@@ -12,6 +10,7 @@ import com.selenium.course.pages.CampaingsTablePage;
 import com.selenium.course.pages.LeadDetail;
 import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.MainApp;
+import com.selenium.course.pages.NewLeadBuilder;
 import com.selenium.course.pages.NewLeadForm;
 import com.selenium.course.pages.PageMenuBar;
 import com.selenium.course.pages.ToolBar;
@@ -35,13 +34,11 @@ public class CreateLead {
 	String companyName;
 	
 	
-	@Before
+	@BeforeClass
     public void setUp() {
     	loginPage = new LoginPage();
-    	String email = "gcavero@hotmail.com";
-        String password = "Gus.jala1";
         campaingName = "newCampaing";
-        mainApp = loginPage.loginAs(email, password);
+    	mainApp = loginPage.loginAsPrimaryUser();
         pageMenuBar = mainApp.goToPageMenuBar();
         campaignsPage = pageMenuBar.clickCampaings();
         newCampaignForm = campaignsPage.clickNewCampaign();
@@ -53,32 +50,35 @@ public class CreateLead {
 		pageMenuBar = mainApp.goToPageMenuBar();
     }
 	
-	@Test
+	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void testUntitled() {
 		String salutation = "Mr.";
 		leadName = "newLead";
 		companyName = "myCompany";
 		
-//		leadsPage = pageMenuBar.clickLeadsTab();
-//		newLeadForm = leadsPage.clickNewLead();
+		leadsPage = pageMenuBar.clickLeadsTab();
+		newLeadForm = leadsPage.clickNewLead();
+		newLeadForm = new NewLeadBuilder(leadName, companyName)
+										.setSalutation(salutation)
+										.setCampaign(campaingName).build();
+		leadDetail = newLeadForm.createLead();
 //		leadDetail = newLeadForm.selectSalutation(salutation)
-//				.setLastName(leadName)
-//				.setCompany(companyName)
-//				.setCampaing(campaingName).clickSaveLead();
-//		
+//								.setLastName(leadName)
+//								.setCompany(companyName)
+//								.setCampaing(campaingName).clickSaveLead();
+		
 		assertTrue(leadDetail.verifyName(salutation, leadName));
 		assertTrue(leadDetail.verifyCompany(companyName));
 		assertTrue(leadDetail.verifyCampaing(campaingName));
 	}
 	
-	@After
+	@AfterClass
     public void tearDown() {
 		leadDetail.clickDelete();
 		pageMenuBar = mainApp.goToPageMenuBar();		
 		campaignsPage = pageMenuBar.clickCampaings();		
 		campaignsTablePage = campaignsPage.clickGo();
 		campaingDetail = campaignsTablePage.clickCampaing(campaingName);
-		campaingDetail.deleteCampaign();
-		
+		campaingDetail.deleteCampaign();	
     }
 }

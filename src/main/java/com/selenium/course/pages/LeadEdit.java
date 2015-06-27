@@ -2,7 +2,6 @@ package com.selenium.course.pages;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -15,31 +14,26 @@ import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.DriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class CampaingsTablePage {
+public class LeadEdit extends NewLeadForm {
 	private WebDriver driver;
 	private WebDriverWait wait;
-
-	@FindBy(id = "ext-gen11")
-    @CacheLookup
-	WebElement campaignsTable;
 	
-	public CampaingsTablePage() {
+	@FindBy(xpath = "//h1[contains(.,'Lead Edit:')]")
+    @CacheLookup
+	WebElement leadEditLabel;
+	
+	public LeadEdit() {
 		wait = DriverManager.getInstance().getWait();
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
-					ExpectedConditions.visibilityOf(campaignsTable));
+					ExpectedConditions.visibilityOf(leadEditLabel));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
 			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
 	}
-	
-	public CampaingDetail clickCampaing(String campaing) {
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[contains(.,'" + campaing + "')]"))));
-		driver.findElement(By.xpath("//span[contains(.,'" + campaing + "')]")).click();
-		return new CampaingDetail();
-	}
+
 }

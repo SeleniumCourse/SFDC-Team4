@@ -1,10 +1,8 @@
-package com.selenium.course.junit;
+package com.selenium.course.testng;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.*;
 
 import com.selenium.course.pages.CampaingDetail;
 import com.selenium.course.pages.CampaingsPage;
@@ -22,19 +20,15 @@ public class CreateCampaign {
 	private CampaingDetail campaingDetail;
 	String campaingName;
 	
-	@Before
+	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
 		mainApp = loginPage.loginAsPrimaryUser();
-//    	String email = "gcavero@hotmail.com";
-//        String password = "Gus.jala1";
-//        campaingName = "newCampaing";
-//        mainApp = loginPage.loginAs(email, password);
         pageMenuBar = mainApp.goToPageMenuBar();
         campaignsPage = pageMenuBar.clickCampaings();
     }
 	
-	@Test
+	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void testUntitled() {
 		campaingName = "NewCampaign";
 		newCampaignForm = campaignsPage.clickNewCampaign();
@@ -45,9 +39,8 @@ public class CreateCampaign {
 		assertTrue(campaingDetail.verifyNewCampaign(campaingName));
 	}
 	
-	@After
+	@AfterClass
     public void tearDown() {
 		campaingDetail.deleteCampaign();
     }
-
 }

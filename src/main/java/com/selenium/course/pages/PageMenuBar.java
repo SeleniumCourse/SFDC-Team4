@@ -10,8 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.*;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class PageMenuBar {
 	private WebDriver driver;
@@ -48,23 +49,19 @@ public class PageMenuBar {
     @FindBy(xpath = "//a[@title='Products Tab']")
     @CacheLookup
 	WebElement products;
-
-    @FindBy(xpath = "//a[@title='Chatter Tab']")
-    @CacheLookup
-    WebElement chatter;
-
+    
     public PageMenuBar(WebDriver driver) {
     	this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         
         try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
+			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(tabBar));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
+			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
     }
     
@@ -105,11 +102,6 @@ public class PageMenuBar {
     public ProductsPage clickProducts() {
     	products.click();
     	return new ProductsPage();
-    }
-
-    public ChatterPage clickChatter() {
-        chatter.click();
-        return new ChatterPage();
     }
 
 }

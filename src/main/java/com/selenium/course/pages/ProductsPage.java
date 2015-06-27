@@ -10,8 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.DriverManager;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class ProductsPage {
 	private WebDriver driver;
@@ -26,12 +27,12 @@ public class ProductsPage {
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
+			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(productsTitle));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
+			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
 	}
 

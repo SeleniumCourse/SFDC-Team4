@@ -8,15 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.selenium.course.framework.DriverManager;
 
 import static com.selenium.course.common.CommonUIMethods.check;
 import static com.selenium.course.common.CommonUIMethods.uncheck;
 
 public class CommonForm {
-	private WebDriver driver;
-	private WebDriverWait wait;
+	protected WebDriver driver;
+	protected WebDriverWait wait;
 	private Select selectBox;
 	private SearchWindow searchWindow;
 
@@ -112,27 +111,6 @@ public class CommonForm {
 	@CacheLookup
 	WebElement shipCountryField;
 
-	// Items to Create Leads
-	@FindBy(name = "name_salutationlea2")
-	@CacheLookup
-	WebElement salutationOption;
-
-	@FindBy(id = "name_lastlea2")
-	@CacheLookup
-	WebElement lastNameField;
-
-	@FindBy(id = "lea3")
-	@CacheLookup
-	WebElement companyNameField;
-
-	@FindBy(xpath = "//img[@title='Campaign Lookup (New Window)']")
-	@CacheLookup
-	WebElement findCampaingLookup;
-
-	@FindBy(name = "save")
-	@CacheLookup
-	WebElement saveBtn;
-
 	// Items to create Campaings
 	@FindBy(name = "cpn1")
 	@CacheLookup
@@ -141,6 +119,27 @@ public class CommonForm {
 	@FindBy(id = "cpn16")
 	@CacheLookup
 	WebElement statusChbx;
+	
+	@FindBy(name = "save")
+	@CacheLookup
+	WebElement saveBtn;
+	
+	//Locator for Leads
+	@FindBy(id = "name_lastlea2")
+	@CacheLookup
+	WebElement lastNameField;
+
+	@FindBy(name = "name_salutationlea2")
+	@CacheLookup
+	WebElement salutationOption;
+
+	@FindBy(id = "lea3")
+	@CacheLookup
+	WebElement companyNameField;
+
+	@FindBy(xpath = "//img[@title='Campaign Lookup (New Window)']")
+	@CacheLookup
+	WebElement findCampaingLookup;
 
 	public CommonForm() {
 		wait = DriverManager.getInstance().getWait();
@@ -268,6 +267,8 @@ public class CommonForm {
 		return new AccountDetail();
 	}
 
+
+
 	// Methods to create Leads
 	public void selectSalutation(String salutation) {
 		selectBox = new Select(salutationOption);
@@ -297,24 +298,5 @@ public class CommonForm {
 	public LeadDetail clickSaveLead() {
 		saveBtn.click();
 		return new LeadDetail();
-	}
-
-	// Methods to create Campaings
-	public void setCampaignName(String name) {
-		campaignNameField.clear();
-		campaignNameField.sendKeys(name);
-	}
-
-	public void setStatus(boolean status) {
-		if (status) {
-			check(By.id("cpn16"));
-		} else {
-			uncheck(By.id("cpn16"));
-		}
-	}
-
-	public CampaingDetail clickSaveCampaign() {
-		saveBtn.click();
-		return new CampaingDetail();
 	}
 }
