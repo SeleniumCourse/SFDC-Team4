@@ -15,6 +15,14 @@ import com.selenium.course.pages.NewAccountBuilder;
 import com.selenium.course.pages.NewAccountForm;
 import com.selenium.course.pages.PageMenuBar;
 
+/**
+ * Title:
+ * Edit Account
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class EditAccount {
 	
 	private LoginPage loginPage;

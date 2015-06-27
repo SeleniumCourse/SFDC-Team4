@@ -9,6 +9,14 @@ import com.selenium.course.pages.PageMenuBar;
 import com.selenium.course.pages.ToolBar;
 import com.selenium.course.pages.LeadsPage;
 
+/**
+ * Title:
+ * Cretate 
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class CreateViewLeadTest {
 	
 	private LoginPage loginPage;

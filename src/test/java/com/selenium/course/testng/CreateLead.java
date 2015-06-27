@@ -17,6 +17,14 @@ import com.selenium.course.pages.ToolBar;
 import com.selenium.course.pages.NewCampaignForm;
 import com.selenium.course.pages.LeadsPage;
 
+/**
+ * Title:
+ * Cretate Lead
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class CreateLead {
 	private LoginPage loginPage;
 	private MainApp mainApp;

@@ -11,6 +11,14 @@ import com.selenium.course.pages.MainApp;
 import com.selenium.course.pages.NewCampaignForm;
 import com.selenium.course.pages.PageMenuBar;
 
+/**
+ * Title:
+ * Cretate Campaign
+ *
+ * @author Gustavo Cavero 
+ *
+ */
+ 
 public class CreateCampaign {
 	private LoginPage loginPage;
 	private MainApp mainApp;
