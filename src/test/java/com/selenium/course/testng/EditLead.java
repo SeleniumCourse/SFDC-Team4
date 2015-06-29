@@ -82,8 +82,7 @@ public class EditLead {
 		
 		leadEdit = leadDetail.clickEdit();
 		newLeadForm = new NewLeadBuilder(leadNameEdited, companyNameEdited)
-										.setSalutation(salutationEdited)
-										.setCampaign(campaingName).build();
+										.setSalutation(salutationEdited).build();
 		leadDetail = newLeadForm.createLead();
 		
 		assertTrue(leadDetail.verifyName(salutationEdited, leadNameEdited));
