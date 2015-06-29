@@ -1,16 +1,16 @@
 package com.selenium.course.junit;
 
+import com.selenium.course.pages.ChatterPage;
 import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.MainApp;
 import com.selenium.course.pages.PageMenuBar;
-import com.selenium.course.pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class PostChat {
+public class CreatePostChat {
 	private LoginPage loginPage;
 	private MainApp mainApp;
 	private PageMenuBar pageMenuBar;
@@ -28,7 +28,7 @@ public class PostChat {
 	
 	@Test
     public void postChat() {
-		postContent = "campos data Data to post from script";
+		postContent = "***************New post to create ***********";
 		chatterPage.createAnewPost(postContent);
 		chatterPage.refreshPage();
 		assertTrue(chatterPage.verifyNewPostIsThere(postContent));
@@ -38,6 +38,7 @@ public class PostChat {
     public void tearDown() {
 		chatterPage.expandLatestDropDown();
 		chatterPage.removeLatestPost();
+		chatterPage.closeDialog();
     }
 
 }

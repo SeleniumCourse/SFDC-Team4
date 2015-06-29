@@ -49,7 +49,11 @@ public class PageMenuBar {
     @FindBy(xpath = "//a[@title='Products Tab']")
     @CacheLookup
 	WebElement products;
-    
+
+    @FindBy(xpath = "//a[@title='Chatter Tab']")
+    @CacheLookup
+    WebElement chatter;
+
     public PageMenuBar(WebDriver driver) {
     	this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
@@ -102,6 +106,11 @@ public class PageMenuBar {
     public ProductsPage clickProducts() {
     	products.click();
     	return new ProductsPage();
+    }
+
+    public ChatterPage clickChatter() {
+        chatter.click();
+        return new ChatterPage();
     }
 
 }
