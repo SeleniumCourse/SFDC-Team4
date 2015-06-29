@@ -10,9 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+
 import com.selenium.course.framework.DriverManager;
-import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class ContactsPage {
 	private WebDriver driver;
@@ -21,19 +20,29 @@ public class ContactsPage {
 	@FindBy(xpath = "//h1[contains(.,'Contacts:')]")
     @CacheLookup
 	WebElement contactsTitle;
+
+	@FindBy(name = "new")
+	@CacheLookup
+	WebElement newBtn;
 	
 	public ContactsPage() {
 		wait = DriverManager.getInstance().getWait();
 		driver = DriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
-			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
+			wait.withTimeout(3, TimeUnit.SECONDS).until(
 					ExpectedConditions.visibilityOf(contactsTitle));
 		} catch (WebDriverException e) {
 			throw new WebDriverException(e);
 		} finally {
-			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
+			wait.withTimeout(15, TimeUnit.SECONDS);
 		}
 	}
+
+	public ContactForm clickNewBtn() {
+		newBtn.click();
+		return new ContactForm();
+	}
+
 
 }
