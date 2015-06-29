@@ -81,10 +81,8 @@ public class EditLead {
 		String companyNameEdited = "myCompanyEdited";
 		
 		leadEdit = leadDetail.clickEdit();
-		newLeadForm = leadsPage.clickNewLead();
 		newLeadForm = new NewLeadBuilder(leadNameEdited, companyNameEdited)
-										.setSalutation(salutationEdited)
-										.setCampaign(campaingName).build();
+										.setSalutation(salutationEdited).build();
 		leadDetail = newLeadForm.createLead();
 		
 		assertTrue(leadDetail.verifyName(salutationEdited, leadNameEdited));

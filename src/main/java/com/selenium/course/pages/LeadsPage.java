@@ -23,39 +23,30 @@ public class LeadsPage {
 	Select selectBox;
 	
 	@FindBy(xpath = "//h1[contains(.,'Leads:')]")
-    @CacheLookup
 	WebElement leadsTitle;
 	
 	@FindBy(xpath = "//a[contains(.,'Create New View')]")
-    @CacheLookup
 	WebElement newViewLink;
 	
 	@FindBy(xpath = "//h2[contains(.,' Create New View')]")
-    @CacheLookup
 	WebElement newNewLabel;
 	
 	@FindBy(xpath = "//input[@id='fname']")
-    @CacheLookup
 	WebElement viewName;
 	
 	@FindBy(id = "colselector_select_0_right")
-	@CacheLookup
 	WebElement addFields;
 	
 	@FindBy(xpath="//input[@name='save']")
-	@CacheLookup
 	WebElement saveBtn;		
 	
 	@FindBy(linkText="Delete")
-	@CacheLookup
 	WebElement deleteView;	
 	
 	@FindBy(name="fcf")
-	@CacheLookup
 	WebElement comboBox;	
 	
 	@FindBy(name = "new")
-    @CacheLookup
 	WebElement newBtn;
 	
 	public LeadsPage() {
