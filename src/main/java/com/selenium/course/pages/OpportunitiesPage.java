@@ -21,6 +21,14 @@ public class OpportunitiesPage {
 	@FindBy(xpath = "//h1[contains(.,'Opportunities:')]")
     @CacheLookup
 	WebElement opportunitiesTitle;
+
+	@FindBy(xpath = "//input[@name='new']")
+	@CacheLookup
+	WebElement newBtn;
+
+	@FindBy(name = "go")
+	@CacheLookup
+	WebElement goBtn;
 	
 	public OpportunitiesPage() {
 		wait = DriverManager.getInstance().getWait();
@@ -34,6 +42,15 @@ public class OpportunitiesPage {
 		} finally {
 			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
+	}
+	public NewOpportunityForm clickNewOpportunity() {
+		newBtn.click();
+		return new NewOpportunityForm();
+	}
+
+	public OpportunityTablePage clickGo() {
+		goBtn.click();
+		return new OpportunityTablePage();
 	}
 
 }
