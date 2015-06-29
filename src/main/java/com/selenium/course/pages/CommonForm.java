@@ -20,125 +20,95 @@ public class CommonForm {
 	private SearchWindow searchWindow;
 
 	@FindBy(id = "acc2")
-	@CacheLookup
 	WebElement accountNameField;
 
 	@FindBy(xpath = "//img[@title='Parent Account Lookup (New Window)']")
-	@CacheLookup
 	WebElement findAccountLookup;
 
 	@FindBy(id = "acc5")
-	@CacheLookup
 	WebElement accountNumberField;
 
 	@FindBy(id = "acc23")
-	@CacheLookup
 	WebElement accountSiteField;
 
 	@FindBy(id = "acc6")
-	@CacheLookup
 	WebElement typeField;
 
 	@FindBy(id = "acc7")
-	@CacheLookup
 	WebElement industryField;
 
 	@FindBy(id = "acc8")
-	@CacheLookup
 	WebElement revenueField;
 
 	@FindBy(id = "acc9")
-	@CacheLookup
 	WebElement ratingField;
 
 	@FindBy(id = "acc10")
-	@CacheLookup
 	WebElement phoneField;
 
 	@FindBy(id = "acc11")
-	@CacheLookup
 	WebElement faxField;
 
 	@FindBy(id = "acc12")
-	@CacheLookup
 	WebElement webSiteField;
 
 	@FindBy(id = "acc13")
-	@CacheLookup
 	WebElement tickerSymbolField;
 
 	@FindBy(id = "acc14")
-	@CacheLookup
 	WebElement ownershipField;
 
 	@FindBy(id = "acc15")
-	@CacheLookup
 	WebElement employeesField;
 
 	@FindBy(id = "acc16")
-	@CacheLookup
 	WebElement sicCodeField;
 
 	@FindBy(id = "acc17city")
-	@CacheLookup
 	WebElement billingCityField;
 
 	@FindBy(id = "acc17state")
-	@CacheLookup
 	WebElement billingStateField;
 
 	@FindBy(id = "acc17zip")
-	@CacheLookup
 	WebElement billingZipField;
 
 	@FindBy(id = "acc17country")
-	@CacheLookup
 	WebElement billingCountryField;
 
 	@FindBy(id = "acc18city")
-	@CacheLookup
 	WebElement shipCityField;
 
 	@FindBy(id = "acc18state")
-	@CacheLookup
 	WebElement shipStateField;
 
 	@FindBy(id = "acc18zip")
-	@CacheLookup
 	WebElement shipZipField;
 
 	@FindBy(id = "acc18country")
-	@CacheLookup
 	WebElement shipCountryField;
 
 	// Items to create Campaings
 	@FindBy(name = "cpn1")
-	@CacheLookup
 	WebElement campaignNameField;
 
 	@FindBy(id = "cpn16")
-	@CacheLookup
 	WebElement statusChbx;
 	
 	@FindBy(name = "save")
-	@CacheLookup
 	WebElement saveBtn;
 	
 	//Locator for Leads
 	@FindBy(id = "name_lastlea2")
-	@CacheLookup
 	WebElement lastNameField;
 
 	@FindBy(name = "name_salutationlea2")
-	@CacheLookup
 	WebElement salutationOption;
 
 	@FindBy(id = "lea3")
-	@CacheLookup
 	WebElement companyNameField;
 
 	@FindBy(xpath = "//img[@title='Campaign Lookup (New Window)']")
-	@CacheLookup
 	WebElement findCampaingLookup;
 
 	public CommonForm() {
