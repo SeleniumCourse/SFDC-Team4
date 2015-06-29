@@ -9,7 +9,8 @@ package com.selenium.course.pages;
         import org.openqa.selenium.support.PageFactory;
         import org.openqa.selenium.support.ui.ExpectedConditions;
         import org.openqa.selenium.support.ui.WebDriverWait;
-
+        import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+        import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
         import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,9 +32,9 @@ public class ProductEditPage extends NewProductForm {
         wait = DriverManager.getInstance().getWait();
         driver = DriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
-        wait.withTimeout(3, TimeUnit.SECONDS).until(
+        wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                 ExpectedConditions.visibilityOf(EditProductTitle));
-        wait.withTimeout(15, TimeUnit.SECONDS);
+        wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
     }
 
 
