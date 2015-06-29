@@ -2,6 +2,8 @@ package com.selenium.course.testng;
 
 import com.selenium.course.pages.*;
 import org.testng.annotations.*;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -14,8 +16,8 @@ public class EditOpportunity {
     private OpportunityTablePage opportunityTablePage;
     private OpportunityDetail opportunityDetail;
     private OpportunityEdit opportunityEdit;
-    String name,newName;
-    String stage,newStage,type, leadSource, amount, nextstep;
+    String name,newName,type, leadSource,amount,nextStep;
+    String stage,newStage,newType, newLeadSource, newAmount, newNextStep;
 
 
     @BeforeClass
@@ -25,7 +27,7 @@ public class EditOpportunity {
         type ="New Customer";
         leadSource = "Web";
         amount = "20";
-        nextstep = "Step";
+        nextStep = "Step";
         loginPage = new LoginPage();
         mainApp = loginPage.loginAsPrimaryUser();
         pageMenuBar = mainApp.goToPageMenuBar();
@@ -37,7 +39,7 @@ public class EditOpportunity {
                 .setLeadSource(leadSource)
                 .setAmount(amount)
                 .setCloseDate()
-                .setNextStep(nextstep)
+                .setNextStep(nextStep)
                 .setStage(stage)
                 .clickSaveOpportunity();
     }
@@ -46,21 +48,27 @@ public class EditOpportunity {
     public void testUntitled() {
         newName = "ModifiedOpportunity";
         newStage = "Qualification";
-        type ="Existing Customer - Upgrade";
-        leadSource = "Other";
-        amount = "50";
-        nextstep = "StepModified";
+        newType ="Existing Customer - Upgrade";
+        newLeadSource = "Other";
+        newAmount = "50";
+        newNextStep = "StepModified";
         opportunityEdit = opportunityDetail.clickEdit();
         opportunityDetail = opportunityEdit.setName(newName)
                 .setPrivate()
-                .setType(type)
-                .setLeadSource(leadSource)
-                .setAmount(amount)
+                .setType(newType)
+                .setLeadSource(newLeadSource)
+                .setAmount(newAmount)
                 .setCloseDate()
-                .setNextStep(nextstep)
+                .setNextStep(newNextStep)
                 .setStage(stage)
                 .clickSaveOpportunity();
-        assertTrue(opportunityDetail.verifyNewOpportunity(newName));
+        assertTrue("Verification Failed:The opportunity name was not correctly changed",opportunityDetail.verifyNewOpportunityName(newName));
+        assertFalse("Verification Failed:The opportunity private data was not correctly changed",opportunityDetail.verifyNewOpportunityPrivate());
+        assertTrue("Verification Failed:The opportunity type was not correctly changed",opportunityDetail.verifyNewOpportunityType(newType));
+        assertTrue("Verification Failed:The opportunity lead source was not correctly changed",opportunityDetail.verifyNewOpportunityLeadSource(newLeadSource));
+        assertTrue("Verification Failed:The opportunity amount was not correctly changed",opportunityDetail.verifyNewOpportunityAmount(newAmount));
+        assertTrue("Verification Failed:The opportunity step data was not correctly changed",opportunityDetail.verifyNewOpportunityStep(newNextStep));
+
     }
 
     @AfterClass

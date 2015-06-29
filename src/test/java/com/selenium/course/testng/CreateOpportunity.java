@@ -40,8 +40,8 @@ public class CreateOpportunity {
                 .setNextStep(nextstep)
                 .setStage(stage)
                 .clickSaveOpportunity();
-        assertTrue(opportunityDetail.verifyNewOpportunity(name));
-    }
+        assertTrue("Verification Failed:The Opportunity was not created",opportunityDetail.verifyNewOpportunityName(name));
+        }
 
     @AfterClass
     public void tearDown() {

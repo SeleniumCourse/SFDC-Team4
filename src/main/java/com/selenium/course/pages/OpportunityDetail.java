@@ -25,9 +25,33 @@ public class OpportunityDetail {
     @CacheLookup
     WebElement opportunityDetailTable;
 
+    @FindBy(id = "opp2_ileinner")
+    @CacheLookup
+    WebElement opportunityPrivate;
+
     @FindBy(id = "opp3_ileinner")
     @CacheLookup
     WebElement opportunityName;
+
+    @FindBy(id = "opp5_ileinner")
+    @CacheLookup
+    WebElement opportunityType;
+
+    @FindBy(id = "opp6_ileinner")
+    @CacheLookup
+    WebElement opportunityLeadSource;
+
+    @FindBy(id = "opp7_ileinner")
+    @CacheLookup
+    WebElement opportunityAmount;
+
+    @FindBy(id = "opp10_ileinner")
+    @CacheLookup
+    WebElement opportunityStep;
+
+    @FindBy(id = "opp11_ileinner")
+    @CacheLookup
+    WebElement opportunityStage;
 
     @FindBy(name = "del")
     @CacheLookup
@@ -51,10 +75,6 @@ public class OpportunityDetail {
         }
     }
 
-    public boolean verifyNewOpportunity(String name) {
-        return opportunityName.getText().contains(name);
-    }
-
     public OpportunitiesPage deleteOpportunity() {
         deleteBtn.click();
         Alert alert = driver.switchTo().alert();
@@ -66,4 +86,34 @@ public class OpportunityDetail {
         editBtn.click();
         return new OpportunityEdit();
     }
+
+    public boolean verifyNewOpportunityName(String name) {
+        return opportunityName.getText().contains(name);
+    }
+
+    public boolean verifyNewOpportunityPrivate() {
+        return opportunityPrivate.isSelected();
+    }
+
+    public boolean verifyNewOpportunityType(String type) {
+        return opportunityType.getText().contains(type);
+    }
+
+    public boolean verifyNewOpportunityLeadSource(String leadSource) {
+        return opportunityLeadSource.getText().contains(leadSource);
+    }
+
+    public boolean verifyNewOpportunityAmount(String amount) {
+        return opportunityAmount.getText().contains(amount);
+    }
+
+    public boolean verifyNewOpportunityStep(String step) {
+        return opportunityStep.getText().contains(step);
+    }
+
+    public boolean verifyNewOpportunityStage(String stage) {
+        return opportunityStage.getText().contains(stage);
+    }
+
+
 }
