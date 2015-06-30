@@ -70,10 +70,6 @@ public class CreateLead {
 										.setSalutation(salutation)
 										.setCampaign(campaingName).build();
 		leadDetail = newLeadForm.createLead();
-//		leadDetail = newLeadForm.selectSalutation(salutation)
-//								.setLastName(leadName)
-//								.setCompany(companyName)
-//								.setCampaing(campaingName).clickSaveLead();
 		
 		assertTrue(leadDetail.verifyName(salutation, leadName));
 		assertTrue(leadDetail.verifyCompany(companyName));

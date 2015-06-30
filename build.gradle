@@ -49,7 +49,6 @@ task runTestNGTestCases(type: Test) {
 	systemProperties.put('org.uncommons.reportng.title', titleProject + ' - ' + browser + ' - ' + credential + ' - ' + groups)
     systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)	
-    systemProperties.put('org.uncommons.reportng.escape-output','false')
     systemProperties.put('groups', groups)
     systemProperties.put('browser', browser)	
 }
