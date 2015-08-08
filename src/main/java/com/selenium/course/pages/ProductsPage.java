@@ -19,8 +19,12 @@ public class ProductsPage {
 	private WebDriverWait wait;
 	
 	@FindBy(xpath = "//h1[contains(.,'Products:')]")
-    @CacheLookup
+	@CacheLookup
 	WebElement productsTitle;
+
+	@FindBy(name = "new")
+	@CacheLookup
+	WebElement newBtn;
 	
 	public ProductsPage() {
 		wait = DriverManager.getInstance().getWait();
@@ -36,4 +40,8 @@ public class ProductsPage {
 		}
 	}
 
+	public NewProductForm clickNew() {
+		newBtn.click();
+		return new NewProductForm();
+	}
 }
