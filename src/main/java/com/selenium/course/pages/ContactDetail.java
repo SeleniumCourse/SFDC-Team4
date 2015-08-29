@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 /**
  * Created by reyna ulaque on 15/06/2015.
@@ -39,8 +39,8 @@ public class ContactDetail {
     WebElement editBtn;
 
     public ContactDetail() {
-        wait = DriverManager.getInstance().getWait();
-        driver = DriverManager.getInstance().getDriver();
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(3, TimeUnit.SECONDS).until(

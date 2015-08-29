@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class CampaignEdit {
@@ -23,8 +23,8 @@ public class CampaignEdit {
 	WebElement campaignDetailTable;
 	
 	public CampaignEdit() {
-		wait = DriverManager.getInstance().getWait();
-		driver = DriverManager.getInstance().getDriver();
+		wait = WebDriverManager.getInstance().getWait();
+		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(

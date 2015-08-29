@@ -1,6 +1,6 @@
 package com.selenium.course.pages;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -62,8 +62,8 @@ public class OpportunityDetail {
     WebElement editBtn;
 
     public OpportunityDetail() {
-        wait = DriverManager.getInstance().getWait();
-        driver = DriverManager.getInstance().getDriver();
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(

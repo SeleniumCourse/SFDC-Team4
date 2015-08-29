@@ -6,7 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 public class MainApp {
 	private WebDriver driver;
@@ -18,11 +18,15 @@ public class MainApp {
 
 	@FindBy(id = "AppBodyHeader")
     @CacheLookup
-	WebElement bodyPage; 
+	WebElement bodyPage;
+
+	@FindBy(id = "userNavLabel")
+	@CacheLookup
+	private WebElement loginUsername;
 	
 	public MainApp(WebDriver driver) {
         this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
+        wait = WebDriverManager.getInstance().getWait();
     }
 	
 	public PageMenuBar goToPageMenuBar() {
@@ -40,4 +44,10 @@ public class MainApp {
 	public boolean isMainPageDisplayed() {
     	return bodyPage.isDisplayed();
     }
+
+
+	public String getLoginUsername ()
+	{
+		return loginUsername.getText();
+	}
 }

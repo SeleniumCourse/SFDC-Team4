@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,9 +12,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.EnumsList.Steps;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
@@ -32,8 +31,8 @@ public class NewLeadForm extends CommonForm{
 	List<Steps> strategies;
 	
 	public NewLeadForm() {
-		wait = DriverManager.getInstance().getWait();
-		driver = DriverManager.getInstance().getDriver();
+		wait = WebDriverManager.getInstance().getWait();
+		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
@@ -50,15 +49,15 @@ public class NewLeadForm extends CommonForm{
 		this.newLeadBuilder = builder;
 		this.strategies = builder.strategies;
 		
-		this.strategyMap = new HashMap<>();
-		strategyMap.put(Steps.SALUTATION, () -> selectSalutation(builder.salutation));
+		//this.strategyMap = new HashMap<>();
+		/*strategyMap.put(Steps.SALUTATION, () -> selectSalutation(builder.salutation));
 		strategyMap.put(Steps.LAST_NAME, () -> setLastName(builder.lastName));
 		strategyMap.put(Steps.COMPANY_NAME, () -> setCompany(builder.companyName));
-		strategyMap.put(Steps.CAMPAIGN, () -> setCampaing(builder.campaign));
+		strategyMap.put(Steps.CAMPAIGN, () -> setCampaing(builder.campaign));*/
 	}
 	
 	public LeadDetail createLead() {
-		strategies.forEach(elem -> strategyMap.get(elem).performTask());		
+		//strategies.forEach(elem -> strategyMap.get(elem).performTask());
 		return clickSaveLead();
 	}
 	

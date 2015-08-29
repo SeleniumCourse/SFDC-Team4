@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.EnumsList.Steps;
 
 public class NewAccountForm extends CommonForm{
@@ -36,8 +36,8 @@ public class NewAccountForm extends CommonForm{
 	
 	public NewAccountForm() {
 		this.driver = driver;
-		wait = DriverManager.getInstance().getWait();
-		driver = DriverManager.getInstance().getDriver();
+		wait = WebDriverManager.getInstance().getWait();
+		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
@@ -53,7 +53,7 @@ public class NewAccountForm extends CommonForm{
 		this.newAccountBuilder = builder;
 		this.strategies = builder.strategies;
 		
-		this.strategyMap = new HashMap<>();
+		/*this.strategyMap = new HashMap<>();
 		strategyMap.put(Steps.ACCOUNT, () -> setAccountName(builder.account));
 		strategyMap.put(Steps.PARENT_ACCOUNT, () -> setParentAccount(builder.parentAccount));
 		strategyMap.put(Steps.NUMBER, () -> setAccountNumber(builder.accountNumber));
@@ -75,11 +75,11 @@ public class NewAccountForm extends CommonForm{
 		strategyMap.put(Steps.SHIPCITY, () -> setShippingCity(builder.shipCity));
 		strategyMap.put(Steps.SHIPSTATE, () -> setShippingState(builder.shipState));
 		strategyMap.put(Steps.SHIPZIP, () -> setShippingZip(builder.shipZip));
-		strategyMap.put(Steps.SHIPCOUNTRY, () -> setShippingCountry(builder.shipCountry));
+		strategyMap.put(Steps.SHIPCOUNTRY, () -> setShippingCountry(builder.shipCountry));*/
     }
 	
 	public AccountDetail createAccount() {
-		strategies.forEach(elem -> strategyMap.get(elem).performTask());		
+		//strategies.forEach(elem -> strategyMap.get(elem).performTask());
 		return clickSaveAccount();
 	}
 }

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 public class HelpPage {
 	private WebDriver driver;
@@ -26,7 +26,7 @@ public class HelpPage {
 	public HelpPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        wait = DriverManager.getInstance().getWait();
+        wait = WebDriverManager.getInstance().getWait();
         
         windowsID = driver.getWindowHandle();
         

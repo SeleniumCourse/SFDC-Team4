@@ -3,7 +3,7 @@ package com.selenium.course.common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 public class CommonUIMethods {
 
@@ -13,7 +13,7 @@ public class CommonUIMethods {
 	 * @param locator
 	 */
 	public static void check(By locator) {
-		WebElement checkBox = DriverManager.getInstance().getDriver()
+		WebElement checkBox = WebDriverManager.getInstance().getDriver()
 				.findElement(locator);
 		if (!checkBox.isSelected()) {
 			checkBox.click();
@@ -26,7 +26,7 @@ public class CommonUIMethods {
 	 * @param locator
 	 */
 	public static void uncheck(By locator) {
-		WebElement checkBox = DriverManager.getInstance().getDriver()
+		WebElement checkBox = WebDriverManager.getInstance().getDriver()
 				.findElement(locator);
 		if (checkBox.isSelected()) {
 			checkBox.click();
@@ -40,9 +40,9 @@ public class CommonUIMethods {
     public static void selectRadioButton(By by)
     {
     	/*Conditional to verify that a radio button is not selected, then, select radio button */ 
-        if (!DriverManager.getInstance().getDriver().findElement(by).isSelected())
+        if (!WebDriverManager.getInstance().getDriver().findElement(by).isSelected())
         {
-            DriverManager.getInstance().getDriver().findElement(by).click();
+            WebDriverManager.getInstance().getDriver().findElement(by).click();
         }
     }
 }

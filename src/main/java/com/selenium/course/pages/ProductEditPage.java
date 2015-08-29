@@ -1,8 +1,7 @@
 package com.selenium.course.pages;
 
-        import com.selenium.course.framework.DriverManager;
+        import com.selenium.course.framework.WebDriverManager;
         import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebDriverException;
         import org.openqa.selenium.WebElement;
         import org.openqa.selenium.support.CacheLookup;
         import org.openqa.selenium.support.FindBy;
@@ -29,8 +28,8 @@ public class ProductEditPage extends NewProductForm {
 
     public ProductEditPage() {
         this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
-        driver = DriverManager.getInstance().getDriver();
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
         wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                 ExpectedConditions.visibilityOf(EditProductTitle));

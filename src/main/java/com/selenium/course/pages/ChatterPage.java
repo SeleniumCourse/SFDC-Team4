@@ -1,6 +1,6 @@
 package com.selenium.course.pages;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -28,8 +28,8 @@ public class ChatterPage {
     protected WebElement shareButton;
 
     public ChatterPage(){
-        wait = DriverManager.getInstance().getWait();
-        driver = DriverManager.getInstance().getDriver();
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(5, TimeUnit.SECONDS).until(
