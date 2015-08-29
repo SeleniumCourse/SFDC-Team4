@@ -40,9 +40,9 @@ public class AccountsPage {
 		}
 	}
 	
-	public NewAccountForm clickNew() {
+	public AccountForm clickNew() {
 		newBtn.click();
-		return new NewAccountForm();
+		return new AccountForm(driver);
 	}
 
 }

@@ -1,18 +1,16 @@
 package com.selenium.course.pages;
 
 import com.selenium.course.framework.Environment;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends Page {
 
-    private PageMenuBar pageMenuBar;
+    private TabBar tabBar;
 
 
     @FindBy(id = "Login")
@@ -41,7 +39,7 @@ public class LoginPage extends Page {
         }
     }
 
-    public MainApp loginAs(String username, String password) {
+    public ContentPage loginAs(String username, String password) {
         setUsernameTxt(username);
         setPasswordTxt(password);
         return clickLoginBtn();
@@ -59,12 +57,12 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public MainApp clickLoginBtn() {
+    public ContentPage clickLoginBtn() {
         loginBtn.click();
-        return new MainApp(driver);
+        return new ContentPage(driver);
     }
 
-    public MainApp loginAsPrimaryUser() {
+    public ContentPage loginAsPrimaryUser() {
         String username = Environment.getInstance()
                 .getPrimaryUserName();
         String password = Environment.getInstance()

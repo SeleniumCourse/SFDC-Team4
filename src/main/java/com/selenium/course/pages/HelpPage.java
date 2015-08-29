@@ -42,9 +42,9 @@ public class HelpPage {
 		return helpSearchBox.isDisplayed();
 	}
 
-	public MainApp closeHelpPage() {
+	public ContentPage closeHelpPage() {
 		driver.close();
 		driver.switchTo().window(windowsID);
-		return new MainApp(driver);
+		return new ContentPage(driver);
 	}
 }

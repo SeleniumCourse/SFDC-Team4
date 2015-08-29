@@ -62,7 +62,9 @@ public class AccountDetail {
 	
 	public AccountEdit clickEdit() {
 		editBtn.click();
-		return new AccountEdit();
+
+		WebDriver driver = WebDriverManager.getInstance().getDriver();
+		return new AccountEdit(driver);
 	}
 
 }

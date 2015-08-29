@@ -2,6 +2,7 @@ package com.selenium.course.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -14,10 +15,8 @@ import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.WebDriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class NavigationLinks {
-	private WebDriver driver;
-    private WebDriverWait wait;
-    
+public class NavigationLinks extends Page {
+
     @FindBy(id = "userNavLabel")
    	@CacheLookup
    	WebElement userLabel;
@@ -25,11 +24,13 @@ public class NavigationLinks {
     @FindBy(xpath = "//a[contains(@title,'Help')]")
    	@CacheLookup
    	WebElement helpTab;
+
+    @FindBy(xpath = "//a[@title='Logout']")
+    @CacheLookup
+    private WebElement logout;
     
     public NavigationLinks(WebDriver driver) {
-    	this.driver = driver;
-        this.wait = WebDriverManager.getInstance().getWait();
-        
+        super(driver);
         PageFactory.initElements(driver, this);
         
         try {
@@ -51,6 +52,15 @@ public class NavigationLinks {
     	this.driver = driver;
     	helpTab.click();
     	return new HelpPage(driver);
+    }
+    public String getLoginUsername ()
+    {
+        return userLabel.getText();
+    }
+    public void clickLogoutBtn() {
+        driver.findElement(By.id("userNav")).click();
+        logout.click();
+        driver.quit();
     }
 
 }

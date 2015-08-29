@@ -10,15 +10,15 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Andrea Castro on 6/29/2015.
  */
-public class CreateProduct {
+public class CreateProduct {/*
 
-   /**
+   *
      * Created by Andrea Castro on 6/12/2015.
-     */
+     
 
         private LoginPage loginPage;
-        private MainApp mainApp;
-        private PageMenuBar pageMenuBar;
+        private ContentPage contentPage;
+        private TabBar tabBar;
         private ProductsPage productsPage;
         private NewProductForm newProductForm;
         private ProductDetail productDetail;
@@ -27,9 +27,9 @@ public class CreateProduct {
         @BeforeClass
         public void setUp() {
             loginPage = new LoginPage();
-            mainApp = loginPage.loginAsPrimaryUser();
-            pageMenuBar = mainApp.goToPageMenuBar();
-            productsPage = pageMenuBar.clickProducts();
+            contentPage = loginPage.loginAsPrimaryUser();
+            tabBar = contentPage.goToTabBar();
+            productsPage = tabBar.clickProducts();
         }
 
             @Test
@@ -53,9 +53,10 @@ public class CreateProduct {
             public void tearDown () {
 
                 productDetail.clickDelete();
-                pageMenuBar = mainApp.goToPageMenuBar();
+                tabBar = contentPage.goToTabBar();
 
-            }}
+            }*/
+}
 
 
 

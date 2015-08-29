@@ -14,17 +14,14 @@ import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 import com.selenium.course.framework.WebDriverManager;
 
-public class AccountEdit extends NewAccountForm{
-	private WebDriver driver;
-	private WebDriverWait wait;
-	
+public class AccountEdit extends AccountForm {
+
 	@FindBy(xpath = "//h2[contains(.,'Account Edit')]")
     @CacheLookup
 	WebElement accountEditLabel;
 	
-	public AccountEdit() {
-		wait = WebDriverManager.getInstance().getWait();
-		driver = WebDriverManager.getInstance().getDriver();
+	public AccountEdit(WebDriver driver) {
+		super(driver);
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(

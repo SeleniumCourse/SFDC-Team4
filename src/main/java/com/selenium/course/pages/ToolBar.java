@@ -10,15 +10,12 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import com.selenium.course.framework.WebDriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class ToolBar {
-	private WebDriver driver;
-    private WebDriverWait wait;
-    
+public class ToolBar extends Page{
+
     @FindBy(id = "tsidButton")
    	@CacheLookup
    	WebElement tsiButton;
@@ -28,11 +25,8 @@ public class ToolBar {
    	WebElement menuItems;
     
     public ToolBar(WebDriver driver) {
-    	this.driver = driver;
-        this.wait = WebDriverManager.getInstance().getWait();
+        super(driver);
         PageFactory.initElements(driver, this);
-        
-
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(tsiButton));
@@ -48,14 +42,14 @@ public class ToolBar {
     	wait.until(ExpectedConditions.visibilityOf(menuItems));
     }
     
-    public void clickElemntOfMenu(String tab) {
+    public void clickElementOfMenu(String tab) {
     	driver.findElement(By.xpath("//a[text()='" + tab + "']")).click();
     }
     
     public void goToSales() {
 		if (!driver.findElement(By.xpath("//span[@id='tsidLabel']")).getText().equals("Sales")) {
 			clickOptionButton();
-			clickElemntOfMenu("Sales");
+			clickElementOfMenu("Sales");
 		}
     }
     

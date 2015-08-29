@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 public class EditPostChat {
 	private LoginPage loginPage;
-	private MainApp mainApp;
-	private PageMenuBar pageMenuBar;
+	private ContentPage contentPage;
+	private TabBar tabBar;
 	private ChatterPage chatterPage;
 
 	String postContent;
@@ -18,9 +18,9 @@ public class EditPostChat {
 	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
-		mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-		chatterPage = pageMenuBar.clickChatter();
+		contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+		chatterPage = tabBar.clickChatter();
 		postContent = "--------This message will be edited------------";
 		chatterPage = chatterPage.createAnewPost(postContent);
 		chatterPage.waitToPublishedPost();

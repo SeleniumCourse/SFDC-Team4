@@ -14,7 +14,7 @@ import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.WebDriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class CampaingsPage {
+public class CampaignsPage {
 	private WebDriver driver;
 	private WebDriverWait wait;
 	
@@ -31,7 +31,7 @@ public class CampaingsPage {
 	WebElement goBtn;
 	
 	
-	public CampaingsPage() {
+	public CampaignsPage() {
 		wait = WebDriverManager.getInstance().getWait();
 		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);

@@ -3,7 +3,9 @@ package com.selenium.course.pages;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.EnumsList.Steps;
+import org.openqa.selenium.WebDriver;
 
 
 public class NewAccountBuilder {
@@ -34,7 +36,7 @@ public class NewAccountBuilder {
 	
 	public NewAccountBuilder(String accountName) {
         this.account = accountName;
-        this.strategies = new LinkedList<>();
+        this.strategies = new LinkedList();
 		strategies.add(Steps.ACCOUNT);
     }
 	
@@ -168,8 +170,9 @@ public class NewAccountBuilder {
 		return this;
 	}
 	
-	public NewAccountForm build() {
-        return new NewAccountForm(this);
+	public AccountForm build() {
+		WebDriver driver = driver = WebDriverManager.getInstance().getDriver();
+        return new AccountForm(driver);
     }
 
 }

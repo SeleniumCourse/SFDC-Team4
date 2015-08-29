@@ -15,8 +15,8 @@ public class EditProduct {
      */
 
     private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
+    private ContentPage contentPage;
+    private TabBar tabBar;
     private ProductsPage productsPage;
     private NewProductForm newProductForm;
     private ProductDetail productDetail;
@@ -31,9 +31,9 @@ public class EditProduct {
         productCode = "P2015";
 
         loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        productsPage = pageMenuBar.clickProducts();
+        contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        //productsPage = tabBar.clickProducts();
         newProductForm = productsPage.clickNew();
         productDetail = newProductForm.setNewProductName(productName).
                 setProductDescriptionField(productDescription).setProductCodeField(productCode).setStatus(true).clickSave();
@@ -62,7 +62,7 @@ public class EditProduct {
     public void tearDown() {
 
         productDetail.clickDelete();
-        pageMenuBar = mainApp.goToPageMenuBar();
+        tabBar = contentPage.goToTabBar();
 
     }
 }
