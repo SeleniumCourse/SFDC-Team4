@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 public class SearchWindow {
 	private WebDriver driver;
@@ -39,7 +39,7 @@ public class SearchWindow {
 	
 	public SearchWindow(WebDriver driver) {
 		this.driver = driver;
-		wait = DriverManager.getInstance().getWait();
+		wait = WebDriverManager.getInstance().getWait();
 		PageFactory.initElements(driver, this);
 
 		try {

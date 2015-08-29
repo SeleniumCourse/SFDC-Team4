@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class ToolBar {
@@ -29,7 +29,7 @@ public class ToolBar {
     
     public ToolBar(WebDriver driver) {
     	this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        this.wait = WebDriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         
 

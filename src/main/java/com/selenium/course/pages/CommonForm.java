@@ -1,17 +1,12 @@
 package com.selenium.course.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.selenium.course.framework.DriverManager;
-
-import static com.selenium.course.common.CommonUIMethods.check;
-import static com.selenium.course.common.CommonUIMethods.uncheck;
+import com.selenium.course.framework.WebDriverManager;
 
 public class CommonForm {
 	protected WebDriver driver;
@@ -112,8 +107,8 @@ public class CommonForm {
 	WebElement findCampaingLookup;
 
 	public CommonForm() {
-		wait = DriverManager.getInstance().getWait();
-		driver = DriverManager.getInstance().getDriver();
+		wait = WebDriverManager.getInstance().getWait();
+		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 	}
 

@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 public class AccountDetail {
 	private WebDriver driver;
@@ -36,8 +36,8 @@ public class AccountDetail {
 	WebElement editBtn;
 	
 	public AccountDetail() {
-		wait = DriverManager.getInstance().getWait();
-		driver = DriverManager.getInstance().getDriver();
+		wait = WebDriverManager.getInstance().getWait();
+		driver = WebDriverManager.getInstance().getDriver();
 		PageFactory.initElements(driver, this);
 		try {
 			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 
 /**
  * Created by reyna ulaque on 13/06/2015.
@@ -162,8 +162,8 @@ public class ContactForm {
 
     public ContactForm() {
         //this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
-        driver = DriverManager.getInstance().getDriver();
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(3, TimeUnit.SECONDS).until(

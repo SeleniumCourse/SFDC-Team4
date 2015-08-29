@@ -1,6 +1,6 @@
 package com.selenium.course.pages;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -29,7 +29,7 @@ public class EditChatPage {
 
     public EditChatPage(WebDriver driver){
         this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        this.wait = WebDriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver, this);
         windowsID = this.driver.getWindowHandle();
         this.driver.switchTo().window(windowsID);

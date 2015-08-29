@@ -56,7 +56,7 @@ public class PageMenuBar {
 
     public PageMenuBar(WebDriver driver) {
     	this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        this.wait = WebDriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         
         try {
