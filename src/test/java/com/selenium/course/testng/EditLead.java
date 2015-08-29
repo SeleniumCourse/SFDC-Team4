@@ -6,17 +6,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaingsPage;
+import com.selenium.course.pages.CampaignsPage;
 import com.selenium.course.pages.CampaingsTablePage;
 import com.selenium.course.pages.LeadDetail;
 import com.selenium.course.pages.LeadEdit;
 import com.selenium.course.pages.LeadsPage;
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
+import com.selenium.course.pages.ContentPage;
 import com.selenium.course.pages.NewCampaignForm;
 import com.selenium.course.pages.NewLeadBuilder;
 import com.selenium.course.pages.NewLeadForm;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.TabBar;
 import com.selenium.course.pages.ToolBar;
 
 /**
@@ -27,14 +27,14 @@ import com.selenium.course.pages.ToolBar;
  *
  */
  
-public class EditLead {
+public class EditLead {/*
 	
 	private LoginPage loginPage;
-	private MainApp mainApp;
-	private PageMenuBar pageMenuBar;
+	private ContentPage contentPage;
+	private TabBar tabBar;
 	private LeadsPage leadsPage;
 	private ToolBar toolBar;
-	private CampaingsPage campaignsPage;
+	private CampaignsPage campaignsPage;
 	private NewCampaignForm newCampaignForm;
 	private NewLeadForm newLeadForm;
 	private LeadDetail leadDetail;
@@ -50,22 +50,22 @@ public class EditLead {
     public void setUp() {
     	loginPage = new LoginPage();
         campaingName = "newCampaing";
-    	mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        campaignsPage = pageMenuBar.clickCampaings();
+    	contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        //campaignsPage = tabBar.clickCampaigns();
         newCampaignForm = campaignsPage.clickNewCampaign();
         campaingDetail = newCampaignForm.setCampaignName(campaingName)
 				.setStatus(true)
 				.clickSaveCampaign();
-        toolBar = mainApp.goToTolBar();
+        toolBar = contentPage.goToToolBar();
 		toolBar.goToSales();
-		pageMenuBar = mainApp.goToPageMenuBar();
+		tabBar = contentPage.goToTabBar();
 		
 		String salutation = "Mr.";
 		leadName = "newLead";
 		companyName = "myCompany";
 		
-		leadsPage = pageMenuBar.clickLeadsTab();
+		//leadsPage = tabBar.clickLeadsTab();
 		newLeadForm = leadsPage.clickNewLead();
 		newLeadForm = new NewLeadBuilder(leadName, companyName)
 										.setSalutation(salutation)
@@ -92,11 +92,10 @@ public class EditLead {
 	@AfterClass
     public void tearDown() {
 		leadDetail.clickDelete();
-		pageMenuBar = mainApp.goToPageMenuBar();		
-		campaignsPage = pageMenuBar.clickCampaings();		
+		tabBar = contentPage.goToTabBar();
+		campaignsPage = tabBar.clickCampaigns();
 		campaignsTablePage = campaignsPage.clickGo();
 		campaingDetail = campaignsTablePage.clickCampaing(campaingName);
 		campaingDetail.deleteCampaign();	
-    }
-
+    }*/
 }

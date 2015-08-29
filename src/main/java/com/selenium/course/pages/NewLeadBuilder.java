@@ -16,7 +16,7 @@ public class NewLeadBuilder {
 	public NewLeadBuilder(String lastName, String companyName) {
         this.lastName = lastName;
         this.companyName = companyName;
-        this.strategies = new LinkedList<>();
+        this.strategies = new LinkedList();
 		strategies.add(Steps.LAST_NAME);
 		strategies.add(Steps.COMPANY_NAME);
     }

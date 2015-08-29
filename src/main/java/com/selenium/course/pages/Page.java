@@ -4,12 +4,9 @@ import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Created by Rina Espinoza on 8/28/2015.
- */
 public class Page {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     public Page() {
         driver = WebDriverManager.getInstance().getDriver();

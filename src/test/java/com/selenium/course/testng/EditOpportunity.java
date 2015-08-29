@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 public class EditOpportunity {
     private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
+    private ContentPage contentPage;
+    private TabBar tabBar;
     private OpportunitiesPage opportunitiesPage;
     private NewOpportunityForm newOpportunityForm;
     private OpportunityTablePage opportunityTablePage;
@@ -29,9 +29,9 @@ public class EditOpportunity {
         amount = "20";
         nextStep = "Step";
         loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        opportunitiesPage = pageMenuBar.clickOpportunities();
+        contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+       // opportunitiesPage = tabBar.clickOpportunities();
         newOpportunityForm = opportunitiesPage.clickNewOpportunity();
         opportunityDetail = newOpportunityForm.setName(name)
                 .setPrivate()

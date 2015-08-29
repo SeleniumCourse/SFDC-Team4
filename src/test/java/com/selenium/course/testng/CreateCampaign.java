@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 import org.testng.annotations.*;
 
 import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaingsPage;
+import com.selenium.course.pages.CampaignsPage;
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
+import com.selenium.course.pages.ContentPage;
 import com.selenium.course.pages.NewCampaignForm;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.TabBar;
 
 /**
  * Title:
@@ -19,11 +19,11 @@ import com.selenium.course.pages.PageMenuBar;
  *
  */
  
-public class CreateCampaign {
+public class CreateCampaign {/*
 	private LoginPage loginPage;
-	private MainApp mainApp;
-	private PageMenuBar pageMenuBar;
-	private CampaingsPage campaignsPage;
+	private ContentPage contentPage;
+	private TabBar tabBar;
+	private CampaignsPage campaignsPage;
 	private NewCampaignForm newCampaignForm;
 	private CampaingDetail campaingDetail;
 	String campaingName;
@@ -31,9 +31,9 @@ public class CreateCampaign {
 	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
-		mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        campaignsPage = pageMenuBar.clickCampaings();
+		contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        campaignsPage = tabBar.clickCampaigns();
     }
 	
 	@Test (groups = {"BVT, Acceptance, Funcional"})
@@ -50,5 +50,5 @@ public class CreateCampaign {
 	@AfterClass
     public void tearDown() {
 		campaingDetail.deleteCampaign();
-    }
+    }*/
 }

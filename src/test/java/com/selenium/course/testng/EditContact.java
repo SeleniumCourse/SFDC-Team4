@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.ContentPage;
+import com.selenium.course.pages.TabBar;
 import com.selenium.course.pages.ContactsPage;
 import com.selenium.course.pages.ContactForm;
 import com.selenium.course.pages.ContactDetail;
@@ -16,10 +16,10 @@ import com.selenium.course.pages.ContactDetail;
  * Created by reyna ulaque on 27/06/2015.
  */
 public class EditContact {
-
+/*
     private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
+    private ContentPage contentPage;
+    private TabBar tabBar;
     private ContactsPage contactsPage;
     private ContactForm contactForm;
     private ContactDetail contactDetail;
@@ -27,9 +27,9 @@ public class EditContact {
     @BeforeClass
     public void setUp() {
         loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        contactsPage = pageMenuBar.clickContacts();
+        contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        contactsPage = tabBar.clickContacts();
         contactForm = contactsPage.clickNewBtn();
 
         String tittleFirstName = "Dr.";
@@ -110,5 +110,5 @@ public class EditContact {
     public void tearDown() {
         contactDetail.clickDeleteBtn();
     }
-
+*/
 }

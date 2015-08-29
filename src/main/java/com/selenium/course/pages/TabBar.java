@@ -9,54 +9,50 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import com.selenium.course.framework.*;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class PageMenuBar {
-	private WebDriver driver;
-    private WebDriverWait wait;
-    
-    @FindBy(xpath = "//a[@title='Home Tab']")
+public class TabBar extends Page{
+
+    @FindBy(linkText = "Home")
     @CacheLookup
-	WebElement homeTab;
+	WebElement home;
     
     @FindBy(id = "tabBar")
     @CacheLookup
 	WebElement tabBar;
     
-    @FindBy(xpath = "//a[@title='Leads Tab']")
+    @FindBy(linkText = "Leads")
     @CacheLookup
-	WebElement leadsTab;
+	WebElement leads;
     
-    @FindBy(xpath = "//a[@title='Campaigns Tab']")
+    @FindBy(linkText = "Campaigns")
     @CacheLookup
 	WebElement campaigns;
     
-    @FindBy(xpath = "//a[@title='Accounts Tab']")
+    @FindBy(linkText = "Accounts")
     @CacheLookup
 	WebElement accounts;
     
-    @FindBy(xpath = "//a[@title='Contacts Tab']")
+    @FindBy(linkText = "Contacts")
     @CacheLookup
 	WebElement contacts;
     
-    @FindBy(xpath = "//a[@title='Opportunities Tab']")
+    @FindBy(linkText = "Opportunities")
     @CacheLookup
 	WebElement opportunities;
     
-    @FindBy(xpath = "//a[@title='Products Tab']")
+    @FindBy(linkText = "Products")
     @CacheLookup
 	WebElement products;
 
-    @FindBy(xpath = "//a[@title='Chatter Tab']")
+    @FindBy(linkText = "Chatter")
     @CacheLookup
     WebElement chatter;
 
-    public PageMenuBar(WebDriver driver) {
-    	this.driver = driver;
-        this.wait = WebDriverManager.getInstance().getWait();
+    public TabBar(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         
         try {
@@ -71,41 +67,41 @@ public class PageMenuBar {
     
     public void clickHomeTab() {
     	//addHome Page classS
-    	homeTab.click();
+    	home.click();
     }
     
     public boolean isTabBarDisplayed() {
     	return tabBar.isDisplayed();
     }
     
-    public LeadsPage clickLeadsTab() {
-    	leadsTab.click();
-    	return new LeadsPage();
+    public TabPage clickLeadsTab() {
+    	leads.click();
+    	return new TabPage(driver);
     }
     
-    public CampaingsPage clickCampaings() {
+    public TabPage clickCampaigns() {
     	campaigns.click();
-    	return new CampaingsPage();
+        return new TabPage(driver);
     }
     
-    public AccountsPage clickAccounts() {
+    public TabPage clickAccounts() {
     	accounts.click();
-    	return new AccountsPage();
+        return new TabPage(driver);
     }
     
-    public ContactsPage clickContacts() {
+    public TabPage clickContacts() {
     	contacts.click();
-    	return new ContactsPage();
+        return new TabPage(driver);
     }
 
-    public OpportunitiesPage clickOpportunities() {
+    public TabPage clickOpportunities() {
     	opportunities.click();
-    	return new OpportunitiesPage();
+        return new TabPage(driver);
     }
     
-    public ProductsPage clickProducts() {
+    public TabPage clickProducts() {
     	products.click();
-    	return new ProductsPage();
+        return new TabPage(driver);
     }
 
     public ChatterPage clickChatter() {

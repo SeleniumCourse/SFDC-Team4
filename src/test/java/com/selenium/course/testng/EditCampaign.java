@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 
 import com.selenium.course.pages.CampaignEdit;
 import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaingsPage;
+import com.selenium.course.pages.CampaignsPage;
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
+import com.selenium.course.pages.ContentPage;
 import com.selenium.course.pages.NewCampaignForm;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.TabBar;
 
 /**
  * Title:
@@ -22,11 +22,11 @@ import com.selenium.course.pages.PageMenuBar;
  *
  */
  
-public class EditCampaign {
+public class EditCampaign {/*
 	private LoginPage loginPage;
-	private MainApp mainApp;
-	private PageMenuBar pageMenuBar;
-	private CampaingsPage campaignsPage;
+	private ContentPage contentPage;
+	private TabBar tabBar;
+	private CampaignsPage campaignsPage;
 	private NewCampaignForm newCampaignForm;
 	private CampaingDetail campaingDetail;
 	private CampaignEdit campaignEdit;
@@ -35,9 +35,9 @@ public class EditCampaign {
 	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
-		mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        campaignsPage = pageMenuBar.clickCampaings();
+		contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        campaignsPage = tabBar.clickCampaigns();
         
         campaingName = "NewCampaignTest";
 		newCampaignForm = campaignsPage.clickNewCampaign();
@@ -61,5 +61,5 @@ public class EditCampaign {
     public void tearDown() {
 		campaingDetail.deleteCampaign();
     }
-
+*/
 }

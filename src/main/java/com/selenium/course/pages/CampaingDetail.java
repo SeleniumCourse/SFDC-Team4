@@ -53,11 +53,11 @@ public class CampaingDetail {
 		return campaignName.getText().contains(campName);
 	}
 	
-	public CampaingsPage deleteCampaign() {
+	public CampaignsPage deleteCampaign() {
 		deleteBtn.click();
 		Alert alert = driver.switchTo().alert();
         alert.accept();
-        return new CampaingsPage();
+        return new CampaignsPage();
 	}
 	
 	public CampaignEdit clickEdit() {

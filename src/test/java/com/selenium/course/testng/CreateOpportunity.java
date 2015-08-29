@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 
 public class CreateOpportunity {
     private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
+    private ContentPage contentPage;
+    private TabBar tabBar;
     private OpportunitiesPage opportunitiesPage;
     private NewOpportunityForm newOpportunityForm;
     private OpportunityDetail opportunityDetail;
@@ -17,9 +17,9 @@ public class CreateOpportunity {
     @BeforeClass
     public void setUp() {
         loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        opportunitiesPage = pageMenuBar.clickOpportunities();
+        contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        //opportunitiesPage = tabBar.clickOpportunities();
     }
 
     @Test

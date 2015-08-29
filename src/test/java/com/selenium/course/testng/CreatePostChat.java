@@ -2,8 +2,8 @@ package com.selenium.course.testng;
 
 import com.selenium.course.pages.ChatterPage;
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.ContentPage;
+import com.selenium.course.pages.TabBar;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,8 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class CreatePostChat {
 	private LoginPage loginPage;
-	private MainApp mainApp;
-	private PageMenuBar pageMenuBar;
+	private ContentPage contentPage;
+	private TabBar tabBar;
 	private ChatterPage chatterPage;
 
 	String postContent;
@@ -21,9 +21,9 @@ public class CreatePostChat {
 	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
-		mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-		chatterPage = pageMenuBar.clickChatter();
+		contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+		chatterPage = tabBar.clickChatter();
     }
 
 	@Test (groups = {"BVT, Acceptance, Funcional"})

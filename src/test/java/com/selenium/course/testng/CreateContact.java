@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.testng.annotations.*;
 
 import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.MainApp;
-import com.selenium.course.pages.PageMenuBar;
+import com.selenium.course.pages.ContentPage;
+import com.selenium.course.pages.TabBar;
 import com.selenium.course.pages.ContactsPage;
 import com.selenium.course.pages.ContactForm;
 import com.selenium.course.pages.ContactDetail;
@@ -14,10 +14,10 @@ import com.selenium.course.pages.ContactDetail;
  * Created by reyna ulaque on 27/06/2015.
  */
 
-public class CreateContact {
+public class CreateContact {/*
     private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
+    private ContentPage contentPage;
+    private TabBar tabBar;
     private ContactsPage contactsPage;
     private ContactForm contactForm;
     private ContactDetail contactDetail;
@@ -28,9 +28,9 @@ public class CreateContact {
         //String email = "rmeryuc@gmail.com";
         //String password = "Control123";
         //mainApp = loginPage.loginAs(email, password);
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        contactsPage = pageMenuBar.clickContacts();
+        contentPage = loginPage.loginAsPrimaryUser();
+        tabBar = contentPage.goToTabBar();
+        contactsPage = tabBar.clickContacts();
         contactForm = contactsPage.clickNewBtn();
     }
 
@@ -100,7 +100,7 @@ public class CreateContact {
     @AfterClass
     public void tearDown() {
         contactDetail.clickDeleteBtn();
-    }
+    }*/
 }
 
 
