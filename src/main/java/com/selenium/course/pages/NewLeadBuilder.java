@@ -3,9 +3,8 @@ package com.selenium.course.pages;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.selenium.course.pages.EnumsList.Steps;
 
-public class NewLeadBuilder {
+public class NewLeadBuilder {/*
 	String salutation;
 	String lastName;
 	String companyName;
@@ -51,9 +50,9 @@ public class NewLeadBuilder {
 		strategies.add(Steps.CAMPAIGN);
 		this.campaign = campaign;
 		return this;
-	}
+	}*/
 	
 	public NewLeadForm build() {
-        return new NewLeadForm(this);
+        return new NewLeadForm();
     }
 }

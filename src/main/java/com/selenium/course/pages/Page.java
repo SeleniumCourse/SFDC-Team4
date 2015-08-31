@@ -4,9 +4,9 @@ import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Page {
-    public WebDriver driver;
-    public WebDriverWait wait;
+public abstract class Page {
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
     public Page() {
         driver = WebDriverManager.getInstance().getDriver();
@@ -17,4 +17,9 @@ public class Page {
         this.driver = driver;
         wait = WebDriverManager.getInstance().getWait();
     }
+
+    public WebDriver getDriver() {
+        return this.driver;
+    }
+
 }

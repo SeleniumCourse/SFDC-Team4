@@ -1,6 +1,4 @@
 package com.selenium.course.pages;
-
-import com.selenium.course.framework.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -18,7 +16,7 @@ import java.util.Set;
 /**
  * Created by Rina Espinoza on 8/28/2015.
  */
-public class FormPage extends ContentPage {
+public abstract class FormPage extends ContentPage {
 
     @FindBy(className = "pageDescription")
     @CacheLookup
@@ -53,43 +51,42 @@ public class FormPage extends ContentPage {
         return pageDescriptionText.getText();
     }
 
-    public FormPage setTextFieldValue(WebElement field, String fieldValue) {
+    public WebDriver setTextFieldValue(WebElement field, String fieldValue) {
         field.clear();
         field.sendKeys(fieldValue);
-        return this;
+        return this.getDriver();
     }
 
-    public FormPage setPickListValue(WebElement field, String fieldValue) {
+    public WebDriver setPickListValue(WebElement field, String fieldValue) {
         Select select = new Select(field);
         select.selectByVisibleText(fieldValue);
-        return this;
+        return this.getDriver();
     }
 
-    public FormPage setMultiSelectValue(WebElement field, List<String> selectedOptions) {
+    public WebDriver setMultiSelectValue(WebElement field, List<String> selectedOptions) {
         Select multiSelect = new Select(field);
         for (String selectOption : selectedOptions) {
             multiSelect.selectByVisibleText(selectOption);
         }
-        return this;
+        return this.getDriver();
     }
 
-    public FormPage clickAddMultiSelection() {
+    public WebDriver clickAddMultiSelection() {
         rightArrowIcon.click();
-        return this;
+        return this.getDriver();
     }
 
-    public FormPage clickRemoveMultiSelection() {
+    public WebDriver clickRemoveMultiSelection() {
         leftArrowIcon.click();
-        return this;
+        return this.getDriver();
     }
 
-    public FormPage setRadioButton(WebElement field) {
+    public WebDriver setRadioButton(WebElement field) {
         field.click();
-        return this;
+        return this.getDriver();
     }
 
-
-    public FormPage selectLookupValue(String selectedValue) {
+    public WebDriver selectLookupValue(String selectedValue) {
 
         String windowID = driver.getWindowHandle();
         driver.findElement(By.className("lookupIcon")).click();
@@ -106,11 +103,13 @@ public class FormPage extends ContentPage {
         } finally {
             driver.switchTo().window(windowID);
         }
-        return this;
+        return this.getDriver();
     }
 
-
-
-
-
+    public TabPage clickCancelBtn() {
+        wait.until(ExpectedConditions
+                .visibilityOf(cancelBtn));
+        cancelBtn.click();
+        return new TabPage(driver);
+    }
 }

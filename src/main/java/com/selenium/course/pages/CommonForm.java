@@ -12,7 +12,6 @@ public class CommonForm {
 	protected WebDriver driver;
 	protected WebDriverWait wait;
 	private Select selectBox;
-	private SearchWindow searchWindow;
 
 	@FindBy(id = "acc2")
 	WebElement accountNameField;
@@ -117,15 +116,8 @@ public class CommonForm {
 		accountNameField.sendKeys(accountName);
 	}
 
-	public void setParentAccount(String parentAccount) {
-		searchWindow = clickParentLookup();
-		searchWindow.findObject(parentAccount);
-	}
 
-	private SearchWindow clickParentLookup() {
-		findAccountLookup.click();
-		return new SearchWindow(driver);
-	}
+
 
 	public void setAccountNumber(String accountNumber) {
 		accountNumberField.clear();
@@ -229,7 +221,7 @@ public class CommonForm {
 
 	public AccountDetail clickSaveAccount() {
 		saveBtn.click();
-		return new AccountDetail();
+		return new AccountDetail(driver);
 	}
 
 
@@ -250,15 +242,8 @@ public class CommonForm {
 		companyNameField.sendKeys(companyName);
 	}
 
-	public void setCampaing(String campaing) {
-		searchWindow = clickCampaingLookup();
-		searchWindow.findObject(campaing);
-	}
 
-	private SearchWindow clickCampaingLookup() {
-		findCampaingLookup.click();
-		return new SearchWindow(driver);
-	}
+
 
 	public LeadDetail clickSaveLead() {
 		saveBtn.click();

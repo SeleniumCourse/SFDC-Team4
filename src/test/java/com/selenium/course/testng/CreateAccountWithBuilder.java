@@ -2,15 +2,6 @@ package com.selenium.course.testng;
 
 import static org.junit.Assert.assertTrue;
 
-import org.testng.annotations.*;
-
-import com.selenium.course.pages.AccountDetail;
-import com.selenium.course.pages.AccountsPage;
-import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.ContentPage;
-import com.selenium.course.pages.NewAccountBuilder;
-import com.selenium.course.pages.AccountForm;
-import com.selenium.course.pages.TabBar;
 
 /**
  * Title:
@@ -20,7 +11,7 @@ import com.selenium.course.pages.TabBar;
  *
  */
 public class CreateAccountWithBuilder {
-	private LoginPage loginPage;
+	/*private LoginPage loginPage;
 	private ContentPage contentPage;
 	private TabBar tabBar;
 	private AccountsPage accountsPage;
@@ -49,11 +40,11 @@ public class CreateAccountWithBuilder {
 
 		//accountDetail = accountForm.createAccount();
 
-		assertTrue(accountDetail.verifyNewUser(accountName));
+		assertTrue(accountDetail.verifyUserName(accountName));
 	}
 
 	@AfterClass
 	public void tearDown() {
 		accountDetail.deleteAccount();
-	}
+	}*/
 }

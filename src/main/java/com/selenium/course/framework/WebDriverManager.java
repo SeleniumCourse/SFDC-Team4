@@ -10,7 +10,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-
+import static com.selenium.course.common.Globals.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -24,13 +24,6 @@ public class WebDriverManager {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private final String baseUrl = "https://login.salesforce.com/";
-    private final int timeout_normal = Environment.getInstance().getTimeOut();
-    private final String browser = Environment.getInstance().getBrowser();
-    private final String mode = Environment.getInstance().getMode();
-    private final String sauceUser = "carledriss";
-    private final String sauceAccessKey = "82f05dc5-b331-46b0-8781-06dd0483088e";
-
     private WebDriverManager() {
         initializeDriver();
     }
@@ -43,23 +36,23 @@ public class WebDriverManager {
     }
 
     private void initializeDriver() {
-        if (mode.equalsIgnoreCase("Local")) {
-            if (browser.equalsIgnoreCase("Firefox")) {
+        if (MODE.equalsIgnoreCase("Local")) {
+            if (BROWSER.equalsIgnoreCase("Firefox")) {
                 driver = new FirefoxDriver();
-            } else if (browser.equalsIgnoreCase("Chrome")) {
+            } else if (BROWSER.equalsIgnoreCase("Chrome")) {
                 System.setProperty("webdriver.chrome.driver",
                         "drivers/chromedriver.exe");
                 driver = new ChromeDriver();
-            } else if (browser.equalsIgnoreCase("IE")) {
+            } else if (BROWSER.equalsIgnoreCase("IE")) {
                 DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
                 desiredCapabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
                 System.setProperty("webdriver.ie.driver",
                         "drivers/IEDriverServer.exe");
                 driver = new InternetExplorerDriver(desiredCapabilities);
-            } else if (browser.equalsIgnoreCase("Safari")) {
+            } else if (BROWSER.equalsIgnoreCase("Safari")) {
                 driver = new SafariDriver();
-            } else if (browser.equalsIgnoreCase("PhantomJS")) {
+            } else if (BROWSER.equalsIgnoreCase("PhantomJS")) {
                 System.setProperty("phantomjs.binary.path",
                         "drivers/phantomjs.exe");
                 DesiredCapabilities caps = new DesiredCapabilities();
@@ -70,7 +63,7 @@ public class WebDriverManager {
                 );
                 driver = new PhantomJSDriver(caps);
             }
-        } else if (mode.equals("Remote")) {
+        } else if (MODE.equals("Remote")) {
             // Choose the browser, version, and platform to test
             DesiredCapabilities caps = DesiredCapabilities.iphone();
             caps.setCapability("platform", "OS X 10.10");
@@ -80,7 +73,7 @@ public class WebDriverManager {
             // Create the connection to Sauce Labs to run the tests
             try {
                 this.driver = new RemoteWebDriver(
-                        new URL("http://" + sauceUser + ":" + sauceAccessKey + "@ondemand.saucelabs.com:80/wd/hub"),
+                        new URL("http://" + SAUCE_USER + ":" + SAUCE_USER_ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub"),
                         caps);
             } catch (MalformedURLException e) {
                 // implement
@@ -88,11 +81,11 @@ public class WebDriverManager {
 
         }
 
-        driver.manage().timeouts().implicitlyWait(timeout_normal, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        //driver.manage().deleteAllCookies();
-        wait = new WebDriverWait(driver, timeout_normal);
-        driver.get(baseUrl);
+        driver.manage().deleteAllCookies();
+        wait = new WebDriverWait(driver, TIMEOUT_NORMAL);
+        driver.get(BASE_URL);
     }
 
     public WebDriver getDriver() {

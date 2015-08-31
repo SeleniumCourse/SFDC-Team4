@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 import static org.junit.Assert.assertTrue;
 
 
-public class CreateOpportunity {
+public class CreateOpportunity {/*
     private LoginPage loginPage;
     private ContentPage contentPage;
     private TabBar tabBar;
@@ -46,5 +46,5 @@ public class CreateOpportunity {
     @AfterClass
     public void tearDown() {
         opportunityDetail.deleteOpportunity();
-    }
+    }*/
 }
