@@ -63,18 +63,6 @@ public class Environment {
 				.getEnv("mode");
 	}
 	
-	public Integer getImplicitWait()
-	{
-		return Integer.parseInt(Environment.getInstance()
-				.getEnv("implicitlyWait"));
-	}	
-	
-	public Integer getWebDriverWait()
-	{
-		return Integer.parseInt(Environment.getInstance()
-				.getEnv("webdriverWait"));
-	}
-	
 	public Integer getTimeOut()
 	{
 		return Integer.parseInt(Environment.getInstance()
@@ -85,5 +73,23 @@ public class Environment {
 	{
 		return Environment.getInstance()
 				.getEnv("browser");
+	}
+
+
+	public String getPrimarySauceUser()
+	{
+		return Environment.getInstance()
+				.getEnv("sauceUser");
+	}
+
+	public String getPrimarySauceAccessKey()
+	{
+		return Environment.getInstance()
+				.getEnv("sauceAccessKey");
+	}
+	public String getPrimaryUsernameDisplayed()
+	{
+		return Environment.getInstance()
+				.getEnv("primaryUsernameDisplayed");
 	}
 }

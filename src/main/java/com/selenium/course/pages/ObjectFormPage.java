@@ -19,17 +19,11 @@ public class ObjectFormPage extends FormPage{
         return new ObjectFormPage(driver);
     }
 
-    public DetailsPage clickSaveBtn() {
+    public ObjectDetailsPage clickSaveBtn() {
         wait.until(ExpectedConditions
                 .visibilityOf(saveBtn));
         saveBtn.click();
-        return new DetailsPage(driver);
+        return new ObjectDetailsPage(driver);
     }
 
-    public TabPage clickCancelBtn() {
-        wait.until(ExpectedConditions
-                .visibilityOf(cancelBtn));
-        cancelBtn.click();
-        return new TabPage(driver);
-    }
 }

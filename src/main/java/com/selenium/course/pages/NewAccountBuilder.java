@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.selenium.course.framework.WebDriverManager;
-import com.selenium.course.pages.EnumsList.Steps;
+
 import org.openqa.selenium.WebDriver;
 
 
-public class NewAccountBuilder {
+public class NewAccountBuilder {/*
 	String account;
 	String parentAccount;
 	String accountNumber; 
@@ -169,7 +169,7 @@ public class NewAccountBuilder {
 		this.shipCountry = shipCountry;
 		return this;
 	}
-	
+	*/
 	public AccountForm build() {
 		WebDriver driver = driver = WebDriverManager.getInstance().getDriver();
         return new AccountForm(driver);

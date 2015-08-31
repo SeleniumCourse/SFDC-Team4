@@ -19,11 +19,11 @@ public class NavigationLinks extends Page {
 
     @FindBy(id = "userNavLabel")
    	@CacheLookup
-   	WebElement userLabel;
+   	private WebElement userLabel;
     
     @FindBy(xpath = "//a[contains(@title,'Help')]")
    	@CacheLookup
-   	WebElement helpTab;
+    private WebElement helpTab;
 
     @FindBy(xpath = "//a[@title='Logout']")
     @CacheLookup
@@ -43,13 +43,7 @@ public class NavigationLinks extends Page {
         }
     }
     
-    public UserMenu clickUserMenu() {
-    	userLabel.click();
-    	return new UserMenu();
-    }
-    
     public HelpPage clickHelp() {
-    	this.driver = driver;
     	helpTab.click();
     	return new HelpPage(driver);
     }

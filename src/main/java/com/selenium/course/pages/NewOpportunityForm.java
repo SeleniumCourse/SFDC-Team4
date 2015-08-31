@@ -127,8 +127,5 @@ public class NewOpportunityForm extends CommonForm{
 
     }
 
-    public OpportunityDetail clickSaveOpportunity() {
-        saveBtn.click();
-        return new OpportunityDetail();
-    }
+
 }

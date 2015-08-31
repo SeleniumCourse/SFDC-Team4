@@ -17,39 +17,39 @@ public class TabBar extends Page{
 
     @FindBy(linkText = "Home")
     @CacheLookup
-	WebElement home;
+	public WebElement home;
     
     @FindBy(id = "tabBar")
     @CacheLookup
-	WebElement tabBar;
+    public WebElement tabBar;
     
     @FindBy(linkText = "Leads")
     @CacheLookup
-	WebElement leads;
+    public WebElement leads;
     
     @FindBy(linkText = "Campaigns")
     @CacheLookup
-	WebElement campaigns;
+    public WebElement campaigns;
     
     @FindBy(linkText = "Accounts")
     @CacheLookup
-	WebElement accounts;
+    public WebElement accounts;
     
     @FindBy(linkText = "Contacts")
     @CacheLookup
-	WebElement contacts;
+    public WebElement contacts;
     
     @FindBy(linkText = "Opportunities")
     @CacheLookup
-	WebElement opportunities;
+    public WebElement opportunities;
     
     @FindBy(linkText = "Products")
     @CacheLookup
-	WebElement products;
+    public WebElement products;
 
     @FindBy(linkText = "Chatter")
     @CacheLookup
-    WebElement chatter;
+    public WebElement chatter;
 
     public TabBar(WebDriver driver) {
         super(driver);
@@ -64,12 +64,7 @@ public class TabBar extends Page{
 			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
 		}
     }
-    
-    public void clickHomeTab() {
-    	//addHome Page classS
-    	home.click();
-    }
-    
+
     public boolean isTabBarDisplayed() {
     	return tabBar.isDisplayed();
     }

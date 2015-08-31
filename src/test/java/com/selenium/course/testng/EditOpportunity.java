@@ -7,7 +7,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-public class EditOpportunity {
+public class EditOpportunity {/*
     private LoginPage loginPage;
     private ContentPage contentPage;
     private TabBar tabBar;
@@ -40,8 +40,7 @@ public class EditOpportunity {
                 .setAmount(amount)
                 .setCloseDate()
                 .setNextStep(nextStep)
-                .setStage(stage)
-                .clickSaveOpportunity();
+                .setStage(stage);
     }
 
     @Test (groups = {"BVT, Acceptance, Funcional"})
@@ -74,5 +73,5 @@ public class EditOpportunity {
     @AfterClass
     public void tearDown() {
         opportunityDetail.deleteOpportunity();
-    }
+    }*/
 }

@@ -68,10 +68,7 @@ public class NewCampaignForm extends CommonForm{
 		return this;
 	}
 
-	public CampaingDetail clickSaveCampaign() {
-		saveBtn.click();
-		return new CampaingDetail();
-	}
+
 	
 
 }

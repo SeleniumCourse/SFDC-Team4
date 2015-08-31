@@ -15,10 +15,9 @@ import org.openqa.selenium.support.ui.Select;
 
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import com.selenium.course.framework.WebDriverManager;
-import com.selenium.course.pages.EnumsList.Steps;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class NewLeadForm extends CommonForm{
+public class NewLeadForm extends CommonForm{/*
 	
 	@FindBy(xpath = "//h1[contains(.,'Lead Edit:')]")
     @CacheLookup
@@ -53,13 +52,13 @@ public class NewLeadForm extends CommonForm{
 		/*strategyMap.put(Steps.SALUTATION, () -> selectSalutation(builder.salutation));
 		strategyMap.put(Steps.LAST_NAME, () -> setLastName(builder.lastName));
 		strategyMap.put(Steps.COMPANY_NAME, () -> setCompany(builder.companyName));
-		strategyMap.put(Steps.CAMPAIGN, () -> setCampaing(builder.campaign));*/
+		strategyMap.put(Steps.CAMPAIGN, () -> setCampaing(builder.campaign));
 	}
 	
 	public LeadDetail createLead() {
 		//strategies.forEach(elem -> strategyMap.get(elem).performTask());
 		return clickSaveLead();
 	}
-	
+	*/
 	
 }
