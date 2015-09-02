@@ -1,6 +1,7 @@
 package com.selenium.course.pages;
 
 import com.selenium.course.framework.WebDriverManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -14,31 +15,34 @@ import java.util.concurrent.TimeUnit;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
+/**
+ * Created for Joel Rodriguez
+ */
 
-public class ViewFormPage extends FormPage {
+public class CampaignDetailsForm extends ObjectFormPage {
 
-    @FindBy(xpath = "//h2[contains(.,' Create New View')]")
+    @FindBy(xpath = "//h2[contains(.,'Campaign Detail')]")
     @CacheLookup
-    WebElement viewTitle;
+    WebElement campaignDetailTable;
 
-    @FindBy(xpath = "//input[@data-uidsfdc='3']")
+    @FindBy(id = "cpn1_ileinner")
     @CacheLookup
-    WebElement saveButton;
+    WebElement campaignName;
 
-    @FindBy(id = "fname")
+    @FindBy(name = "del")
     @CacheLookup
-    WebElement viewName;
+    WebElement deleteBtn;
 
-    @FindBy(id = "devname")
+    @FindBy(name = "edit")
     @CacheLookup
-    WebElement viewUniqueName;
+    WebElement editBtn;
 
-    public ViewFormPage(WebDriver driver) {
+    public CampaignDetailsForm(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
-                    ExpectedConditions.visibilityOf(viewTitle));
+                    ExpectedConditions.visibilityOf(campaignDetailTable));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
@@ -46,21 +50,22 @@ public class ViewFormPage extends FormPage {
         }
     }
 
-    public ViewFormPage setViewName(String name) {
-        viewName.clear();
-        viewName.sendKeys(name);
-        return this;
+    public boolean verifyNewCampaign(String campName) {
+        return campaignName.getText().contains(campName);
     }
 
-    public ViewFormPage setUniqueViewName(String name) {
-        viewUniqueName.clear();
-        viewUniqueName.sendKeys(name);
-        return this;
-    }
-
-    public ViewDetailsForm clickSaveView() {
-        saveButton.click();
+    public TabPage deleteCampaign() {
+        deleteBtn.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
-        return new ViewDetailsForm(driver);
+        return new TabPage(driver);
     }
+
+    public CampaignsMainForm editCampaign() {
+        editBtn.click();
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+        return new CampaignsMainForm(driver);
+    }
+
 }
