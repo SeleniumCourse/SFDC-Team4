@@ -17,7 +17,7 @@ public class CreatePostChat {
 	private ChatterPage chatterPage;
 
 	String postContent;
-	
+/*
 	@BeforeClass
     public void setUp() {
 		loginPage = new LoginPage();
@@ -39,6 +39,6 @@ public class CreatePostChat {
 		chatterPage.expandLatestDropDown();
 		chatterPage.removeLatestPost();
 		chatterPage.closeDialog();
-    }
+    }*/
 
 }
