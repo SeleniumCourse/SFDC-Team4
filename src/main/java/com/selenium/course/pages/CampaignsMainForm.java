@@ -1,7 +1,6 @@
 package com.selenium.course.pages;
 
 import com.selenium.course.framework.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -9,11 +8,10 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.selenium.course.common.CommonUIMethods.check;
-import static com.selenium.course.common.CommonUIMethods.uncheck;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
@@ -23,7 +21,7 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class CampaignsMainForm extends ObjectFormPage {
 
-    @FindBy(xpath = "//h2[contains(.,'New Campaign')]")
+    @FindBy(xpath = "//h2[contains(.,'Campaign Edit')]")
     @CacheLookup
     WebElement newCampaignsTitle;
 
@@ -39,6 +37,22 @@ public class CampaignsMainForm extends ObjectFormPage {
     @CacheLookup
     WebElement isActiveCheckBox;
 
+    @FindBy(id = "cpn2")
+    @CacheLookup
+    WebElement campaignType;
+
+    @FindBy(id = "cpn3")
+    @CacheLookup
+    WebElement campaignStatus;
+
+    @FindBy(id = "cpn5")
+    @CacheLookup
+    WebElement campaignStartDate;
+
+    @FindBy(id = "cpn6")
+    @CacheLookup
+    WebElement campaignEndDate;
+
     public CampaignsMainForm(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -52,18 +66,31 @@ public class CampaignsMainForm extends ObjectFormPage {
         }
     }
 
+    public CampaignsMainForm setCampaignType(String type) {
+        new Select(campaignType).selectByVisibleText(type);
+        return this;
+    }
+
+    public CampaignsMainForm setCampaignStatus(String status) {
+        new Select(campaignStatus).selectByVisibleText(status);
+        return this;
+    }
+
     public CampaignsMainForm setCampaignName(String name) {
         nameField.clear();
         nameField.sendKeys(name);
         return this;
     }
 
-    public CampaignsMainForm setStatus(boolean status) {
-        if (status) {
-            check(By.id("cpn16"));
-        } else {
-            uncheck(By.id("cpn16"));
-        }
+    public CampaignsMainForm setCampaignStartDate(String date) {
+        campaignStartDate.clear();
+        campaignStartDate.sendKeys(date);
+        return this;
+    }
+
+    public CampaignsMainForm setCampaignEndDate(String date) {
+        campaignEndDate.clear();
+        campaignEndDate.sendKeys(date);
         return this;
     }
 

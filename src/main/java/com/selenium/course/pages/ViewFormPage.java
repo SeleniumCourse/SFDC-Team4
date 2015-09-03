@@ -17,8 +17,7 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 public class ViewFormPage extends FormPage {
 
-    @FindBy(xpath = "//h2[contains(.,' Create New View')]")
-    @CacheLookup
+    @FindBy(xpath = "//form[@id='editPage']")
     WebElement viewTitle;
 
     @FindBy(xpath = "//input[@data-uidsfdc='3']")

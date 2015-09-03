@@ -38,6 +38,18 @@ public class OpportunityMainForm extends ObjectFormPage {
     @CacheLookup
     WebElement opportunityStage;
 
+    @FindBy(id = "opp5")
+    @CacheLookup
+    WebElement opportunityType;
+
+    @FindBy(id = "opp6")
+    @CacheLookup
+    WebElement opportunityLeadSource;
+
+    @FindBy(id = "opp7")
+    @CacheLookup
+    WebElement opportunityAmount;
+
 
     public OpportunityMainForm(WebDriver driver) {
         super(driver);
@@ -64,8 +76,24 @@ public class OpportunityMainForm extends ObjectFormPage {
         return this;
     }
 
+    public OpportunityMainForm setOpportunityAmount(String amount) {
+        opportunityAmount.clear();
+        opportunityAmount.sendKeys(amount);
+        return this;
+    }
+
     public OpportunityMainForm setOpportunityStage(String stage) {
         new Select(opportunityStage).selectByVisibleText(stage);
+        return this;
+    }
+
+    public OpportunityMainForm setOpportunityType(String type) {
+        new Select(opportunityType).selectByVisibleText(type);
+        return this;
+    }
+
+    public OpportunityMainForm setOpportunityLeadSource(String leadSource) {
+        new Select(opportunityLeadSource).selectByVisibleText(leadSource);
         return this;
     }
 

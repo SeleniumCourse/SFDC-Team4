@@ -87,10 +87,11 @@ public class OpportunityDetailsForm extends ObjectFormPage {
         return new TabPage(driver);
     }
 
-    public OpportunityMainForm editCampaign() {
+    public OpportunityMainForm editOpportunity() {
         editBtn.click();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
         return new OpportunityMainForm(driver);
     }
+
 
 }

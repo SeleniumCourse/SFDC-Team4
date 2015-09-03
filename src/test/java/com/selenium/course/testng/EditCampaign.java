@@ -1,65 +1,71 @@
 package com.selenium.course.testng;
 
-import static org.junit.Assert.assertTrue;
-
+import com.selenium.course.framework.WebDriverManager;
+import com.selenium.course.pages.*;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.selenium.course.pages.CampaignEdit;
-import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaignsPage;
-import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.ContentPage;
-import com.selenium.course.pages.NewCampaignForm;
-import com.selenium.course.pages.TabBar;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Title:
- * Edit Campaign
- *
- * @author Gustavo Cavero 
- *
+ * Created for Joel Rodriguez
  */
- 
-public class EditCampaign {/*
-	private LoginPage loginPage;
-	private ContentPage contentPage;
-	private TabBar tabBar;
-	private CampaignsPage campaignsPage;
-	private NewCampaignForm newCampaignForm;
-	private CampaingDetail campaingDetail;
-	private CampaignEdit campaignEdit;
-	String campaingName;
-	
-	@BeforeClass
+
+public class EditCampaign {
+    private CampaignDetailsForm campaignDetailsForm;
+
+    String campaignName, type, status, startDate, endDate;
+
+    @BeforeClass
     public void setUp() {
-		loginPage = new LoginPage();
-		contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        campaignsPage = tabBar.clickCampaigns();
-        
-        campaingName = "NewCampaignTest";
-		newCampaignForm = campaignsPage.clickNewCampaign();
-		campaingDetail = newCampaignForm.setCampaignName(campaingName)
-				.setStatus(true)
-				.clickSaveCampaign();
+        campaignName = "CampaignTesting123";
+        type = "Conference";
+        status = "Planned";
+        startDate = "6/29/2009";
+        endDate = "7/29/2009";
+
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        TabBar tabBar = contentPage.goToTabBar();
+        TabPage campaignsPage = tabBar.clickCampaigns();
+        campaignsPage.clickNewBtn();
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+        campaignDetailsForm = new CampaignsMainForm(driver)
+                .setCampaignName(campaignName)
+                .setCampaignType(type)
+                .setCampaignStatus(status)
+                .setCampaignStartDate(startDate)
+                .setCampaignEndDate(endDate)
+                .clickSaveCampaign();
+        campaignDetailsForm.editCampaign();
+
     }
-	
-	@Test (groups = {"BVT, Acceptance, Funcional"})
-    public void testUntitled() {
-		String editedCampaign = "NewCampaignEdited";
-		campaignEdit = campaingDetail.clickEdit();
-		campaingDetail = newCampaignForm.setCampaignName(editedCampaign)
-				.setStatus(false)
-				.clickSaveCampaign();			
-		
-		assertTrue(campaingDetail.verifyNewCampaign(editedCampaign));
-	}
-	
-	@AfterClass
+
+    @Test(groups = {"BVT, Acceptance, Funcional"})
+    public void testCreateNewCampaign() {
+        campaignName = "CampaignEdited123";
+        type = "Webinar";
+        status = "In Progress";
+        startDate = "6/29/2010";
+        endDate = "7/29/2012";
+
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+
+        campaignDetailsForm = new CampaignsMainForm(driver)
+                .setCampaignName(campaignName)
+                .setCampaignType(type)
+                .setCampaignStatus(status)
+                .setCampaignStartDate(startDate)
+                .setCampaignEndDate(endDate)
+                .clickSaveCampaign();
+
+        assertTrue(campaignDetailsForm.verifyNewCampaign(campaignName));
+    }
+
+    @AfterClass
     public void tearDown() {
-		campaingDetail.deleteCampaign();
+        campaignDetailsForm.deleteCampaign();
     }
-*/
 }
