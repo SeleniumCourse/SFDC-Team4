@@ -6,99 +6,86 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
+
 /**
- * Created by Administrator on 6/22/2015.
+ * Edited by Joel Rodriguez
  */
-public class ChatterPage {
+public class ChatterPage extends ObjectFormPage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
 
-    @FindBy(id ="publishereditablearea")
+    @FindBy(id = "centerContent")
+    @CacheLookup
+    protected WebElement chatterPage;
+
+    @FindBy(id = "publishereditablearea")
     @CacheLookup
     protected WebElement postChatTextArea;
 
-    @FindBy(id ="publishersharebutton")
+    @FindBy(id = "publishersharebutton")
     @CacheLookup
     protected WebElement shareButton;
 
-    public ChatterPage(){
-        wait = WebDriverManager.getInstance().getWait();
-        driver = WebDriverManager.getInstance().getDriver();
+    @FindBy(xpath = "//a[@title='Delete this post']")
+    @CacheLookup
+    protected WebElement deletePostLink;
+
+    public ChatterPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         try {
-            wait.withTimeout(5, TimeUnit.SECONDS).until(
-                    ExpectedConditions.visibilityOf(postChatTextArea));
-
+            wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
+                    ExpectedConditions.visibilityOf(chatterPage));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
 
-    public WebElement getPostChatTextArea() {
-        return postChatTextArea;
+    public ChatterPage setTestToShare(String text) {
+        postChatTextArea.clear();
+        postChatTextArea.sendKeys(text);
+        return this;
     }
 
-    public void setValuePostChatArea(String value) {
-        this.postChatTextArea.sendKeys(value);
-    }
-
-    public ChatterPage clickShareButton(){
-        try {
-            wait.withTimeout(5, TimeUnit.SECONDS).until(
-                    ExpectedConditions.visibilityOf(shareButton));
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
-
+    public ChatterPage shareText() {
         shareButton.click();
-        return new ChatterPage();
-
+        return this;
     }
 
-    public ChatterPage createAnewPost(String value){
-
-        setValuePostChatArea(value);
-        return clickShareButton();
+    public TabPage deletePost() {
+        System.out.println(getLatestPost());
+        deletePostLink.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+        return new TabPage(driver);
     }
 
-    public void waitToPublishedPost(){
-        WebElement adTopicsLink = driver.findElement(By.xpath("//a[@class='editLink']"));
-
-        try {
-            wait.withTimeout(5, TimeUnit.SECONDS).until(
-                    ExpectedConditions.visibilityOf(adTopicsLink));
-
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
+    public boolean verifyNewSharedPost(String text) {
+        return driver.findElement(By.xpath("//span[contains(.,'" + text + "')]")).getText().contains(text);
     }
 
-    public WebElement getLatestPost(){
+    public WebElement getLatestPost() {
 
         By by = By.cssSelector(".feeditemtext.cxfeeditemtext");
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         List<WebElement> postsShared = driver.findElements(by);
 
-        if(postsShared.size() != 0){
+        if (postsShared.size() != 0) {
             return postsShared.get(0);
         }
         System.out.println("The latest post could not be  found");
         return null;
     }
 
-    public String getTextFromLatestPost(){
+    public String getTextFromLatestPost() {
         WebElement latestPost = getLatestPost();
         return latestPost.getText().toString();
     }
@@ -110,16 +97,16 @@ public class ChatterPage {
     }
 
     public WebElement getDeleteElementFromLatestPost() {
-        By by  = By.xpath("//a[@title='Delete this post']");
+        By by = By.xpath("//a[@title='Delete this post']");
         List<WebElement> deleteItem = driver.findElements(by);
-        if(deleteItem.size() != 0){
+        if (deleteItem.size() != 0) {
             return deleteItem.get(0);
         }
         System.out.println("The latest delete button could not be  found");
         return null;
     }
 
-    public ChatterPage removeLatestPost(){
+    public ChatterPage removeLatestPost() {
         WebElement deleteLatestPost = getDeleteElementFromLatestPost();
         deleteLatestPost.click();
         Alert alert = driver.switchTo().alert();
@@ -127,15 +114,15 @@ public class ChatterPage {
         return this;
     }
 
-    public void expandLatestDropDown(){
-        By by  = By.xpath("//span[@class='feeditemActionMenu']//a[contains(@id,'spillovermenu')]");
+    public void expandLatestDropDown() {
+        By by = By.xpath("//span[@class='feeditemActionMenu']//a[contains(@id,'spillovermenu')]");
         List<WebElement> dropBoxMenu = driver.findElements(by);
-        if(dropBoxMenu.size() != 0){
+        if (dropBoxMenu.size() != 0) {
             dropBoxMenu.get(0).click();
         }
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         driver.navigate().refresh();
         PageFactory.initElements(driver, this);
         try {
@@ -153,24 +140,25 @@ public class ChatterPage {
         By by = By.xpath("//a[@title='Edit this post']");
         List<WebElement> editMenuItem = driver.findElements(by);
 
-        if(editMenuItem.size() != 0){
+        if (editMenuItem.size() != 0) {
             return editMenuItem.get(0);
         }
         System.out.println("The latest edit menu item could not be  found");
         return null;
     }
 
-    public EditChatPage openEditDialog(){
+    public EditChatPage openEditDialog() {
         WebElement editLatestPost = getEditMenuItemFromLatestPost();
         editLatestPost.click();
         return new EditChatPage(driver);
     }
 
-    public boolean  verifyNewPostIsDeleted(String txt){
+    public boolean verifyNewPostIsDeleted(String txt) {
         return (!verifyNewPostIsThere(txt));
     }
 
-    public void closeDialog(){
+    public void closeDialog() {
         driver.close();
     }
+
 }

@@ -1,54 +1,45 @@
 package com.selenium.course.testng;
 
+import com.selenium.course.framework.WebDriverManager;
+import com.selenium.course.pages.*;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertTrue;
 
-import org.testng.annotations.*;
-
-import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaignsPage;
-import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.ContentPage;
-import com.selenium.course.pages.NewCampaignForm;
-import com.selenium.course.pages.TabBar;
-
 /**
- * Title:
- * Cretate Campaign
- *
- * @author Gustavo Cavero 
- *
+ * Created for Joel Rodriguez
  */
- 
-public class CreateCampaign {/*
-	private LoginPage loginPage;
-	private ContentPage contentPage;
-	private TabBar tabBar;
-	private CampaignsPage campaignsPage;
-	private NewCampaignForm newCampaignForm;
-	private CampaingDetail campaingDetail;
-	String campaingName;
-	
+
+public class CreateCampaign {
+	private CampaignDetailsForm campaignDetailsForm;
+
+	String campaignName = "CampaignTesting123";
+
 	@BeforeClass
-    public void setUp() {
-		loginPage = new LoginPage();
-		contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        campaignsPage = tabBar.clickCampaigns();
-    }
-	
-	@Test (groups = {"BVT, Acceptance, Funcional"})
-    public void testUntitled() {
-		campaingName = "NewCampaign";
-		newCampaignForm = campaignsPage.clickNewCampaign();
-		campaingDetail = newCampaignForm.setCampaignName(campaingName)
-				.setStatus(true)
-				.clickSaveCampaign();
-		
-		assertTrue(campaingDetail.verifyNewCampaign(campaingName));
+	public void setUp() {
+		LoginPage loginPage = new LoginPage();
+		ContentPage contentPage = loginPage.loginAsPrimaryUser();
+		TabBar tabBar = contentPage.goToTabBar();
+		TabPage campaignsPage = tabBar.clickCampaigns();
+		campaignsPage.clickNewBtn();
 	}
-	
+
+	@Test(groups = {"BVT, Acceptance, Funcional"})
+	public void testCreateNewCampaign() {
+		WebDriver driver = WebDriverManager.getInstance().getDriver();
+
+		campaignDetailsForm = new CampaignsMainForm(driver)
+				.setCampaignName(campaignName)
+				.clickSaveCampaign();
+
+		assertTrue(campaignDetailsForm.verifyNewCampaign(campaignName));
+	}
+
 	@AfterClass
-    public void tearDown() {
-		campaingDetail.deleteCampaign();
-    }*/
+	public void tearDown() {
+		campaignDetailsForm.deleteCampaign();
+	}
 }
