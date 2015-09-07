@@ -21,10 +21,6 @@ public class AccountForm extends ObjectFormPage {
     @CacheLookup
     private WebElement accountNameField;
 
-    @FindBy(xpath = "//img[@title='Parent Account Lookup (New Window)']")
-    @CacheLookup
-    private WebElement findAccountLookup;
-
     @FindBy(id = "acc5")
     @CacheLookup
     private WebElement accountNumberField;
@@ -77,6 +73,10 @@ public class AccountForm extends ObjectFormPage {
     @CacheLookup
     private WebElement sicCodeField;
 
+    @FindBy(id = "acc17street")
+    @CacheLookup
+    private WebElement billingStreet;
+
     @FindBy(id = "acc17city")
     @CacheLookup
     private WebElement billingCityField;
@@ -92,6 +92,10 @@ public class AccountForm extends ObjectFormPage {
     @FindBy(id = "acc17country")
     @CacheLookup
     private WebElement billingCountryField;
+
+    @FindBy(id = "acc18street")
+    @CacheLookup
+    private WebElement shipStreet;
 
     @FindBy(id = "acc18city")
     @CacheLookup
@@ -136,5 +140,107 @@ public class AccountForm extends ObjectFormPage {
         return this;
     }
 
+    public AccountForm setAccountTypeField(String fieldValue) {
+        this.driver = setPickListValue(typeField, fieldValue);
+        return this;
+    }
 
+    public AccountForm setAccountIndustryField(String fieldValue) {
+        this.driver = setPickListValue(industryField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountRatingField(String fieldValue) {
+        this.driver = setPickListValue(ratingField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountRevenueField(String fieldValue) {
+        this.driver = setTextFieldValue(revenueField, fieldValue);
+        return this;
+    }
+    public AccountForm setAccountPhoneField(String fieldValue) {
+        this.driver = setTextFieldValue(phoneField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountFaxField(String fieldValue) {
+        this.driver = setTextFieldValue(faxField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountWebSiteField(String fieldValue) {
+        this.driver = setTextFieldValue(webSiteField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountTickerField(String fieldValue) {
+        this.driver = setTextFieldValue(tickerSymbolField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountOwnershipField(String fieldValue) {
+        this.driver = setPickListValue(ownershipField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountEmployeesField(String fieldValue) {
+        this.driver = setTextFieldValue(employeesField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountSicCodeField(String fieldValue) {
+        this.driver = setTextFieldValue(sicCodeField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountBillingCityField(String fieldValue) {
+        this.driver = setTextFieldValue(billingCityField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountBillingStateField(String fieldValue) {
+        this.driver = setTextFieldValue(billingStateField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountBillingZipField(String fieldValue) {
+        this.driver = setTextFieldValue(billingZipField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountBillingCountryField(String fieldValue) {
+        this.driver = setTextFieldValue(billingCountryField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountShipCityField(String fieldValue) {
+        this.driver = setTextFieldValue(shipCityField, fieldValue);
+        return this;
+    }
+
+
+    public AccountForm setAccountShipStateField(String fieldValue) {
+        this.driver = setTextFieldValue(shipStateField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountShipZipField(String fieldValue) {
+        this.driver = setTextFieldValue(shipZipField, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountShipCountryField(String fieldValue) {
+        this.driver = setTextFieldValue(shipCountryField, fieldValue);
+        return this;
+    }
+    public AccountForm setAccountShipStreetField(String fieldValue) {
+        this.driver = setTextFieldValue(shipStreet, fieldValue);
+        return this;
+    }
+
+    public AccountForm setAccountBillingStreetField(String fieldValue) {
+        this.driver = setTextFieldValue(billingStreet, fieldValue);
+        return this;
+    }
 }
