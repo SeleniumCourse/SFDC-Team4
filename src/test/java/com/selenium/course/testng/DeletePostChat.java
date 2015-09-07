@@ -25,7 +25,7 @@ public class DeletePostChat {
         tabBar = contentPage.goToTabBar();
 		chatterPage = tabBar.clickChatter();
 		postContent = "+++++++++++++++ This Post needs to be deleted ++++++++++++";
-		chatterPage.createAnewPost(postContent);
+		//chatterPage.createAnewPost(postContent);
 		chatterPage.refreshPage();
     }
 	

@@ -64,7 +64,6 @@ public class OpportunityDetailsForm extends ObjectFormPage {
 
     public OpportunityDetailsForm(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(opportunityDetailTable));

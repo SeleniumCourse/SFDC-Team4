@@ -10,13 +10,12 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+
 import static com.selenium.course.common.Globals.*;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
-
-
 
 public class WebDriverManager {
 
@@ -30,7 +29,11 @@ public class WebDriverManager {
 
     public static WebDriverManager getInstance() {
         if (instance == null) {
-            instance = new WebDriverManager();
+            synchronized (WebDriverManager.class) {
+                if (instance == null) {
+                    instance = new WebDriverManager();
+                }
+            }
         }
         return instance;
     }
@@ -68,7 +71,7 @@ public class WebDriverManager {
             DesiredCapabilities caps = DesiredCapabilities.iphone();
             caps.setCapability("platform", "OS X 10.10");
             caps.setCapability("version", "9.0");
-            caps.setCapability("deviceName","iPad Simulator");
+            caps.setCapability("deviceName", "iPad Simulator");
             caps.setCapability("deviceOrientation", "portrait");
             // Create the connection to Sauce Labs to run the tests
             try {

@@ -23,39 +23,38 @@ public class CampaignsMainForm extends ObjectFormPage {
 
     @FindBy(xpath = "//h2[contains(.,'Campaign Edit')]")
     @CacheLookup
-    WebElement newCampaignsTitle;
+    private WebElement newCampaignsTitle;
 
     @FindBy(name = "cpn1")
     @CacheLookup
-    WebElement nameField;
+    private WebElement nameField;
 
     @FindBy(name = "save")
     @CacheLookup
-    WebElement saveBtn;
+    private WebElement saveBtn;
 
     @FindBy(id = "cpn16")
     @CacheLookup
-    WebElement isActiveCheckBox;
+    private WebElement isActiveCheckBox;
 
     @FindBy(id = "cpn2")
     @CacheLookup
-    WebElement campaignType;
+    private WebElement campaignType;
 
     @FindBy(id = "cpn3")
     @CacheLookup
-    WebElement campaignStatus;
+    private WebElement campaignStatus;
 
     @FindBy(id = "cpn5")
     @CacheLookup
-    WebElement campaignStartDate;
+    private WebElement campaignStartDate;
 
     @FindBy(id = "cpn6")
     @CacheLookup
-    WebElement campaignEndDate;
+    private WebElement campaignEndDate;
 
     public CampaignsMainForm(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(newCampaignsTitle));

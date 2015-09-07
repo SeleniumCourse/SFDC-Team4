@@ -34,7 +34,6 @@ public class ViewFormPage extends FormPage {
 
     public ViewFormPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(viewTitle));
@@ -57,9 +56,9 @@ public class ViewFormPage extends FormPage {
         return this;
     }
 
-    public ViewDetailsForm clickSaveView() {
+    public ViewDetailsPage clickSaveView() {
         saveButton.click();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
-        return new ViewDetailsForm(driver);
+        return new ViewDetailsPage(driver);
     }
 }

@@ -65,11 +65,11 @@ public class ContactDetail {
         // Click the OK button in the Alert
         alert.accept();
     }
+
     public ContactForm clickEditBtn() {
         editBtn.click();
         return new ContactForm();
     }
-
 
 
 }

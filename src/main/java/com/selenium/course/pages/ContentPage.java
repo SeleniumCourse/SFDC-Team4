@@ -9,39 +9,38 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.selenium.course.framework.WebDriverManager;
 
-public class ContentPage extends Page{
+public class ContentPage extends Page {
 
-	public TabBar tabBar;
-	public NavigationLinks navigationLinks;
-	public ToolBar toolBar;
+    public TabBar tabBar;
+    public NavigationLinks navigationLinks;
+    public ToolBar toolBar;
 
-	@FindBy(id = "AppBodyHeader")
+    @FindBy(id = "AppBodyHeader")
     @CacheLookup
-	public WebElement bodyPage;
+    public WebElement bodyPage;
 
-	
-	public ContentPage(WebDriver driver) {
+
+    public ContentPage(WebDriver driver) {
         super(driver);
-		tabBar = new TabBar(driver);
-		navigationLinks = new NavigationLinks(driver);
-		toolBar = new ToolBar(driver);
-		PageFactory.initElements(driver, this);
+        tabBar = new TabBar(driver);
+        navigationLinks = new NavigationLinks(driver);
+        toolBar = new ToolBar(driver);
     }
-	
-	public TabBar goToTabBar() {
-		return new TabBar(driver);
-	}
-	
-	public NavigationLinks goToNavigationLinks() {
-		return new NavigationLinks(driver);
-	}
-	
-	public ToolBar goToToolBar() {
-		return new ToolBar(driver);
-	}
-	
-	public boolean isMainPageDisplayed() {
-    	return bodyPage.isDisplayed();
+
+    public TabBar goToTabBar() {
+        return new TabBar(driver);
+    }
+
+    public NavigationLinks goToNavigationLinks() {
+        return new NavigationLinks(driver);
+    }
+
+    public ToolBar goToToolBar() {
+        return new ToolBar(driver);
+    }
+
+    public boolean isMainPageDisplayed() {
+        return bodyPage.isDisplayed();
     }
 
 }
