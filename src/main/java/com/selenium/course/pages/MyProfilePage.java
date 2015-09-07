@@ -17,19 +17,14 @@ import com.selenium.course.framework.WebDriverManager;
 
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class MyProfilePage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class MyProfilePage extends Page{
 
     @FindBy(xpath = "//div[contains(@class,'userProfilePage')]")
     @CacheLookup
     WebElement myProfilePage;
 
-    public MyProfilePage() {
-        wait = WebDriverManager.getInstance().getWait();
-        driver = WebDriverManager.getInstance().getDriver();
-        PageFactory.initElements(driver, this);
+    public MyProfilePage(WebDriver driver) {
+        super(driver);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(myProfilePage));

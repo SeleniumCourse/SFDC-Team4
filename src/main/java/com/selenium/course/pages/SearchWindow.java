@@ -9,38 +9,29 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.WebDriverManager;
-
-public class SearchWindow {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class SearchWindow extends Page {
     private String windowsID;
 
     @FindBy(css = "h1")
     @CacheLookup
-    WebElement lookupTitle;
+    private WebElement lookupTitle;
 
     @FindBy(id = "lksrch")
     @CacheLookup
-    WebElement searchTxt;
+    private WebElement searchTxt;
 
     @FindBy(name = "go")
     @CacheLookup
-    WebElement goBtn;
+    private WebElement goBtn;
 
     private By searchFrame = By.id("searchFrame");
     private By resultFrame = By.id("resultsFrame");
 
 
     public SearchWindow(WebDriver driver) {
-        this.driver = driver;
-        wait = WebDriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-
+        super(driver);
         try {
 
             windowsID = driver.getWindowHandle();

@@ -6,31 +6,29 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.selenium.course.common.Globals.TIMEOUT_MIN;
-import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
+import static com.selenium.course.common.Globals.*;
 
 
 public class ViewFormPage extends FormPage {
 
     @FindBy(xpath = "//form[@id='editPage']")
-    WebElement viewTitle;
+    private WebElement viewTitle;
 
     @FindBy(xpath = "//input[@data-uidsfdc='3']")
     @CacheLookup
-    WebElement saveButton;
+    private WebElement saveButton;
 
     @FindBy(id = "fname")
     @CacheLookup
-    WebElement viewName;
+    private WebElement viewName;
 
     @FindBy(id = "devname")
     @CacheLookup
-    WebElement viewUniqueName;
+    private WebElement viewUniqueName;
 
     public ViewFormPage(WebDriver driver) {
         super(driver);
