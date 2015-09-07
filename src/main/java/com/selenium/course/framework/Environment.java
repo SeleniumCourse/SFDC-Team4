@@ -7,89 +7,83 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Environment {
-	/* Create a instance over this class*/
-	private static Environment instance;
-	/* Read properties*/
-	private Properties properties;
-	
-	private Environment()
-	{
-		File file = new File("gradle.properties");
+    /* Create a instance over this class*/
+    private static Environment instance;
+    /* Read properties*/
+    private Properties properties;
 
-		try {
-			FileReader fileReader = new FileReader(file);
-			properties = new Properties();
-			properties.load(fileReader);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    private Environment() {
+        File file = new File("gradle.properties");
 
-	}
-	
-	public static Environment getInstance()
-	{
-		if (instance == null) {
-			instance = new Environment();
-		}
-		return instance;
-	}
-	
-	public String getEnv(String property)
-	{
-		String systemProperty = System.getProperty(property);
-		if (systemProperty == null) {
-			systemProperty = properties.getProperty(property);
-		}
-		return systemProperty;
-	}
-	
-	public String getPrimaryUserName()
-	{
-		return Environment.getInstance()
-				.getEnv("primaryUserName");
-	}
-	
-	public String getPrimaryUserPassword()
-	{
-		return Environment.getInstance()
-				.getEnv("primaryUserPassword");
-	}
+        try {
+            FileReader fileReader = new FileReader(file);
+            properties = new Properties();
+            properties.load(fileReader);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	public String getMode()
-	{
-		return Environment.getInstance()
-				.getEnv("mode");
-	}
-	
-	public Integer getTimeOut()
-	{
-		return Integer.parseInt(Environment.getInstance()
-				.getEnv("timeout"));
-	}
+    }
 
-	public String getBrowser()
-	{
-		return Environment.getInstance()
-				.getEnv("browser");
-	}
+    public static Environment getInstance() {
+        if (instance == null) {
+            synchronized (Environment.class) {
+                if (instance == null) {
+                    instance = new Environment();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public String getEnv(String property) {
+        String systemProperty = System.getProperty(property);
+        if (systemProperty == null) {
+            systemProperty = properties.getProperty(property);
+        }
+        return systemProperty;
+    }
+
+    public String getPrimaryUserName() {
+        return Environment.getInstance()
+                .getEnv("primaryUserName");
+    }
+
+    public String getPrimaryUserPassword() {
+        return Environment.getInstance()
+                .getEnv("primaryUserPassword");
+    }
+
+    public String getMode() {
+        return Environment.getInstance()
+                .getEnv("mode");
+    }
+
+    public Integer getTimeOut() {
+        return Integer.parseInt(Environment.getInstance()
+                .getEnv("timeout"));
+    }
+
+    public String getBrowser() {
+        return Environment.getInstance()
+                .getEnv("browser");
+    }
 
 
-	public String getPrimarySauceUser()
-	{
-		return Environment.getInstance()
-				.getEnv("sauceUser");
-	}
+    public String getPrimarySauceUser() {
+        return Environment.getInstance()
+                .getEnv("sauceUser");
+    }
 
-	public String getPrimarySauceAccessKey()
-	{
-		return Environment.getInstance()
-				.getEnv("sauceAccessKey");
-	}
-	public String getPrimaryUsernameDisplayed()
-	{
-		return Environment.getInstance()
-				.getEnv("primaryUsernameDisplayed");
-	}
+    public String getPrimarySauceAccessKey() {
+        return Environment.getInstance()
+                .getEnv("sauceAccessKey");
+    }
+
+    public String getPrimaryUsernameDisplayed() {
+        return Environment.getInstance()
+                .getEnv("primaryUsernameDisplayed");
+    }
 }

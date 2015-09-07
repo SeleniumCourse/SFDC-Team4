@@ -198,6 +198,7 @@ public class ContactForm {
         searchWindow = clickParentLookup();
         searchWindow.findObject(newAccountName);
     }
+
     private SearchWindow clickParentLookup() {
         findAccountLookup.click();
         return new SearchWindow(driver);
@@ -268,6 +269,7 @@ public class ContactForm {
         assistantPhone.sendKeys(newAssistantPhone);
         return this;
     }
+
     //Address information
     public ContactForm setMailingStreet(String newMailingStreet) {
         mailingStreet.clear();

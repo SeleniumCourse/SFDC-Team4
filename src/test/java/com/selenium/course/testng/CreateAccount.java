@@ -30,7 +30,9 @@ public class CreateAccount {
 
     @Test
     public void testCreateAccount() {
-        accountForm.setAccountNameText(accountName);
+        accountForm.setAccountNameText(accountName)
+                .setAccountNumberField(accountName)
+                .setAccountSiteField(accountName);
         accountDetail = new AccountDetail(accountForm.clickSaveBtn().getDriver());
         Assert.assertEquals(accountDetail.getObjectName(), accountName);
 

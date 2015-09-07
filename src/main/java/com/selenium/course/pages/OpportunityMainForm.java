@@ -53,7 +53,6 @@ public class OpportunityMainForm extends ObjectFormPage {
 
     public OpportunityMainForm(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(editOpportunityTitle));

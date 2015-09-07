@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 /**
  * Created by Rina Espinoza on 8/29/2015.
  */
-public class ObjectFormPage extends FormPage{
+public class ObjectFormPage extends FormPage {
 
     public ObjectFormPage(WebDriver driver) {
         super(driver);

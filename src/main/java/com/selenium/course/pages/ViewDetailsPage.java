@@ -29,7 +29,6 @@ public class ViewDetailsPage extends DetailsPage {
 
     public ViewDetailsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public String getViewName() {

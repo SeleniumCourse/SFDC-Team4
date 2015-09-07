@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
@@ -23,23 +22,22 @@ public class CampaignDetailsForm extends ObjectFormPage {
 
     @FindBy(xpath = "//h2[contains(.,'Campaign Detail')]")
     @CacheLookup
-    WebElement campaignDetailTable;
+    private WebElement campaignDetailTable;
 
     @FindBy(id = "cpn1_ileinner")
     @CacheLookup
-    WebElement campaignName;
+    private WebElement campaignName;
 
     @FindBy(name = "del")
     @CacheLookup
-    WebElement deleteBtn;
+    private WebElement deleteBtn;
 
     @FindBy(name = "edit")
     @CacheLookup
-    WebElement editBtn;
+    private WebElement editBtn;
 
     public CampaignDetailsForm(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(campaignDetailTable));

@@ -14,35 +14,35 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.selenium.course.framework.WebDriverManager;
 
 public class ContactsPage {
-	private WebDriver driver;
-	private WebDriverWait wait;
-	
-	@FindBy(xpath = "//h1[contains(.,'Contacts:')]")
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    @FindBy(xpath = "//h1[contains(.,'Contacts:')]")
     @CacheLookup
-	WebElement contactsTitle;
+    WebElement contactsTitle;
 
-	@FindBy(name = "new")
-	@CacheLookup
-	WebElement newBtn;
-	
-	public ContactsPage() {
-		wait = WebDriverManager.getInstance().getWait();
-		driver = WebDriverManager.getInstance().getDriver();
-		PageFactory.initElements(driver, this);
-		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(
-					ExpectedConditions.visibilityOf(contactsTitle));
-		} catch (WebDriverException e) {
-			throw new WebDriverException(e);
-		} finally {
-			wait.withTimeout(15, TimeUnit.SECONDS);
-		}
-	}
+    @FindBy(name = "new")
+    @CacheLookup
+    WebElement newBtn;
 
-	public ContactForm clickNewBtn() {
-		newBtn.click();
-		return new ContactForm();
-	}
+    public ContactsPage() {
+        wait = WebDriverManager.getInstance().getWait();
+        driver = WebDriverManager.getInstance().getDriver();
+        PageFactory.initElements(driver, this);
+        try {
+            wait.withTimeout(3, TimeUnit.SECONDS).until(
+                    ExpectedConditions.visibilityOf(contactsTitle));
+        } catch (WebDriverException e) {
+            throw new WebDriverException(e);
+        } finally {
+            wait.withTimeout(15, TimeUnit.SECONDS);
+        }
+    }
+
+    public ContactForm clickNewBtn() {
+        newBtn.click();
+        return new ContactForm();
+    }
 
 
 }

@@ -27,7 +27,7 @@ public class EditChatPage {
     WebElement SaveBtn;
 
 
-    public EditChatPage(WebDriver driver){
+    public EditChatPage(WebDriver driver) {
         this.driver = driver;
         this.wait = WebDriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver, this);
@@ -42,8 +42,8 @@ public class EditChatPage {
         publisherTxtArea.sendKeys(newMessage);
     }
 
-    public ChatterPage clickSaveBtn(){
+    public ChatterPage clickSaveBtn() {
         SaveBtn.click();
-        return new ChatterPage();
+        return new ChatterPage(driver);
     }
 }
