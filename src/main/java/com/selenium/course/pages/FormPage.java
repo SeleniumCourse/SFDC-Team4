@@ -58,7 +58,7 @@ public abstract class FormPage extends ContentPage {
         return this.getDriver();
     }
 
-    public WebDriver setPickListValue(WebElement field, String fieldValue) {
+    public WebDriver selectListValue(WebElement field, String fieldValue) {
         Select select = new Select(field);
         select.selectByVisibleText(fieldValue);
         return this.getDriver();

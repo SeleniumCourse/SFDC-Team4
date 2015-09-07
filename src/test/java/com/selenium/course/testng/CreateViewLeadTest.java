@@ -7,7 +7,6 @@ import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.ContentPage;
 import com.selenium.course.pages.TabBar;
 import com.selenium.course.pages.ToolBar;
-import com.selenium.course.pages.LeadsPage;
 
 /**
  * Title:
