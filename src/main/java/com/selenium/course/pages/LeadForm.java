@@ -39,7 +39,7 @@ public class LeadForm extends ObjectFormPage
         super(driver);
     }
 
-    public LeadForm setFisrtName(String value)
+    public LeadForm setFirstName(String value)
     {
         this.driver = setTextFieldValue(firstNameTextField, value);
         return this;

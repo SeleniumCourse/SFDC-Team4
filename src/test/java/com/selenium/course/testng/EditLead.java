@@ -33,7 +33,7 @@ public class EditLead
     	contentPage = loginPage.loginAsPrimaryUser();
 		leadTab = contentPage.tabBar.clickLeadsTab();
 		leadForm = new LeadForm(leadTab.clickNewBtn().getDriver());
-		leadForm.setFisrtName(firstName)
+		leadForm.setFirstName(firstName)
 				.setLastName(lastName)
 				.setCompany(companyName);
 		leadDetail = new LeadDetail(leadForm.clickSaveBtn().getDriver());
@@ -43,7 +43,7 @@ public class EditLead
     public void EditLeadTc() {
 		String leadNameToVerify = firstNameEdited+" "+lastName;
 		leadForm = new LeadForm(leadDetail.clickEditBtn().getDriver());
-		leadForm.setFisrtName(firstNameEdited);
+		leadForm.setFirstName(firstNameEdited);
 		leadDetail = new LeadDetail(leadForm.clickSaveBtn().getDriver());
 		Assert.assertEquals(leadDetail.getObjectName(), leadNameToVerify);
 	}

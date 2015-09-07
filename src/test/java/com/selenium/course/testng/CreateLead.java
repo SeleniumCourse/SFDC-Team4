@@ -41,7 +41,7 @@ public class CreateLead
 
 		leadTab = contentPage.tabBar.clickLeadsTab();
 		leadForm = new LeadForm(leadTab.clickNewBtn().getDriver());
-		leadForm.setFisrtName(firstName)
+		leadForm.setFirstName(firstName)
 				.setLastName(lastName)
 				.setCompany(companyName).setTitle(title);
 		leadDetail = new LeadDetail(leadForm.clickSaveBtn().getDriver());
