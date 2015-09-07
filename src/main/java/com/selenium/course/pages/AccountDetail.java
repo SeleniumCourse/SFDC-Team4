@@ -83,14 +83,14 @@ public class AccountDetail extends ObjectDetailsPage {
 
     public AccountDetail(WebDriver driver) {
         super(driver);
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(accountDetailLabel));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public String getAccountNameField() {

@@ -25,14 +25,14 @@ public class ToolBar extends Page {
 
     public ToolBar(WebDriver driver) {
         super(driver);
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(tsiButton));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public void clickOptionButton() {

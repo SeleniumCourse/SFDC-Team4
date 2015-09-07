@@ -60,7 +60,8 @@ public class ObjectDetailsPage extends DetailsPage {
         try {
             Alert alert = driver.switchTo().alert();
             alert.accept();
-        } finally {
+        }
+        finally {
 
             return new TabPage(driver);
         }

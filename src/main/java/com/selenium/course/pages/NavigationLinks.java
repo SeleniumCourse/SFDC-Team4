@@ -27,14 +27,14 @@ public class NavigationLinks extends Page {
 
     public NavigationLinks(WebDriver driver) {
         super(driver);
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(userLabel));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public HelpPage clickHelp() {

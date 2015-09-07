@@ -86,4 +86,16 @@ public class Environment {
         return Environment.getInstance()
                 .getEnv("primaryUsernameDisplayed");
     }
+
+    public String getGroups() {
+        return Environment.getInstance()
+                .getEnv("groups");
+    }
+
+    public String getSuites() {
+        return Environment.getInstance()
+                .getEnv("suites");
+    }
+
+
 }

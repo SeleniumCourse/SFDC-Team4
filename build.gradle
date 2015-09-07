@@ -39,23 +39,27 @@ dependencies {
 }
 
 
-task runTestNGTestCases(type: Test) {
+task executeTC(type: Test) {
 
     useTestNG()
 
-
-
-    //testLogging {
-    //    events "started", "passed", "failed", "skipped"
-    //}
+    testLogging {
+        events "started", "passed", "failed", "skipped"
+    }
 
     options {
         suites('src/test/resources/Suite1.xml')
+        //includeGroups groups
     }
 
-	//systemProperties.put('org.uncommons.reportng.title', titleProject + ' - ' + browser + ' - ' + credential + ' - ' + groups)
-    //systemProperties.put('primaryUserName', primaryUserName)
-    //systemProperties.put('primaryUserPassword', primaryUserPassword)
-   // systemProperties.put('groups', groups)
-    //systemProperties.put('browser', browser)
+    systemProperty 'browser', browser
+    systemProperty 'primaryUserName', primaryUserName
+    systemProperty 'primaryUserPassword', primaryUserPassword
+    systemProperty 'groups', groups
+    //systemProperty 'suites', suites
+    systemProperty 'primaryUsernameDisplayed', primaryUsernameDisplayed
+    systemProperty 'timeout', timeout
+    systemProperty 'sauceUser', sauceUser
+    systemProperty 'sauceAccessKey', sauceAccessKey
+    systemProperty 'mode', mode
 }

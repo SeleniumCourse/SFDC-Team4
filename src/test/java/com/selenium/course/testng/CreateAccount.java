@@ -105,8 +105,9 @@ public class CreateAccount {
 
     @AfterClass
     public void tearDown() {
-        accountTab = accountDetail.clickDeleteBtn();
-        accountTab.goToNavigationLinks().clickLogoutBtn();
+        accountTab = new TabPage(accountDetail.clickDeleteBtn().getDriver());
+        NavigationLinks navigationLinks = new NavigationLinks(accountTab.goToNavigationLinks().getDriver());
+        navigationLinks.clickLogoutBtn();
     }
 
 
