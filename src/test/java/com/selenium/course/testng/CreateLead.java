@@ -22,10 +22,10 @@ public class CreateLead
 	private LeadForm leadForm;
 
 	private String campaingName;
-	private String firstName;
-	private String lastName;
-	private String companyName;
-	private String title;
+	private final String firstName= "newLead";
+	private final String lastName= "LastName";
+	private final String companyName= "myCompany";
+	private final String title="autoTitle";
 
 	@BeforeClass
     public void setUp() {
@@ -37,10 +37,6 @@ public class CreateLead
 	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void CreateLeadTc() {
 		//String salutation = "Mr.";
-		firstName = "newLead";
-		lastName = "LastName";
-		companyName = "myCompany";
-		title="autoTitle";
 		String leadNameToVerify = firstName+" "+lastName;
 
 		leadTab = contentPage.tabBar.clickLeadsTab();
