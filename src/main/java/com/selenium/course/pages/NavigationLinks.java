@@ -49,7 +49,6 @@ public class NavigationLinks extends Page {
     public void clickLogoutBtn() {
         driver.findElement(By.id("userNav")).click();
         logout.click();
-        driver.quit();
     }
 
 }
