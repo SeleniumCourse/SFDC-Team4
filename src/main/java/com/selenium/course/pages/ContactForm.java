@@ -1,189 +1,175 @@
 package com.selenium.course.pages;
 
-import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.WebDriverManager;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Created by reyna ulaque on 13/06/2015.
- */
-public class ContactForm {
-    private WebDriver driver;
-    private WebDriverWait wait;
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
+
+public class ContactForm extends ObjectFormPage {
     private Select selectTitleBox;
     private Select selectLeadSourceBox;
     private Select selectLevelBox;
     private SearchWindow searchWindow;
 
 
-    @FindBy(xpath = "//h2[contains(.,' New Contact')]")
+    @FindBy(xpath = "//h1[contains(.,'Contact Edit:')]")
     @CacheLookup
-    WebElement newContactTitle;
+    private WebElement newContactTitle;
 
     @FindBy(id = "name_salutationcon2")
     @CacheLookup
-    WebElement titleSelect;
+    private WebElement titleSelect;
 
     @FindBy(id = "name_firstcon2")
     @CacheLookup
-    WebElement firstName;
+    private WebElement firstName;
 
     @FindBy(id = "name_lastcon2")
     @CacheLookup
-    WebElement lastName;
+    private WebElement lastName;
 
     @FindBy(id = "con4")
     @CacheLookup
-    WebElement accountName;
+    private WebElement accountName;
 
     @FindBy(xpath = "//img[@alt='Account Name Lookup (New Window)']")
     @CacheLookup
-    WebElement findAccountLookup;
+    private WebElement findAccountLookup;
 
     @FindBy(id = "con5")
     @CacheLookup
-    WebElement title;
+    private WebElement title;
 
     @FindBy(id = "con6")
     @CacheLookup
-    WebElement department;
+    private WebElement department;
 
     @FindBy(id = "con7")
     @CacheLookup
-    WebElement birthDate;
+    private WebElement birthDate;
 
     @FindBy(id = "con8")
     @CacheLookup
-    WebElement reportTo;
+    private WebElement reportTo;
 
     @FindBy(id = "con9")
     @CacheLookup
-    WebElement leadSourceSelect;
+    private WebElement leadSourceSelect;
 
     @FindBy(id = "con10")
     @CacheLookup
-    WebElement phone;
+    private WebElement phone;
 
     @FindBy(id = "con13")
     @CacheLookup
-    WebElement homePhone;
+    private WebElement homePhone;
 
     @FindBy(id = "con12")
     @CacheLookup
-    WebElement mobile;
+    private WebElement mobile;
 
     @FindBy(id = "con14")
     @CacheLookup
-    WebElement otherPhone;
+    private WebElement otherPhone;
 
     @FindBy(id = "con11")
     @CacheLookup
-    WebElement fax;
+    private WebElement fax;
 
     @FindBy(id = "con15")
     @CacheLookup
-    WebElement email;
+    private WebElement email;
 
     @FindBy(id = "con16")
     @CacheLookup
-    WebElement assistant;
+    private WebElement assistant;
 
     @FindBy(id = "con17")
     @CacheLookup
-    WebElement assistantPhone;
-    //Address information
+    private WebElement assistantPhone;
+
     @FindBy(id = "con19street")
     @CacheLookup
-    WebElement mailingStreet;
+    private WebElement mailingStreet;
 
     @FindBy(id = "con19city")
     @CacheLookup
-    WebElement mailingCity;
+    private WebElement mailingCity;
 
     @FindBy(id = "con19state")
     @CacheLookup
-    WebElement mailingState;
+    private WebElement mailingState;
 
     @FindBy(id = "con19zip")
     @CacheLookup
-    WebElement mailingZipPostal;
+    private WebElement mailingZipPostal;
 
     @FindBy(id = "con19country")
     @CacheLookup
-    WebElement mailingCountry;
+    private WebElement mailingCountry;
 
     @FindBy(id = "con18street")
     @CacheLookup
-    WebElement otherStreet;
+    private WebElement otherStreet;
 
     @FindBy(id = "con18city")
     @CacheLookup
-    WebElement otherCity;
+    private WebElement otherCity;
 
     @FindBy(id = "con18state")
     @CacheLookup
-    WebElement otherState;
+    private WebElement otherState;
 
     @FindBy(id = "con18zip")
     @CacheLookup
-    WebElement otherZipPostal;
+    private WebElement otherZipPostal;
 
     @FindBy(id = "con18country")
     @CacheLookup
-    WebElement otherCountry;
+    private WebElement otherCountry;
 
-    @FindBy(id = "00N1a000005YAYl")
+    @FindBy(id = "00N2400000EaNhr")
     @CacheLookup
-    WebElement languages;
+    private WebElement languages;
 
-    @FindBy(id = "00N1a000005YAYm")
+    @FindBy(id = "00N2400000EaNhs")
     @CacheLookup
-    WebElement selectLevel;
-
+    private WebElement selectLevel;
 
     @FindBy(id = "con20")
     @CacheLookup
-    WebElement description;
+    private WebElement description;
 
     @FindBy(name = "save")
     @CacheLookup
-    WebElement saveBtn;
+    private WebElement saveBtn;
 
+    public ContactForm(WebDriver driver) {
+        super(driver);
 
-    public ContactForm() {
-        //this.driver = driver;
-        wait = WebDriverManager.getInstance().getWait();
-        driver = WebDriverManager.getInstance().getDriver();
-        PageFactory.initElements(driver, this);
         try {
-            wait.withTimeout(3, TimeUnit.SECONDS).until(
-                    ExpectedConditions.visibilityOf(lastName));
+            wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
+                    ExpectedConditions.visibilityOf(newContactTitle));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
 
-    public ContactForm selectTitle(String title) {
-        selectTitleBox = new Select(titleSelect);
-        selectTitleBox.selectByVisibleText(title);
-        return this;
-    }
-
-    public ContactForm setFirstName(String newFirstName) {
-        firstName.clear();
-        firstName.sendKeys(newFirstName);
+    public ContactForm setContactName(String fieldValue){
+        driver = setTextFieldValue(firstName,fieldValue);
         return this;
     }
 
@@ -193,84 +179,95 @@ public class ContactForm {
         return this;
     }
 
-
-    public void setAccountName(String newAccountName) {
-        searchWindow = clickParentLookup();
-        searchWindow.findObject(newAccountName);
+    public ContactForm selectTitle(String title) {
+        selectTitleBox = new Select(titleSelect);
+        selectTitleBox.selectByVisibleText(title);
+        return this;
     }
 
+    public ContactForm setFirstName(String newFirstName) {
+        this.driver = setTextFieldValue(firstName,newFirstName);
+        return this;
+    }
+
+    public ContactForm setAccountName(String newAccountName) {
+
+        String windowID = driver.getWindowHandle();
+        searchWindow = clickParentLookup();
+
+        try {
+            Set<String> setWindows = driver.getWindowHandles();
+            LinkedList<String> listWindows = new LinkedList<String>(setWindows);
+            driver.switchTo().window(listWindows.getLast());
+            driver.switchTo().frame("resultsFrame");
+            driver.findElement(By.linkText(newAccountName)).click();
+        } catch (WebDriverException e) {
+            throw new WebDriverException(e);
+        } finally {
+            driver.switchTo().window(windowID);
+        }
+        return this;
+    }
     private SearchWindow clickParentLookup() {
         findAccountLookup.click();
         return new SearchWindow(driver);
     }
 
     public ContactForm setTitle(String newTitle) {
-        title.clear();
-        title.sendKeys(newTitle);
+        this.driver = setTextFieldValue(title, newTitle);
         return this;
     }
 
     public ContactForm setDepartment(String newDepartment) {
-        department.clear();
-        department.sendKeys(newDepartment);
+        this.driver = setTextFieldValue(department, newDepartment);
         return this;
     }
 
     public ContactForm selectLeadSource(String leadSource) {
-        selectLeadSourceBox = new Select(leadSourceSelect);
-        selectLeadSourceBox.selectByVisibleText(leadSource);
+        this.driver = selectListValue(leadSourceSelect, leadSource);
         return this;
     }
 
     public ContactForm setPhone(String newPhone) {
-        phone.clear();
-        phone.sendKeys(newPhone);
+        this.driver = setTextFieldValue(phone,newPhone);
         return this;
     }
 
     public ContactForm setHomePhone(String newHomePhone) {
-        homePhone.clear();
-        homePhone.sendKeys(newHomePhone);
+        this.driver = setTextFieldValue(homePhone,newHomePhone);
         return this;
     }
 
     public ContactForm setMobile(String newMobile) {
-        mobile.clear();
-        mobile.sendKeys(newMobile);
+        this.driver = setTextFieldValue(mobile,newMobile);
         return this;
     }
 
     public ContactForm setOtherPhone(String newOtherPhone) {
-        otherPhone.clear();
-        otherPhone.sendKeys(newOtherPhone);
+        this.driver = setTextFieldValue(otherPhone,newOtherPhone);
         return this;
     }
 
     public ContactForm setFax(String newFax) {
-        fax.clear();
-        fax.sendKeys(newFax);
+        this.driver = setTextFieldValue(fax,newFax);
         return this;
     }
 
     public ContactForm setEmail(String newEmail) {
-        email.clear();
-        email.sendKeys(newEmail);
+        this.driver = setTextFieldValue(email,newEmail);
         return this;
     }
 
     public ContactForm setAssistant(String newAssistant) {
-        assistant.clear();
-        assistant.sendKeys(newAssistant);
+        this.driver = setTextFieldValue(assistant,newAssistant);
         return this;
     }
 
     public ContactForm setAssistantPhone(String newAssistantPhone) {
-        assistantPhone.clear();
-        assistantPhone.sendKeys(newAssistantPhone);
+        this.driver = setTextFieldValue(assistantPhone,newAssistantPhone);
         return this;
     }
 
-    //Address information
     public ContactForm setMailingStreet(String newMailingStreet) {
         mailingStreet.clear();
         mailingStreet.sendKeys(newMailingStreet);
@@ -278,80 +275,63 @@ public class ContactForm {
     }
 
     public ContactForm setMailingCity(String newMailingCity) {
-        mailingCity.clear();
-        mailingCity.sendKeys(newMailingCity);
+        this.driver = setTextFieldValue(mailingCity,newMailingCity);
         return this;
     }
 
     public ContactForm setMailingState(String newMailingState) {
-        mailingState.clear();
-        mailingState.sendKeys(newMailingState);
+        this.driver = setTextFieldValue(mailingState,newMailingState);
         return this;
     }
 
     public ContactForm setMailingZipPostal(String newMailingZipPostal) {
-        mailingZipPostal.clear();
-        mailingZipPostal.sendKeys(newMailingZipPostal);
+        this.driver = setTextFieldValue(mailingZipPostal,newMailingZipPostal);
         return this;
     }
 
     public ContactForm setMailingCountry(String newMailingCountry) {
-        mailingCountry.clear();
-        mailingCountry.sendKeys(newMailingCountry);
+        this.driver = setTextFieldValue(mailingCountry,newMailingCountry);
         return this;
     }
 
     public ContactForm setOtherStreet(String newOtherStreet) {
-        otherStreet.clear();
-        otherStreet.sendKeys(newOtherStreet);
+        this.driver = setTextFieldValue(otherStreet,newOtherStreet);
         return this;
     }
 
     public ContactForm setOtherCity(String newOtherCity) {
-        otherCity.clear();
-        otherCity.sendKeys(newOtherCity);
+        this.driver = setTextFieldValue(otherCity,newOtherCity);
         return this;
     }
 
     public ContactForm setOtherState(String newOtherState) {
-        otherState.clear();
-        otherState.sendKeys(newOtherState);
+        this.driver = setTextFieldValue(otherState,newOtherState);
         return this;
     }
 
     public ContactForm setOtherZipPostal(String newOtherZipPostal) {
-        otherZipPostal.clear();
-        otherZipPostal.sendKeys(newOtherZipPostal);
+        this.driver = setTextFieldValue(otherZipPostal,newOtherZipPostal);
         return this;
     }
 
     public ContactForm setOtherCountry(String newOtherCountry) {
-        otherCountry.clear();
-        otherCountry.sendKeys(newOtherCountry);
+        this.driver = setTextFieldValue(otherCountry,newOtherCountry);
         return this;
     }
 
     public ContactForm setLanguages(String newLanguages) {
-        languages.clear();
-        languages.sendKeys(newLanguages);
+        this.driver = setTextFieldValue(languages,newLanguages);
         return this;
     }
 
     public ContactForm selectLevel(String newLevel) {
-        selectLevelBox = new Select(selectLevel);
-        selectLevelBox.selectByVisibleText(newLevel);
+        this.driver = selectListValue(selectLevel, newLevel);
         return this;
     }
 
     public ContactForm setDescription(String newDescription) {
-        description.clear();
-        description.sendKeys(newDescription);
+        this.driver = setTextFieldValue(description,newDescription);
         return this;
-    }
-
-    public ContactDetail clickSaveBtn() {
-        saveBtn.click();
-        return new ContactDetail();
     }
 }
 
