@@ -18,19 +18,19 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 public class ViewFormPage extends FormPage {
 
     @FindBy(xpath = "//form[@id='editPage']")
-    WebElement viewTitle;
+    protected WebElement viewTitle;
 
     @FindBy(xpath = "//input[@data-uidsfdc='3']")
     @CacheLookup
-    WebElement saveButton;
+    protected WebElement saveButton;
 
     @FindBy(id = "fname")
     @CacheLookup
-    WebElement viewName;
+    protected WebElement viewName;
 
     @FindBy(id = "devname")
     @CacheLookup
-    WebElement viewUniqueName;
+    protected WebElement viewUniqueName;
 
     public ViewFormPage(WebDriver driver) {
         super(driver);

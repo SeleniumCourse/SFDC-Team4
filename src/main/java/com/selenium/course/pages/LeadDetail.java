@@ -28,5 +28,4 @@ public class LeadDetail extends ObjectDetailsPage{
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
-
 }
