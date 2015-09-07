@@ -21,15 +21,15 @@ public class TabPage extends ContentPage {
 
     @FindBy(name = "new")
     @CacheLookup
-    public WebElement newBtn;
+    private WebElement newBtn;
 
     @FindBy(linkText = "Create New View")
     @CacheLookup
-    public WebElement createNewViewLink;
+    private WebElement createNewViewLink;
 
     @FindBy(linkText = "Edit")
     @CacheLookup
-    public WebElement editViewLink;
+    private WebElement editViewLink;
 
     public TabPage(WebDriver driver) {
         super(driver);
