@@ -239,9 +239,8 @@ public class CommonForm {
         companyNameField.sendKeys(companyName);
     }
 
-
     public LeadDetail clickSaveLead() {
         saveBtn.click();
-        return new LeadDetail();
+        return new LeadDetail(driver);
     }
 }

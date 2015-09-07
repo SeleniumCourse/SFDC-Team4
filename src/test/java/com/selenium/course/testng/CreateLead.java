@@ -1,88 +1,60 @@
 package com.selenium.course.testng;
 
-import static org.junit.Assert.assertTrue;
-
 import com.selenium.course.pages.*;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 /**
  * Title:
  * Cretate Lead
  *
- * @author
+ * @author Elmer A.
  *
  */
  
-public class CreateLead {
-
-
+public class CreateLead
+{
 	private LoginPage loginPage;
 	private ContentPage contentPage;
-	private TabBar tabBar;
-	private LeadsPage leadsPage;
-	private ToolBar toolBar;
-	private CampaignsPage campaignsPage;
-
-	private LeadForm leadForm;
-	/*
-	private NewCampaignForm newCampaignForm;
-	private NewLeadForm newLeadForm;
+	private TabPage leadTab;
 	private LeadDetail leadDetail;
-	private CampaingsTablePage campaignsTablePage;
-	private CampaingDetail campaingDetail;
-	*/
-	String campaingName;
-	String firstName;
-	String lastName;
-	String companyName;
+	private CampaignsMainForm campaignsMainForm;
+	private LeadForm leadForm;
+
+	private String campaingName;
+	private String firstName;
+	private String lastName;
+	private String companyName;
+	private String title;
 
 	@BeforeClass
     public void setUp() {
     	loginPage = new LoginPage();
         campaingName = "newCampaing";
     	contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        /*
-		campaignsPage = tabBar.clickCampaigns();
-        newCampaignForm = campaignsPage.clickNewCampaign();
-        campaingDetail = newCampaignForm.setCampaignName(campaingName)
-				.setStatus(true)
-				.clickSaveCampaign();
-        toolBar = contentPage.goToToolBar();
-		toolBar.goToSales();
-		tabBar = contentPage.goToTabBar();
-		*/
     }
 
 	@Test (groups = {"BVT, Acceptance, Funcional"})
-    public void testUntitled() {
-		String salutation = "Mr.";
+    public void CreateLeadTc() {
+		//String salutation = "Mr.";
 		firstName = "newLead";
-		lastName = "last Name";
+		lastName = "LastName";
 		companyName = "myCompany";
+		title="autoTitle";
+		String leadNameToVerify = firstName+" "+lastName;
 
-		TabPage tabPage = tabBar.clickLeadsTab();
-		leadForm = leadsPage.clickNewLead();
-		leadForm.setFisrtName(firstName).setLastName(lastName);
-		/*
-		newLeadForm = new NewLeadBuilder(leadName, companyName)
-										.setSalutation(salutation)
-										.setCampaign(campaingName).build();
-		*/
-		/*leadDetail = newLeadForm.createLead();
-		
-		assertTrue(leadDetail.verifyName(salutation, leadName));
-		assertTrue(leadDetail.verifyCompany(companyName));
-		assertTrue(leadDetail.verifyCampaing(campaingName));*/
+		leadTab = contentPage.tabBar.clickLeadsTab();
+		leadForm = new LeadForm(leadTab.clickNewBtn().getDriver());
+		leadForm.setFisrtName(firstName)
+				.setLastName(lastName)
+				.setCompany(companyName).setTitle(title);
+		leadDetail = new LeadDetail(leadForm.clickSaveBtn().getDriver());
+		Assert.assertEquals(leadDetail.getObjectName(), leadNameToVerify);
 	}
-	/*
+
 	@AfterClass
     public void tearDown() {
-		leadDetail.clickDelete();
-		tabBar = contentPage.goToTabBar();
-		campaignsPage = tabBar.clickCampaigns();
-		campaignsTablePage = campaignsPage.clickGo();
-		campaingDetail = campaignsTablePage.clickCampaing(campaingName);
-		campaingDetail.deleteCampaign();	
-    }*/
+		leadTab = leadDetail.clickDeleteBtn();
+		leadTab.navigationLinks.clickLogoutBtn();
+    }
 }
