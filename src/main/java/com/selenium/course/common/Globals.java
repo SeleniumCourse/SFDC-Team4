@@ -15,4 +15,6 @@ public class Globals {
     public static final String MODE = Environment.getInstance().getMode();
     public static final String SAUCE_USER = Environment.getInstance().getPrimarySauceUser();
     public static final String SAUCE_USER_ACCESS_KEY = Environment.getInstance().getPrimarySauceAccessKey();
+    public static final String PATH_CONTACT = "/contact.csv";
+    public static final String PATH_EDIT_CONTACT = "/editcontact.csv";
 }
