@@ -50,7 +50,7 @@ public class CreateLead
 
 	@AfterClass
     public void tearDown() {
-		leadTab = leadDetail.clickDeleteBtn();
+		leadTab = leadDetail.clickDeleteOppBtn();
 		leadTab.navigationLinks.clickLogoutBtn();
     }
 }
