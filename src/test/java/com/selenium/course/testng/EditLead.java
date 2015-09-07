@@ -24,7 +24,6 @@ public class EditLead
 	private ContentPage contentPage;
 	private TabPage leadTab;
 	private LeadDetail leadDetail;
-	private CampaignsMainForm campaignsMainForm;
 	private LeadForm leadForm;
 
 	@BeforeClass

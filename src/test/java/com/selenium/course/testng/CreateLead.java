@@ -18,7 +18,6 @@ public class CreateLead
 	private ContentPage contentPage;
 	private TabPage leadTab;
 	private LeadDetail leadDetail;
-	private CampaignsMainForm campaignsMainForm;
 	private LeadForm leadForm;
 
 	private String campaingName;
