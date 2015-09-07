@@ -58,8 +58,8 @@ public class AccountViewForm extends ViewFormPage {
     }
 
     public AccountViewForm setFilterAccountName(String fieldValue) {
-        this.driver = setPickListValue(filterAccountName, "Account Name");
-        this.driver = setPickListValue(filterAccountOption, "contains");
+        this.driver = selectListValue(filterAccountName, "Account Name");
+        this.driver = selectListValue(filterAccountOption, "contains");
         this.driver = setTextFieldValue(filterAccountValue, fieldValue);
         return this;
     }

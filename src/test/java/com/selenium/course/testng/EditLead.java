@@ -42,7 +42,7 @@ public class EditLead
 	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void EditLeadTc() {
 		String leadNameToVerify = firstNameEdited+" "+lastName;
-		leadForm = new LeadForm(leadDetail.clickEdit().getDriver());
+		leadForm = new LeadForm(leadDetail.clickEditBtn().getDriver());
 		leadForm.setFisrtName(firstNameEdited);
 		leadDetail = new LeadDetail(leadForm.clickSaveBtn().getDriver());
 		Assert.assertEquals(leadDetail.getObjectName(), leadNameToVerify);
