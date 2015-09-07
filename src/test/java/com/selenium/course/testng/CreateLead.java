@@ -21,34 +21,38 @@ import com.selenium.course.pages.LeadsPage;
  * Title:
  * Cretate Lead
  *
- * @author Gustavo Cavero 
+ * @author
  *
  */
  
-public class CreateLead {/*
+public class CreateLead {
+
+
 	private LoginPage loginPage;
 	private ContentPage contentPage;
 	private TabBar tabBar;
 	private LeadsPage leadsPage;
 	private ToolBar toolBar;
 	private CampaignsPage campaignsPage;
+	/*
 	private NewCampaignForm newCampaignForm;
 	private NewLeadForm newLeadForm;
 	private LeadDetail leadDetail;
 	private CampaingsTablePage campaignsTablePage;
 	private CampaingDetail campaingDetail;
+	*/
 	String campaingName;
 	String leadName;
 	String companyName;
-	
-	
+
 	@BeforeClass
     public void setUp() {
     	loginPage = new LoginPage();
         campaingName = "newCampaing";
     	contentPage = loginPage.loginAsPrimaryUser();
         tabBar = contentPage.goToTabBar();
-        campaignsPage = tabBar.clickCampaigns();
+        /*
+		campaignsPage = tabBar.clickCampaigns();
         newCampaignForm = campaignsPage.clickNewCampaign();
         campaingDetail = newCampaignForm.setCampaignName(campaingName)
 				.setStatus(true)
@@ -56,8 +60,9 @@ public class CreateLead {/*
         toolBar = contentPage.goToToolBar();
 		toolBar.goToSales();
 		tabBar = contentPage.goToTabBar();
+		*/
     }
-	
+	/*
 	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void testUntitled() {
 		String salutation = "Mr.";
