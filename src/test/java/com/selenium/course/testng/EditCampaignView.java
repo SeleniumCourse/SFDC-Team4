@@ -7,13 +7,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static junit.framework.Assert.assertTrue;
+
 /**
  * Created for Joel Rodriguez
  */
 
 public class EditCampaignView {
 
-    private ViewDetailsPage viewDetailsForm;
+    private CampaignsViewDetails campaignsViewDetails;
+    private TabPage campaignsPage;
 
     String viewName;
     String uniqueName;
@@ -25,16 +28,16 @@ public class EditCampaignView {
 
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage campaignsPage = tabBar.clickCampaigns();
+        campaignsPage = contentPage.tabBar.clickCampaigns();
         campaignsPage.clickCreateNewViewLink();
+
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        CampaignsViewForm campaignsViewForm = (CampaignsViewForm) new CampaignsViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
-        viewDetailsForm.clickEditViewLink();
+                .setUniqueViewName(uniqueName);
+        campaignsViewDetails = new CampaignsViewDetails(campaignsViewForm.clickSaveView().getDriver());
+        campaignsViewDetails.clickEditViewLink();
     }
 
     @Test(groups = {"BVT, Acceptance, Funcional"})
@@ -44,16 +47,17 @@ public class EditCampaignView {
 
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        CampaignsViewForm campaignsViewForm = (CampaignsViewForm) new CampaignsViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
+                .setUniqueViewName(uniqueName);
+        campaignsViewDetails = new CampaignsViewDetails(campaignsViewForm.clickSaveView().getDriver());
 
-        //assertTrue(viewDetailsForm.verifyNewView(viewName));
+        assertTrue(campaignsViewDetails.existViewName(viewName));
     }
 
     @AfterClass
     public void tearDown() {
-        viewDetailsForm.clickDeleteViewLink();
+        campaignsPage = campaignsViewDetails.clickDeleteViewLink();
+        campaignsPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

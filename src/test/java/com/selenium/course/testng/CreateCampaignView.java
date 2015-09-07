@@ -7,14 +7,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created for Joel Rodriguez
  */
 
 public class CreateCampaignView {
-    private ViewDetailsPage viewDetailsForm;
+
+    private CampaignsViewDetails campaignsViewDetails;
+    private TabPage campaignsPage;
 
     String viewName = "ViewTesting123";
     String uniqueName = "UniqueViewTesting123";
@@ -23,8 +25,7 @@ public class CreateCampaignView {
     public void setUp() {
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage campaignsPage = tabBar.clickCampaigns();
+        campaignsPage = contentPage.tabBar.clickCampaigns();
         campaignsPage.clickCreateNewViewLink();
     }
 
@@ -32,16 +33,17 @@ public class CreateCampaignView {
     public void testCreateNewCampaign() {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        CampaignsViewForm campaignsViewForm = (CampaignsViewForm) new CampaignsViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
+                .setUniqueViewName(uniqueName);
+        campaignsViewDetails = new CampaignsViewDetails(campaignsViewForm.clickSaveView().getDriver());
 
-//        assertTrue(viewDetailsForm.verifyNewView(viewName));
+        assertTrue(campaignsViewDetails.existViewName(viewName));
     }
 
     @AfterClass
     public void tearDown() {
-        viewDetailsForm.clickDeleteViewLink();
+        campaignsPage = campaignsViewDetails.clickDeleteViewLink();
+        campaignsPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

@@ -2,46 +2,46 @@ package com.selenium.course.testng;
 
 import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.*;
+import junit.framework.Assert;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created for Joel Rodriguez
  */
 
 public class CreateOpportunityView {
-    private ViewDetailsPage viewDetailsForm;
+    private OpportunityViewDetails opportunityViewDetails;
+    private TabPage opportunityPage;
 
-    String viewName = "ViewTestingO123";
-    String uniqueName = "UniqueViewTestingO123";
+    String viewName = "ViewTesting123";
+    String uniqueName = "UniqueViewTesting123";
 
     @BeforeClass
     public void setUp() {
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage campaignsPage = tabBar.clickOpportunities();
-        campaignsPage.clickCreateNewViewLink();
+        opportunityPage = contentPage.tabBar.clickOpportunities();
+        opportunityPage.clickCreateNewViewLink();
     }
 
     @Test(groups = {"BVT, Acceptance, Funcional"})
     public void testCreateNewCampaign() {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        OpportunityViewForm opportunityViewForm = (OpportunityViewForm) new OpportunityViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
+                .setUniqueViewName(uniqueName);
+        opportunityViewDetails = new OpportunityViewDetails(opportunityViewForm.clickSaveView().getDriver());
 
-        //assertTrue(viewDetailsForm.verifyNewView(viewName));
+        Assert.assertTrue(opportunityViewDetails.existViewName(viewName));
     }
 
     @AfterClass
     public void tearDown() {
-        viewDetailsForm.clickDeleteViewLink();
+        opportunityPage = opportunityViewDetails.clickDeleteViewLink();
+        opportunityPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

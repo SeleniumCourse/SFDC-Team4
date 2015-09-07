@@ -15,7 +15,8 @@ import static org.junit.Assert.assertTrue;
 
 public class EditCampaign {
 
-    private CampaignDetailsForm campaignDetailsForm;
+    private CampaignDetails campaignDetails;
+    private TabPage campaignsPage;
 
     String campaignName, type, status, startDate, endDate;
 
@@ -29,18 +30,17 @@ public class EditCampaign {
 
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage campaignsPage = tabBar.clickCampaigns();
+        campaignsPage = contentPage.tabBar.clickCampaigns();
         campaignsPage.clickNewBtn();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
-        campaignDetailsForm = new CampaignsMainForm(driver)
+        campaignDetails = new CampaignsForm(driver)
                 .setCampaignName(campaignName)
                 .setCampaignType(type)
                 .setCampaignStatus(status)
                 .setCampaignStartDate(startDate)
                 .setCampaignEndDate(endDate)
                 .clickSaveCampaign();
-        campaignDetailsForm.editCampaign();
+        campaignDetails.editCampaign();
 
     }
 
@@ -54,7 +54,7 @@ public class EditCampaign {
 
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        campaignDetailsForm = new CampaignsMainForm(driver)
+        campaignDetails = new CampaignsForm(driver)
                 .setCampaignName(campaignName)
                 .setCampaignType(type)
                 .setCampaignStatus(status)
@@ -62,11 +62,12 @@ public class EditCampaign {
                 .setCampaignEndDate(endDate)
                 .clickSaveCampaign();
 
-        assertTrue(campaignDetailsForm.verifyNewCampaign(campaignName));
+        assertTrue(campaignDetails.verifyNewCampaign(campaignName));
     }
 
     @AfterClass
     public void tearDown() {
-        campaignDetailsForm.deleteCampaign();
+        campaignsPage = campaignDetails.clickDeleteOppBtn();
+        campaignsPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

@@ -13,7 +13,8 @@ import org.testng.annotations.Test;
 
 public class EditOpportunityView {
 
-    private ViewDetailsPage viewDetailsForm;
+    private OpportunityViewDetails opportunityViewDetails;
+    private TabPage opportunityPage;
 
     String viewName;
     String uniqueName;
@@ -26,16 +27,16 @@ public class EditOpportunityView {
 
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage campaignsPage = tabBar.clickOpportunities();
-        campaignsPage.clickCreateNewViewLink();
+        opportunityPage = contentPage.tabBar.clickOpportunities();
+        opportunityPage.clickCreateNewViewLink();
+
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        OpportunityViewForm opportunityViewForm = (OpportunityViewForm) new OpportunityViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
-        viewDetailsForm.clickEditViewLink();
+                .setUniqueViewName(uniqueName);
+        opportunityViewDetails = new OpportunityViewDetails(opportunityViewForm.clickSaveView().getDriver());
+        opportunityViewDetails.clickEditViewLink();
     }
 
     @Test(groups = {"BVT, Acceptance, Funcional"})
@@ -46,16 +47,17 @@ public class EditOpportunityView {
 
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        viewDetailsForm = new ViewFormPage(driver)
+        OpportunityViewForm opportunityViewForm = (OpportunityViewForm) new OpportunityViewForm(driver)
                 .setViewName(viewName)
-                .setUniqueViewName(uniqueName)
-                .clickSaveView();
+                .setUniqueViewName(uniqueName);
+        opportunityViewDetails = new OpportunityViewDetails(opportunityViewForm.clickSaveView().getDriver());
 
-        // assertTrue(viewDetailsForm.verifyNewView(viewName));
+        junit.framework.Assert.assertTrue(opportunityViewDetails.existViewName(viewName));
     }
 
     @AfterClass
     public void tearDown() {
-        viewDetailsForm.clickDeleteViewLink();
+        opportunityPage = opportunityViewDetails.clickDeleteViewLink();
+        opportunityPage.goToNavigationLinks().clickLogoutBtn();
     }
 }
