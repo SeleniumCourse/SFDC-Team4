@@ -1,44 +1,44 @@
 package com.selenium.course.testng;
 
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.ChatterPage;
-import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.ContentPage;
+import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.TabBar;
-import org.testng.annotations.AfterClass;
+import junit.framework.Assert;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
+/**
+ * Created by Joel Rodriguez
+ */
 
 public class CreatePostChat {
-	private LoginPage loginPage;
-	private ContentPage contentPage;
-	private TabBar tabBar;
 	private ChatterPage chatterPage;
 
-	String postContent;
-/*
-	@BeforeClass
-    public void setUp() {
-		loginPage = new LoginPage();
-		contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-		chatterPage = tabBar.clickChatter();
-    }
+	String text;
 
-	@Test (groups = {"BVT, Acceptance, Funcional"})
-    public void postChat() {
-		postContent = "***************New post to create ***********";
-		chatterPage.createAnewPost(postContent);
-		chatterPage.refreshPage();
-		assertTrue(chatterPage.verifyNewPostIsThere(postContent));
+	@BeforeClass
+	public void setUp() {
+		LoginPage loginPage = new LoginPage();
+		ContentPage contentPage = loginPage.loginAsPrimaryUser();
+		TabBar tabBar = contentPage.goToTabBar();
+		tabBar.clickChatter();
 	}
-	
-	@AfterClass
-    public void tearDown() {
-		chatterPage.expandLatestDropDown();
-		chatterPage.removeLatestPost();
-		chatterPage.closeDialog();
-    }*/
+
+	@Test(groups = {"BVT, Acceptance, Funcional"})
+	public void testCreateNewCampaign() {
+
+		text = "***************New post to create ***********";
+
+		WebDriver driver = WebDriverManager.getInstance().getDriver();
+
+		chatterPage = new ChatterPage(driver)
+				.setTestToShare(text)
+				.shareText();
+
+		Assert.assertTrue(chatterPage.verifyNewSharedPost(text));
+	}
 
 }

@@ -14,11 +14,6 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class CreateCampaignView {
-    private LoginPage loginPage;
-    private ContentPage contentPage;
-    private TabBar tabBar;
-    private TabPage campaignsPage;
-    private ViewFormPage viewFormPage;
     private ViewDetailsPage viewDetailsForm;
 
     String viewName = "ViewTesting123";
@@ -26,10 +21,10 @@ public class CreateCampaignView {
 
     @BeforeClass
     public void setUp() {
-        loginPage = new LoginPage();
-        contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        campaignsPage = tabBar.clickCampaigns();
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        TabBar tabBar = contentPage.goToTabBar();
+        TabPage campaignsPage = tabBar.clickCampaigns();
         campaignsPage.clickCreateNewViewLink();
     }
 
@@ -42,7 +37,7 @@ public class CreateCampaignView {
                 .setUniqueViewName(uniqueName)
                 .clickSaveView();
 
-       // assertTrue(viewDetailsForm.verifyNewView(viewName));
+//        assertTrue(viewDetailsForm.verifyNewView(viewName));
     }
 
     @AfterClass

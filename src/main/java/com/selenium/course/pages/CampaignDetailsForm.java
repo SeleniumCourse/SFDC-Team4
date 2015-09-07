@@ -65,5 +65,4 @@ public class CampaignDetailsForm extends ObjectFormPage {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
         return new CampaignsMainForm(driver);
     }
-
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
@@ -24,43 +23,43 @@ public class OpportunityDetailsForm extends ObjectFormPage {
 
     @FindBy(xpath = "//h1[contains(.,'Opportunity:')]")
     @CacheLookup
-    WebElement opportunityDetailTable;
+    private WebElement opportunityDetailTable;
 
     @FindBy(id = "opp2_ileinner")
     @CacheLookup
-    WebElement opportunityPrivate;
+    private WebElement opportunityPrivate;
 
     @FindBy(id = "opp3_ileinner")
     @CacheLookup
-    WebElement opportunityName;
+    private WebElement opportunityName;
 
     @FindBy(id = "opp5_ileinner")
     @CacheLookup
-    WebElement opportunityType;
+    private WebElement opportunityType;
 
     @FindBy(id = "opp6_ileinner")
     @CacheLookup
-    WebElement opportunityLeadSource;
+    private WebElement opportunityLeadSource;
 
     @FindBy(id = "opp7_ileinner")
     @CacheLookup
-    WebElement opportunityAmount;
+    private WebElement opportunityAmount;
 
     @FindBy(id = "opp10_ileinner")
     @CacheLookup
-    WebElement opportunityStep;
+    private WebElement opportunityStep;
 
     @FindBy(id = "opp11_ileinner")
     @CacheLookup
-    WebElement opportunityStage;
+    private WebElement opportunityStage;
 
     @FindBy(name = "del")
     @CacheLookup
-    WebElement deleteBtn;
+    private WebElement deleteBtn;
 
     @FindBy(name = "edit")
     @CacheLookup
-    WebElement editBtn;
+    private WebElement editBtn;
 
     public OpportunityDetailsForm(WebDriver driver) {
         super(driver);
@@ -91,6 +90,4 @@ public class OpportunityDetailsForm extends ObjectFormPage {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
         return new OpportunityMainForm(driver);
     }
-
-
 }
