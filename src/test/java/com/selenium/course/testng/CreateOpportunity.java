@@ -15,17 +15,16 @@ import static org.junit.Assert.assertTrue;
 
 public class CreateOpportunity {
 
-    private OpportunityDetailsForm opportunityDetailsForm;
+    private OpportunityDetails opportunityDetails;
+    private TabPage opportunitiesPage;
 
-
-    String name, stage, date, type, leadSource, amount, nextstep;
+    String name, stage, date, type, leadSource, amount, nextStep;
 
     @BeforeClass
     public void setUp() {
         LoginPage loginPage = new LoginPage();
         ContentPage contentPage = loginPage.loginAsPrimaryUser();
-        TabBar tabBar = contentPage.goToTabBar();
-        TabPage opportunitiesPage = tabBar.clickOpportunities();
+        opportunitiesPage = contentPage.tabBar.clickOpportunities();
         opportunitiesPage.clickNewBtn();
     }
 
@@ -37,21 +36,22 @@ public class CreateOpportunity {
         type = "New Customer";
         leadSource = "Web";
         amount = "15";
-        nextstep = "Step";
+        nextStep = "Step";
 
         WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-        opportunityDetailsForm = new OpportunityMainForm(driver)
+        opportunityDetails = new OpportunityForm(driver)
                 .setOpportunityName(name)
                 .setOpportunityCloseDate(date)
                 .setOpportunityStage(stage)
                 .clickSaveOpportunity();
 
-        assertTrue(opportunityDetailsForm.verifyNewOpportunity(name));
+        assertTrue(opportunityDetails.verifyNewOpportunity(name));
     }
 
     @AfterClass
     public void tearDown() {
-        opportunityDetailsForm.deleteOpportunity();
+        opportunitiesPage = opportunityDetails.deleteOpportunity();
+        opportunitiesPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

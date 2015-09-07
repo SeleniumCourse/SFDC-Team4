@@ -10,12 +10,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.selenium.course.common.Globals.*;
+import static com.selenium.course.common.Globals.TIMEOUT_MIN;
+import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
 
 public class ViewFormPage extends FormPage {
 
     @FindBy(xpath = "//form[@id='editPage']")
+    @CacheLookup
     protected WebElement viewTitle;
 
     @FindBy(xpath = "//input[@data-uidsfdc='3']")

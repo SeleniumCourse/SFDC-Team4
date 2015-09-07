@@ -18,7 +18,7 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
  * Created for Joel Rodriguez
  */
 
-public class OpportunityDetailsForm extends ObjectFormPage {
+public class OpportunityDetails extends ObjectFormPage {
 
 
     @FindBy(xpath = "//h1[contains(.,'Opportunity:')]")
@@ -61,7 +61,7 @@ public class OpportunityDetailsForm extends ObjectFormPage {
     @CacheLookup
     private WebElement editBtn;
 
-    public OpportunityDetailsForm(WebDriver driver) {
+    public OpportunityDetails(WebDriver driver) {
         super(driver);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
@@ -85,9 +85,9 @@ public class OpportunityDetailsForm extends ObjectFormPage {
         return new TabPage(driver);
     }
 
-    public OpportunityMainForm editOpportunity() {
+    public OpportunityForm editOpportunity() {
         editBtn.click();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
-        return new OpportunityMainForm(driver);
+        return new OpportunityForm(driver);
     }
 }

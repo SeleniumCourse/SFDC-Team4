@@ -7,6 +7,7 @@ import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.TabBar;
 import junit.framework.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,30 +16,36 @@ import org.testng.annotations.Test;
  */
 
 public class CreatePostChat {
-	private ChatterPage chatterPage;
+    private ChatterPage chatterPageForm;
+    private ChatterPage chatterPage;
 
-	String text;
+    String text;
 
-	@BeforeClass
-	public void setUp() {
-		LoginPage loginPage = new LoginPage();
-		ContentPage contentPage = loginPage.loginAsPrimaryUser();
-		TabBar tabBar = contentPage.goToTabBar();
-		tabBar.clickChatter();
-	}
+    @BeforeClass
+    public void setUp() {
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        TabBar tabBar = contentPage.goToTabBar();
+        tabBar.clickChatter();
+    }
 
-	@Test(groups = {"BVT, Acceptance, Funcional"})
-	public void testCreateNewCampaign() {
+    @Test(groups = {"BVT, Acceptance, Funcional"})
+    public void testCreateNewCampaign() {
 
-		text = "***************New post to create ***********";
+        text = "***************New post to create ***********";
 
-		WebDriver driver = WebDriverManager.getInstance().getDriver();
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-		chatterPage = new ChatterPage(driver)
-				.setTestToShare(text)
-				.shareText();
+        chatterPageForm = new ChatterPage(driver)
+                .setTestToShare(text)
+                .shareText();
 
-		Assert.assertTrue(chatterPage.verifyNewSharedPost(text));
-	}
+        Assert.assertTrue(chatterPageForm.verifyNewSharedPost(text));
+    }
 
+    @AfterClass
+    public void tearDown() {
+        chatterPage = chatterPageForm.setTestToShare("");
+        chatterPage.goToNavigationLinks().clickLogoutBtn();
+    }
 }

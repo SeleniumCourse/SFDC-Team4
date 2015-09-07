@@ -15,32 +15,33 @@ import static org.junit.Assert.assertTrue;
 
 public class CreateCampaign {
 
-	private CampaignDetailsForm campaignDetailsForm;
+    private CampaignDetails campaignDetails;
+    private TabPage campaignsPage;
 
-	String campaignName = "CampaignTesting123";
+    String campaignName = "CampaignTesting123";
 
-	@BeforeClass
-	public void setUp() {
-		LoginPage loginPage = new LoginPage();
-		ContentPage contentPage = loginPage.loginAsPrimaryUser();
-		TabBar tabBar = contentPage.goToTabBar();
-		TabPage campaignsPage = tabBar.clickCampaigns();
-		campaignsPage.clickNewBtn();
-	}
+    @BeforeClass
+    public void setUp() {
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        campaignsPage = contentPage.tabBar.clickCampaigns();
+        campaignsPage.clickNewBtn().getDriver();
+    }
 
-	@Test(groups = {"BVT, Acceptance, Funcional"})
-	public void testCreateNewCampaign() {
-		WebDriver driver = WebDriverManager.getInstance().getDriver();
+    @Test(groups = {"BVT, Acceptance, Funcional"})
+    public void testCreateNewCampaign() {
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
 
-		campaignDetailsForm = new CampaignsMainForm(driver)
-				.setCampaignName(campaignName)
-				.clickSaveCampaign();
+        campaignDetails = new CampaignsForm(driver)
+                .setCampaignName(campaignName)
+                .clickSaveCampaign();
 
-		assertTrue(campaignDetailsForm.verifyNewCampaign(campaignName));
-	}
+        assertTrue(campaignDetails.verifyNewCampaign(campaignName));
+    }
 
-	@AfterClass
-	public void tearDown() {
-		campaignDetailsForm.deleteCampaign();
-	}
+    @AfterClass
+    public void tearDown() {
+        campaignsPage = campaignDetails.clickDeleteOppBtn();
+        campaignsPage.goToNavigationLinks().clickLogoutBtn();
+    }
 }

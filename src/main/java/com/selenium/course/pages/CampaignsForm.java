@@ -18,7 +18,7 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
  * Created for Joel Rodriguez
  */
 
-public class CampaignsMainForm extends ObjectFormPage {
+public class CampaignsForm extends ObjectFormPage {
 
     @FindBy(xpath = "//h2[contains(.,'Campaign Edit')]")
     @CacheLookup
@@ -52,7 +52,7 @@ public class CampaignsMainForm extends ObjectFormPage {
     @CacheLookup
     private WebElement campaignEndDate;
 
-    public CampaignsMainForm(WebDriver driver) {
+    public CampaignsForm(WebDriver driver) {
         super(driver);
         try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
@@ -64,37 +64,37 @@ public class CampaignsMainForm extends ObjectFormPage {
         }
     }
 
-    public CampaignsMainForm setCampaignType(String type) {
+    public CampaignsForm setCampaignType(String type) {
         new Select(campaignType).selectByVisibleText(type);
         return this;
     }
 
-    public CampaignsMainForm setCampaignStatus(String status) {
+    public CampaignsForm setCampaignStatus(String status) {
         new Select(campaignStatus).selectByVisibleText(status);
         return this;
     }
 
-    public CampaignsMainForm setCampaignName(String name) {
+    public CampaignsForm setCampaignName(String name) {
         nameField.clear();
         nameField.sendKeys(name);
         return this;
     }
 
-    public CampaignsMainForm setCampaignStartDate(String date) {
+    public CampaignsForm setCampaignStartDate(String date) {
         campaignStartDate.clear();
         campaignStartDate.sendKeys(date);
         return this;
     }
 
-    public CampaignsMainForm setCampaignEndDate(String date) {
+    public CampaignsForm setCampaignEndDate(String date) {
         campaignEndDate.clear();
         campaignEndDate.sendKeys(date);
         return this;
     }
 
-    public CampaignDetailsForm clickSaveCampaign() {
+    public CampaignDetails clickSaveCampaign() {
         saveBtn.click();
         WebDriver driver = WebDriverManager.getInstance().getDriver();
-        return new CampaignDetailsForm(driver);
+        return new CampaignDetails(driver);
     }
 }
