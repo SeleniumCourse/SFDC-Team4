@@ -141,17 +141,17 @@ public class AccountForm extends ObjectFormPage {
     }
 
     public AccountForm setAccountTypeField(String fieldValue) {
-        this.driver = setPickListValue(typeField, fieldValue);
+        this.driver = selectListValue(typeField, fieldValue);
         return this;
     }
 
     public AccountForm setAccountIndustryField(String fieldValue) {
-        this.driver = setPickListValue(industryField, fieldValue);
+        this.driver = selectListValue(industryField, fieldValue);
         return this;
     }
 
     public AccountForm setAccountRatingField(String fieldValue) {
-        this.driver = setPickListValue(ratingField, fieldValue);
+        this.driver = selectListValue(ratingField, fieldValue);
         return this;
     }
 
@@ -180,7 +180,7 @@ public class AccountForm extends ObjectFormPage {
     }
 
     public AccountForm setAccountOwnershipField(String fieldValue) {
-        this.driver = setPickListValue(ownershipField, fieldValue);
+        this.driver = selectListValue(ownershipField, fieldValue);
         return this;
     }
 

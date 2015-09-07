@@ -28,8 +28,5 @@ public class LeadDetail extends ObjectDetailsPage{
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
-    public ObjectFormPage clickEdit() {
-        editBtn.click();
-        return new ObjectFormPage(driver);
-    }
+
 }
