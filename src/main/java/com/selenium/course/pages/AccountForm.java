@@ -115,14 +115,14 @@ public class AccountForm extends ObjectFormPage {
 
     public AccountForm(WebDriver driver) {
         super(driver);
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(newAccountTitle));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public AccountForm setAccountNameText(String fieldValue) {

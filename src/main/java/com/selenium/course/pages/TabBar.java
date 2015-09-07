@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
@@ -17,51 +16,50 @@ public class TabBar extends Page {
 
     @FindBy(linkText = "Home")
     @CacheLookup
-    public WebElement home;
+    private WebElement home;
 
     @FindBy(id = "tabBar")
     @CacheLookup
-    public WebElement tabBar;
+    private WebElement tabBar;
 
     @FindBy(linkText = "Leads")
     @CacheLookup
-    public WebElement leads;
+    private WebElement leads;
 
     @FindBy(linkText = "Campaigns")
     @CacheLookup
-    public WebElement campaigns;
+    private WebElement campaigns;
 
     @FindBy(linkText = "Accounts")
     @CacheLookup
-    public WebElement accounts;
+    private WebElement accounts;
 
     @FindBy(linkText = "Contacts")
     @CacheLookup
-    public WebElement contacts;
+    private WebElement contacts;
 
     @FindBy(linkText = "Opportunities")
     @CacheLookup
-    public WebElement opportunities;
+    private WebElement opportunities;
 
     @FindBy(linkText = "Products")
     @CacheLookup
-    public WebElement products;
+    private WebElement products;
 
     @FindBy(linkText = "Chatter")
     @CacheLookup
-    public WebElement chatter;
+    private WebElement chatter;
 
     public TabBar(WebDriver driver) {
         super(driver);
-
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(tabBar));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public boolean isTabBarDisplayed() {

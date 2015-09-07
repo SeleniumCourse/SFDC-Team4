@@ -45,7 +45,6 @@ public abstract class FormPage extends ContentPage {
 
     public FormPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public String getPageDescription() {

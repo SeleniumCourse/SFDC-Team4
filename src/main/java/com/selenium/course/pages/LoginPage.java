@@ -25,7 +25,6 @@ public class LoginPage extends Page {
 
     public LoginPage() {
         super();
-        PageFactory.initElements(driver, this);
         try {
             wait.until(ExpectedConditions.visibilityOf(userTxt));
             wait.until(ExpectedConditions.visibilityOf(passwordTxt));

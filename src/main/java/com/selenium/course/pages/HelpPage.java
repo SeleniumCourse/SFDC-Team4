@@ -7,15 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.WebDriverManager;
-
-public class HelpPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class HelpPage extends Page{
     private String baseUrl;
     private String windowsID;
 
@@ -24,10 +18,7 @@ public class HelpPage {
     WebElement helpSearchBox;
 
     public HelpPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = WebDriverManager.getInstance().getWait();
-
+        super(driver);
         windowsID = driver.getWindowHandle();
 
         Set<String> windows = driver.getWindowHandles();

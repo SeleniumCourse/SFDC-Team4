@@ -12,6 +12,7 @@ public abstract class Page {
     public Page() {
         driver = WebDriverManager.getInstance().getDriver();
         wait = WebDriverManager.getInstance().getWait();
+        PageFactory.initElements(driver, this);
     }
 
     public Page(WebDriver driver) {
