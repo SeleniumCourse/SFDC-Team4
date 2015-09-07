@@ -18,7 +18,6 @@ import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
  */
 public class ChatterPage extends ObjectFormPage {
 
-
     @FindBy(id = "centerContent")
     @CacheLookup
     protected WebElement chatterPage;

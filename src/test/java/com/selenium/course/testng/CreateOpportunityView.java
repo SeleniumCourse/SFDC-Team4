@@ -14,11 +14,6 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class CreateOpportunityView {
-    private LoginPage loginPage;
-    private ContentPage contentPage;
-    private TabBar tabBar;
-    private TabPage campaignsPage;
-    private ViewFormPage viewFormPage;
     private ViewDetailsPage viewDetailsForm;
 
     String viewName = "ViewTestingO123";
@@ -26,10 +21,10 @@ public class CreateOpportunityView {
 
     @BeforeClass
     public void setUp() {
-        loginPage = new LoginPage();
-        contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        campaignsPage = tabBar.clickOpportunities();
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        TabBar tabBar = contentPage.goToTabBar();
+        TabPage campaignsPage = tabBar.clickOpportunities();
         campaignsPage.clickCreateNewViewLink();
     }
 

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -24,31 +23,31 @@ public class OpportunityMainForm extends ObjectFormPage {
 
     @FindBy(xpath = "//h2[contains(.,'Opportunity Edit')]")
     @CacheLookup
-    WebElement editOpportunityTitle;
+    private WebElement editOpportunityTitle;
 
     @FindBy(id = "opp3")
     @CacheLookup
-    WebElement opportunityName;
+    private WebElement opportunityName;
 
     @FindBy(id = "opp9")
     @CacheLookup
-    WebElement opportunityCloseDate;
+    private WebElement opportunityCloseDate;
 
     @FindBy(id = "opp11")
     @CacheLookup
-    WebElement opportunityStage;
+    private WebElement opportunityStage;
 
     @FindBy(id = "opp5")
     @CacheLookup
-    WebElement opportunityType;
+    private WebElement opportunityType;
 
     @FindBy(id = "opp6")
     @CacheLookup
-    WebElement opportunityLeadSource;
+    private WebElement opportunityLeadSource;
 
     @FindBy(id = "opp7")
     @CacheLookup
-    WebElement opportunityAmount;
+    private WebElement opportunityAmount;
 
 
     public OpportunityMainForm(WebDriver driver) {
@@ -101,7 +100,4 @@ public class OpportunityMainForm extends ObjectFormPage {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
         return new OpportunityDetailsForm(driver);
     }
-
-
 }
-
