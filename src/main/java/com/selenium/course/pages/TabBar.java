@@ -52,14 +52,14 @@ public class TabBar extends Page {
 
     public TabBar(WebDriver driver) {
         super(driver);
-        try {
+        /*try {
             wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
                     ExpectedConditions.visibilityOf(tabBar));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
             wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-        }
+        }*/
     }
 
     public boolean isTabBarDisplayed() {
