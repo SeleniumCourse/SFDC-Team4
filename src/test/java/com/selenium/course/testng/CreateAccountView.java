@@ -27,7 +27,7 @@ public class CreateAccountView {
     @Test
     public void testCreateAccountView() {
         accountViewForm.setViewNameText(accountViewName);
-        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveBtn().getDriver());
+        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveView().clickSaveBtn().getDriver());
         Assert.assertEquals(accountViewDetails.getViewName(), accountViewName);
 
     }

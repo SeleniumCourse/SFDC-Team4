@@ -2,20 +2,8 @@ package com.selenium.course.testng;
 
 import static org.junit.Assert.assertTrue;
 
+import com.selenium.course.pages.*;
 import org.testng.annotations.*;
-
-import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaignsPage;
-import com.selenium.course.pages.CampaingsTablePage;
-import com.selenium.course.pages.LeadDetail;
-import com.selenium.course.pages.LoginPage;
-import com.selenium.course.pages.ContentPage;
-import com.selenium.course.pages.NewLeadBuilder;
-import com.selenium.course.pages.NewLeadForm;
-import com.selenium.course.pages.TabBar;
-import com.selenium.course.pages.ToolBar;
-import com.selenium.course.pages.NewCampaignForm;
-import com.selenium.course.pages.LeadsPage;
 
 /**
  * Title:
@@ -34,6 +22,8 @@ public class CreateLead {
 	private LeadsPage leadsPage;
 	private ToolBar toolBar;
 	private CampaignsPage campaignsPage;
+
+	private LeadForm leadForm;
 	/*
 	private NewCampaignForm newCampaignForm;
 	private NewLeadForm newLeadForm;
@@ -42,7 +32,8 @@ public class CreateLead {
 	private CampaingDetail campaingDetail;
 	*/
 	String campaingName;
-	String leadName;
+	String firstName;
+	String lastName;
 	String companyName;
 
 	@BeforeClass
@@ -62,25 +53,29 @@ public class CreateLead {
 		tabBar = contentPage.goToTabBar();
 		*/
     }
-	/*
+
 	@Test (groups = {"BVT, Acceptance, Funcional"})
     public void testUntitled() {
 		String salutation = "Mr.";
-		leadName = "newLead";
+		firstName = "newLead";
+		lastName = "last Name";
 		companyName = "myCompany";
-		
-		leadsPage = tabBar.clickLeadsTab();
-		newLeadForm = leadsPage.clickNewLead();
+
+		TabPage tabPage = tabBar.clickLeadsTab();
+		leadForm = leadsPage.clickNewLead();
+		leadForm.setFisrtName(firstName).setLastName(lastName);
+		/*
 		newLeadForm = new NewLeadBuilder(leadName, companyName)
 										.setSalutation(salutation)
 										.setCampaign(campaingName).build();
-		leadDetail = newLeadForm.createLead();
+		*/
+		/*leadDetail = newLeadForm.createLead();
 		
 		assertTrue(leadDetail.verifyName(salutation, leadName));
 		assertTrue(leadDetail.verifyCompany(companyName));
-		assertTrue(leadDetail.verifyCampaing(campaingName));
+		assertTrue(leadDetail.verifyCampaing(campaingName));*/
 	}
-	
+	/*
 	@AfterClass
     public void tearDown() {
 		leadDetail.clickDelete();

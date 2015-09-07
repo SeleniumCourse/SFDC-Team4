@@ -112,9 +112,8 @@ public class LeadsPage {
         alert.accept();
 	}
 	
-	public NewLeadForm clickNewLead() {
+	public LeadForm clickNewLead() {
 		newBtn.click();
-		return new NewLeadForm();
+		return new LeadForm(driver);
 	}
-	
 }

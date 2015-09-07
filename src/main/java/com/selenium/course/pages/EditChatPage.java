@@ -44,6 +44,6 @@ public class EditChatPage {
 
     public ChatterPage clickSaveBtn(){
         SaveBtn.click();
-        return new ChatterPage();
+        return new ChatterPage(driver);
     }
 }

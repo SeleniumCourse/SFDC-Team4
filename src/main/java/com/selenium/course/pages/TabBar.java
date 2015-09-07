@@ -101,7 +101,7 @@ public class TabBar extends Page{
 
     public ChatterPage clickChatter() {
         chatter.click();
-        return new ChatterPage();
+        return new ChatterPage(driver);
     }
 
 }
