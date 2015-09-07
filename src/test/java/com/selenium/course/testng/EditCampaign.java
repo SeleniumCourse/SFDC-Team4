@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class EditCampaign {
+
     private CampaignDetailsForm campaignDetailsForm;
 
     String campaignName, type, status, startDate, endDate;

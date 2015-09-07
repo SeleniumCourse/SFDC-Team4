@@ -15,10 +15,6 @@ import static org.junit.Assert.assertTrue;
 
 public class CreateOpportunity {
 
-    private LoginPage loginPage;
-    private ContentPage contentPage;
-    private TabBar tabBar;
-    private TabPage opportunitiesPage;
     private OpportunityDetailsForm opportunityDetailsForm;
 
 
@@ -26,10 +22,10 @@ public class CreateOpportunity {
 
     @BeforeClass
     public void setUp() {
-        loginPage = new LoginPage();
-        contentPage = loginPage.loginAsPrimaryUser();
-        tabBar = contentPage.goToTabBar();
-        opportunitiesPage = tabBar.clickOpportunities();
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        TabBar tabBar = contentPage.goToTabBar();
+        TabPage opportunitiesPage = tabBar.clickOpportunities();
         opportunitiesPage.clickNewBtn();
     }
 

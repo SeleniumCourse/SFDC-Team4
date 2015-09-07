@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class CreateCampaign {
+
 	private CampaignDetailsForm campaignDetailsForm;
 
 	String campaignName = "CampaignTesting123";

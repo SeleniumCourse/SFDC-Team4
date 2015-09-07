@@ -7,8 +7,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created for Joel Rodriguez
  */
@@ -22,6 +20,7 @@ public class EditOpportunityView {
 
     @BeforeClass
     public void setUp() {
+
         viewName = "NewOpportunityView123";
         uniqueName = "NewOpportunityView321";
 
@@ -41,6 +40,7 @@ public class EditOpportunityView {
 
     @Test(groups = {"BVT, Acceptance, Funcional"})
     public void testCreateNewCampaign() {
+
         viewName = "OpportunityViewEdited123";
         uniqueName = "OpportunityViewEdited321";
 
@@ -51,7 +51,7 @@ public class EditOpportunityView {
                 .setUniqueViewName(uniqueName)
                 .clickSaveView();
 
-       // assertTrue(viewDetailsForm.verifyNewView(viewName));
+        // assertTrue(viewDetailsForm.verifyNewView(viewName));
     }
 
     @AfterClass

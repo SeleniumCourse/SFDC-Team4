@@ -7,14 +7,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created for Joel Rodriguez
  */
 
 public class EditCampaignView {
-    private ViewFormPage viewFormPage;
+
     private ViewDetailsPage viewDetailsForm;
 
     String viewName;
