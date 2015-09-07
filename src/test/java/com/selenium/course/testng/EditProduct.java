@@ -9,10 +9,10 @@ import static org.junit.Assert.assertTrue;
  * Created by Andrea Castro on 6/29/2015.
  */
 public class EditProduct {
-
-    /**
+/*
+    *
      * Created by Andrea Castro on 6/12/2015.
-     */
+
 
     private LoginPage loginPage;
     private ContentPage contentPage;
@@ -64,7 +64,7 @@ public class EditProduct {
         productDetail.clickDelete();
         tabBar = contentPage.goToTabBar();
 
-    }
+    }*/
 }
 
 

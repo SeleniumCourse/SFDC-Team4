@@ -26,7 +26,6 @@ public class TabPage extends ContentPage {
 
     public TabPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public ObjectFormPage clickNewBtn() {

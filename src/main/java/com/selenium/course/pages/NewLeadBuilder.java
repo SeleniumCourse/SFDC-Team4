@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class NewLeadBuilder {/*
-	String salutation;
+    String salutation;
 	String lastName;
 	String companyName;
 	String campaign;
@@ -51,8 +51,8 @@ public class NewLeadBuilder {/*
 		this.campaign = campaign;
 		return this;
 	}*/
-	
-	public NewLeadForm build() {
+
+    public NewLeadForm build() {
         return new NewLeadForm();
     }
 }

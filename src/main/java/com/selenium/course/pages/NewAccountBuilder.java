@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 
 public class NewAccountBuilder {/*
-	String account;
+    String account;
 	String parentAccount;
 	String accountNumber; 
 	String accountSite; 
@@ -170,8 +170,9 @@ public class NewAccountBuilder {/*
 		return this;
 	}
 	*/
-	public AccountForm build() {
-		WebDriver driver = driver = WebDriverManager.getInstance().getDriver();
+
+    public AccountForm build() {
+        WebDriver driver = driver = WebDriverManager.getInstance().getDriver();
         return new AccountForm(driver);
     }
 

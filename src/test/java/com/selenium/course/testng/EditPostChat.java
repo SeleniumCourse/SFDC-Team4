@@ -22,8 +22,8 @@ public class EditPostChat {
         tabBar = contentPage.goToTabBar();
 		chatterPage = tabBar.clickChatter();
 		postContent = "--------This message will be edited------------";
-		chatterPage = chatterPage.createAnewPost(postContent);
-		chatterPage.waitToPublishedPost();
+		//chatterPage = chatterPage.createAnewPost(postContent);
+		//chatterPage.waitToPublishedPost();
     }
 	
 	@Test (groups = {"BVT, Acceptance, Funcional"})

@@ -23,7 +23,7 @@ public class EditAccountView {
         accountTab = contentPage.tabBar.clickAccounts();
         accountViewForm = new AccountViewForm(accountTab.clickCreateNewViewLink().getDriver());
         accountViewForm.setViewNameText(accountViewName);
-        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveBtn().getDriver());
+        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveView().getDriver());
     }
 
 
@@ -31,7 +31,7 @@ public class EditAccountView {
     public void testEditAccountView() {
         accountViewForm = new AccountViewForm(accountViewDetails.clickEditViewLink().getDriver());
         accountViewForm.setViewNameText(accountViewNameEdited);
-        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveBtn().getDriver());
+        accountViewDetails = new AccountViewDetails(accountViewForm.clickSaveView().getDriver());
         Assert.assertEquals(accountViewDetails.getViewName(), accountViewNameEdited);
 
     }

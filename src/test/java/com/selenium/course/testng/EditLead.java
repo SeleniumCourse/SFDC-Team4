@@ -5,15 +5,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.selenium.course.pages.CampaingDetail;
-import com.selenium.course.pages.CampaignsPage;
-import com.selenium.course.pages.CampaingsTablePage;
 import com.selenium.course.pages.LeadDetail;
 import com.selenium.course.pages.LeadEdit;
 import com.selenium.course.pages.LeadsPage;
 import com.selenium.course.pages.LoginPage;
 import com.selenium.course.pages.ContentPage;
-import com.selenium.course.pages.NewCampaignForm;
 import com.selenium.course.pages.NewLeadBuilder;
 import com.selenium.course.pages.NewLeadForm;
 import com.selenium.course.pages.TabBar;

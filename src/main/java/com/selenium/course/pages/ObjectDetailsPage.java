@@ -35,7 +35,6 @@ public class ObjectDetailsPage extends DetailsPage {
 
     public ObjectDetailsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public String getObjectName() {

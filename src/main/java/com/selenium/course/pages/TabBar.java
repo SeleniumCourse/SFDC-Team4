@@ -13,36 +13,36 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static com.selenium.course.common.Globals.TIMEOUT_MIN;
 import static com.selenium.course.common.Globals.TIMEOUT_NORMAL;
 
-public class TabBar extends Page{
+public class TabBar extends Page {
 
     @FindBy(linkText = "Home")
     @CacheLookup
-	public WebElement home;
-    
+    public WebElement home;
+
     @FindBy(id = "tabBar")
     @CacheLookup
     public WebElement tabBar;
-    
+
     @FindBy(linkText = "Leads")
     @CacheLookup
     public WebElement leads;
-    
+
     @FindBy(linkText = "Campaigns")
     @CacheLookup
     public WebElement campaigns;
-    
+
     @FindBy(linkText = "Accounts")
     @CacheLookup
     public WebElement accounts;
-    
+
     @FindBy(linkText = "Contacts")
     @CacheLookup
     public WebElement contacts;
-    
+
     @FindBy(linkText = "Opportunities")
     @CacheLookup
     public WebElement opportunities;
-    
+
     @FindBy(linkText = "Products")
     @CacheLookup
     public WebElement products;
@@ -53,49 +53,48 @@ public class TabBar extends Page{
 
     public TabBar(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
-        
+
         try {
-			wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
-					ExpectedConditions.visibilityOf(tabBar));
-		} catch (WebDriverException e) {
-			throw new WebDriverException(e);
-		} finally {
-			wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
-		}
+            wait.withTimeout(TIMEOUT_MIN, TimeUnit.SECONDS).until(
+                    ExpectedConditions.visibilityOf(tabBar));
+        } catch (WebDriverException e) {
+            throw new WebDriverException(e);
+        } finally {
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
+        }
     }
 
     public boolean isTabBarDisplayed() {
-    	return tabBar.isDisplayed();
+        return tabBar.isDisplayed();
     }
-    
+
     public TabPage clickLeadsTab() {
-    	leads.click();
-    	return new TabPage(driver);
+        leads.click();
+        return new TabPage(driver);
     }
-    
+
     public TabPage clickCampaigns() {
-    	campaigns.click();
+        campaigns.click();
         return new TabPage(driver);
     }
-    
+
     public TabPage clickAccounts() {
-    	accounts.click();
+        accounts.click();
         return new TabPage(driver);
     }
-    
+
     public TabPage clickContacts() {
-    	contacts.click();
+        contacts.click();
         return new TabPage(driver);
     }
 
     public TabPage clickOpportunities() {
-    	opportunities.click();
+        opportunities.click();
         return new TabPage(driver);
     }
-    
+
     public TabPage clickProducts() {
-    	products.click();
+        products.click();
         return new TabPage(driver);
     }
 
