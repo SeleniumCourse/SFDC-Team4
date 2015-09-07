@@ -1,8 +1,6 @@
 package com.selenium.course.testng;
 
 import com.selenium.course.pages.*;
-import com.sun.jna.platform.win32.Advapi32Util;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +15,30 @@ public class CreateAccount {
     private AccountForm accountForm;
     private TabPage accountTab;
     private AccountDetail accountDetail;
-    private String accountName = "test001";
+    private String name = "test001";
+    private String number = "accountNumber";
+    private String side = "accountSide";
+    private String type = "Prospect";
+    private String industry = "Apparel";
+    private String rating = "Hot";
+    private String revenue = "25";
+    private String phone = "874521";
+    private String fax = "5174874";
+    private String webSite = "www.site.com";
+    private String tickerSymbol = "ticker";
+    private String ownership = "Public";
+    private String employees = "15";
+    private String sicCode = "sicCode";
+    private String billingCity = "city";
+    private String billingState = "state";
+    private String billingZip = "zip";
+    private String billingCountry = "country";
+    private String shipCity = "city";
+    private String shipState = "state";
+    private String shipZip = "zip";
+    private String shipCountry = "country";
+    private String billingStreet = "street";
+    private String shipStreet = "street";
 
     @BeforeClass
     public void setUp() {
@@ -30,11 +51,55 @@ public class CreateAccount {
 
     @Test
     public void testCreateAccount() {
-        accountForm.setAccountNameText(accountName)
-                .setAccountNumberField(accountName)
-                .setAccountSiteField(accountName);
+        accountForm.setAccountNameText(name)
+                .setAccountNumberField(number)
+                .setAccountSiteField(side)
+                .setAccountTypeField(type)
+                .setAccountIndustryField(industry)
+                .setAccountRatingField(rating)
+                .setAccountRevenueField(revenue)
+                .setAccountPhoneField(phone)
+                .setAccountFaxField(fax)
+                .setAccountWebSiteField(webSite)
+                .setAccountTickerField(tickerSymbol)
+                .setAccountOwnershipField(ownership)
+                .setAccountEmployeesField(employees)
+                .setAccountSicCodeField(sicCode)
+                .setAccountBillingCityField(billingCity)
+                .setAccountBillingStateField(billingState)
+                .setAccountBillingZipField(billingZip)
+                .setAccountBillingCountryField(billingCountry)
+                .setAccountShipCityField(shipCity)
+                .setAccountShipStateField(shipState)
+                .setAccountShipZipField(shipZip)
+                .setAccountShipCountryField(shipCountry)
+                .setAccountBillingStreetField(billingStreet)
+                .setAccountShipStreetField(shipStreet);
         accountDetail = new AccountDetail(accountForm.clickSaveBtn().getDriver());
-        Assert.assertEquals(accountDetail.getObjectName(), accountName);
+        Assert.assertEquals(accountDetail.getObjectName(), name);
+        Assert.assertEquals(accountDetail.getAccountNumberField(), number);
+        Assert.assertEquals(accountDetail.getAccountSiteField(), side);
+        Assert.assertEquals(accountDetail.getTypeField(), type);
+        Assert.assertEquals(accountDetail.getIndustryField(), industry);
+        Assert.assertEquals(accountDetail.getRatingField(), rating);
+        Assert.assertTrue(accountDetail.getRevenueField().contains(revenue));
+        Assert.assertEquals(accountDetail.getPhoneField(), phone);
+        Assert.assertEquals(accountDetail.getFaxField(), fax);
+        Assert.assertTrue(accountDetail.getWebSiteField().contains(webSite));
+        Assert.assertEquals(accountDetail.getTickerSymbolField(), tickerSymbol);
+        Assert.assertEquals(accountDetail.getOwnershipField(), ownership);
+        Assert.assertEquals(accountDetail.getEmployeesField(), employees);
+        Assert.assertEquals(accountDetail.getSicCodeField(), sicCode);
+        Assert.assertTrue(accountDetail.getBilling().contains(billingStreet));
+        Assert.assertTrue(accountDetail.getBilling().contains(billingCity));
+        Assert.assertTrue(accountDetail.getBilling().contains(billingState));
+        Assert.assertTrue(accountDetail.getBilling().contains(billingZip));
+        Assert.assertTrue(accountDetail.getBilling().contains(billingCountry));
+        Assert.assertTrue(accountDetail.getShipping().contains(shipStreet));
+        Assert.assertTrue(accountDetail.getShipping().contains(shipCity));
+        Assert.assertTrue(accountDetail.getShipping().contains(shipState));
+        Assert.assertTrue(accountDetail.getShipping().contains(shipZip));
+        Assert.assertTrue(accountDetail.getShipping().contains(shipCountry));
 
     }
 
