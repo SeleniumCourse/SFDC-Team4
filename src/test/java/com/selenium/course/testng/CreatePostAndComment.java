@@ -14,7 +14,7 @@ public class CreatePostAndComment
     private ContentPage contentPage;
     private ChatterCommentPage chatterCommentPage;
 
-    private String postTitle="Text Case01";
+    private String postTitle="Text Case02";
     private String commentText="Adding New Steps";
 
     @BeforeClass

@@ -3,6 +3,10 @@ package com.selenium.course.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.function.Predicate;
 
 /**
  * Created by Elmer Alvarado on 9/7/2015.
@@ -16,18 +20,18 @@ public class ChatterCommentPage extends ObjectFormPage
     protected WebElement textArea;
     protected WebElement commentButton;
 
-    private String containerXpath = "//*[@id='feedwrapper']//*[@class='cxfeeditem feeditem'][1]";
-    private String commentLinkText = "Comment";
+    private String containerXpath = "//*[@id='feedwrapper']/div/div[4]"; ////*[@class='cxfeeditem feeditem'][1]
+    private String commentLinkXpath = "//*[@id='feedwrapper']/div/div[4]//*[text()='Comment']";
     private String likeLinkText="Like";
     private String shareLinkText = "Share";
-    private String commentButtonXpath = "//button[@value='Comment']";
-    private String CommentTextAreaXpath = "//textarea";
+    private String commentButtonXpath = "//*[@id='feedwrapper']/div//input[@value='Comment']";
+    private String CommentTextAreaXpath = "//*[@id='feedwrapper']/div//*[@class='newcommenttextwrapper']//*";
 
     public ChatterCommentPage(WebDriver driver)
     {
         super(driver);
         container=driver.findElement(By.xpath(containerXpath));
-        commentLink=container.findElement(By.linkText(commentLinkText));
+        commentLink=driver.findElement(By.xpath(commentLinkXpath));
         likeLink=container.findElement(By.linkText(likeLinkText));
         shareLink=container.findElement(By.linkText(shareLinkText));
     }
@@ -52,14 +56,15 @@ public class ChatterCommentPage extends ObjectFormPage
 
     public ChatterCommentPage setPostText(String post)
     {
-        textArea=container.findElement(By.xpath(commentButtonXpath));
-        setTextFieldValue(textArea, post);
+        textArea=driver.findElement(By.xpath(CommentTextAreaXpath));
+        wait.until(ExpectedConditions.visibilityOf(textArea));
+        textArea.sendKeys(post);
         return this;
     }
 
     public ChatterCommentPage clickCommentButton()
     {
-        commentButton=container.findElement(By.xpath(CommentTextAreaXpath));
+        commentButton=driver.findElement(By.xpath(commentButtonXpath));
         commentButton.click();
         return this;
     }
