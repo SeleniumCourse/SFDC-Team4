@@ -3,9 +3,6 @@ package com.selenium.course.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.function.Predicate;
 
 /**
  * Created by Elmer Alvarado on 9/7/2015.
@@ -56,7 +53,6 @@ public class ChatterCommentPage extends ObjectFormPage
     public ChatterCommentPage setPostText(String post)
     {
         textArea=driver.findElement(By.xpath(CommentTextAreaXpath));
-        wait.until(ExpectedConditions.visibilityOf(textArea));
         textArea.sendKeys(post);
         return this;
     }
