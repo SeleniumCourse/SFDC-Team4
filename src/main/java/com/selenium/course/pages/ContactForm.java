@@ -139,11 +139,13 @@ public class ContactForm extends ObjectFormPage {
     @CacheLookup
     private WebElement otherCountry;
 
-    @FindBy(id = "00N2400000EaNhr")
+    //@FindBy(id = "00N2400000EaNhr")
+    @FindBy(xpath = "//*[text() ='Languages']/parent::td/following-sibling::td[1]/input")
     @CacheLookup
     private WebElement languages;
 
-    @FindBy(id = "00N2400000EaNhs")
+    //@FindBy(id = "00N2400000EaNhs")
+    @FindBy(xpath = "//*[text() ='Level']/parent::td/following-sibling::td[1]//select")
     @CacheLookup
     private WebElement selectLevel;
 
