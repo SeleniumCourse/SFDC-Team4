@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Suite_createContactView" verbose="1" >
-    <test name="Nopackage" >
-        <classes>
-            <class name="com.selenium.course.testng.CreateContactView" />
-        </classes>
-    </test>
-</suite>

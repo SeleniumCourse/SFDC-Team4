@@ -24,7 +24,7 @@ public class EditOpportunity {
     public void setUp() {
         name = "NewOpportunity01";
         stage = "Prospecting";
-        date = "8/30/2015";
+        date = "8/8/2015";
         type = "New Customer";
         leadSource = "Web";
         amount = "15";
