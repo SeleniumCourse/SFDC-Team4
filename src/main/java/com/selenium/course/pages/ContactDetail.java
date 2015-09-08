@@ -72,12 +72,14 @@ public class ContactDetail extends ObjectDetailsPage{
     @CacheLookup
     WebElement assistanPhone;
 
-    @FindBy(id = "00N2400000EaNhr_ileinner")
+    //@FindBy(id = "00N2400000EaNhr_ileinner")
+    @FindBy(xpath = "//*[text() ='Languages']/following-sibling::td[1]/div")
     @CacheLookup
     WebElement languageName;
 
 
-    @FindBy(id = "00N2400000EaNhs_ileinner")
+    //@FindBy(id = "00N2400000EaNhs_ileinner")
+    @FindBy(xpath = "//*[text() ='Level']/following-sibling::td[1]/div")
     @CacheLookup
     WebElement levelName;
 
