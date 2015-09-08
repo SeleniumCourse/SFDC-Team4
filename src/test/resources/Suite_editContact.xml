@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Suite_editContact">
-    <test name="Nopackage">
-        <classes>
-            <class name="com.selenium.course.testng.EditContact" />
-        </classes>
-    </test>
-</suite>
