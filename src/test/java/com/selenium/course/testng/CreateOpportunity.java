@@ -32,7 +32,7 @@ public class CreateOpportunity {
     public void testUntitled() {
         name = "NewOpportunity";
         stage = "Prospecting";
-        date = "8/30/2015";
+        date = "8/8/2015";
         type = "New Customer";
         leadSource = "Web";
         amount = "15";

@@ -28,6 +28,7 @@ dependencies {
 
     compile 'com.google.inject:guice:3.0'
     compile 'org.uncommons:reportng:1.1.4'
+	compile 'net.sf.opencsv:opencsv:2.3'
 
 
 
@@ -48,18 +49,30 @@ task executeTC(type: Test) {
     }
 
     options {
-        suites('src/test/resources/Suite1.xml')
-        //includeGroups groups
+        suites('src/test/resources/Suite.xml')
+
+        listeners << 'org.testng.reporters.FailedReporter'
+
+        listeners << 'com.selenium.course.framework.TestListener'
+        listeners << 'com.selenium.course.framework.SuiteListener'
+        listeners << 'com.selenium.course.framework.RetryListener'
+
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+
     }
 
     systemProperty 'browser', browser
     systemProperty 'primaryUserName', primaryUserName
     systemProperty 'primaryUserPassword', primaryUserPassword
     systemProperty 'groups', groups
-    //systemProperty 'suites', suites
     systemProperty 'primaryUsernameDisplayed', primaryUsernameDisplayed
     systemProperty 'timeout', timeout
     systemProperty 'sauceUser', sauceUser
     systemProperty 'sauceAccessKey', sauceAccessKey
     systemProperty 'mode', mode
+
+    reports.html.enabled = false
+    reports.junitXml.destination = 'reports'
+    reports.html.destination = 'reports'
 }
