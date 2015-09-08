@@ -76,3 +76,36 @@ task executeTC(type: Test) {
     reports.junitXml.destination = 'reports'
     reports.html.destination = 'reports'
 }
+
+task executeDataDriven(type: Test){
+    useTestNG()
+    testLogging {
+        events "started", "passed", "failed", "skipped"
+    }
+
+    options {
+        suites('src/test/resources/Suite_TestDD.xml')
+
+        listeners << 'org.testng.reporters.FailedReporter'
+        listeners << 'com.selenium.course.framework.TestListener'
+        listeners << 'com.selenium.course.framework.SuiteListener'
+        listeners << 'com.selenium.course.framework.RetryListener'
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+
+    }
+
+    systemProperty 'browser', browser
+    systemProperty 'primaryUserName', primaryUserName
+    systemProperty 'primaryUserPassword', primaryUserPassword
+    systemProperty 'groups', groups
+    systemProperty 'primaryUsernameDisplayed', primaryUsernameDisplayed
+    systemProperty 'timeout', timeout
+    systemProperty 'sauceUser', sauceUser
+    systemProperty 'sauceAccessKey', sauceAccessKey
+    systemProperty 'mode', mode
+
+    reports.html.enabled = false
+    reports.junitXml.destination = 'reports'
+    reports.html.destination = 'reports'
+}
