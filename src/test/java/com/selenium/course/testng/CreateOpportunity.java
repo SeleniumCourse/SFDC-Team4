@@ -1,50 +1,57 @@
 package com.selenium.course.testng;
 
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.*;
-import org.testng.annotations.*;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Created for Joel Rodriguez
+ */
 
 public class CreateOpportunity {
-    private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
-    private OpportunitiesPage opportunitiesPage;
-    private NewOpportunityForm newOpportunityForm;
-    private OpportunityDetail opportunityDetail;
-    String name,stage,type,leadSource, amount, nextstep;
+
+    private OpportunityDetails opportunityDetails;
+    private TabPage opportunitiesPage;
+
+    String name, stage, date, type, leadSource, amount, nextStep;
 
     @BeforeClass
     public void setUp() {
-        loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        opportunitiesPage = pageMenuBar.clickOpportunities();
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        opportunitiesPage = contentPage.tabBar.clickOpportunities();
+        opportunitiesPage.clickNewBtn();
     }
 
     @Test
     public void testUntitled() {
         name = "NewOpportunity";
         stage = "Prospecting";
-        type ="New Customer";
+        date = "8/8/2015";
+        type = "New Customer";
         leadSource = "Web";
         amount = "15";
-        nextstep = "Step";
-        newOpportunityForm = opportunitiesPage.clickNewOpportunity();
-        opportunityDetail = newOpportunityForm.setName(name)
-                .setPrivate()
-                .setType(type)
-                .setLeadSource(leadSource)
-                .setAmount(amount)
-                .setCloseDate()
-                .setNextStep(nextstep)
-                .setStage(stage)
+        nextStep = "Step";
+
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+
+        opportunityDetails = new OpportunityForm(driver)
+                .setOpportunityName(name)
+                .setOpportunityCloseDate(date)
+                .setOpportunityStage(stage)
                 .clickSaveOpportunity();
-        assertTrue("Verification Failed:The Opportunity was not created",opportunityDetail.verifyNewOpportunityName(name));
-        }
+
+        assertTrue(opportunityDetails.verifyNewOpportunity(name));
+    }
 
     @AfterClass
     public void tearDown() {
-        opportunityDetail.deleteOpportunity();
+        opportunitiesPage = opportunityDetails.deleteOpportunity();
+        opportunitiesPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

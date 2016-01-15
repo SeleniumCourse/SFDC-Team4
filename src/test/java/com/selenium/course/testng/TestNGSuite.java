@@ -1,6 +1,6 @@
 package com.selenium.course.testng;
 
-import com.selenium.course.framework.DriverManager;
+import com.selenium.course.framework.WebDriverManager;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -16,6 +16,6 @@ public class TestNGSuite {
 
     @AfterSuite
     public void afterSuite() {
-        DriverManager.getInstance().quit();
+        WebDriverManager.getInstance().quit();
     }
 }

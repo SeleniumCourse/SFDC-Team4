@@ -1,78 +1,76 @@
 package com.selenium.course.testng;
 
+import com.selenium.course.framework.WebDriverManager;
 import com.selenium.course.pages.*;
-import org.testng.annotations.*;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ *  Created for Joel Rodriguez
+ */
 
 public class EditOpportunity {
-    private LoginPage loginPage;
-    private MainApp mainApp;
-    private PageMenuBar pageMenuBar;
-    private OpportunitiesPage opportunitiesPage;
-    private NewOpportunityForm newOpportunityForm;
-    private OpportunityTablePage opportunityTablePage;
-    private OpportunityDetail opportunityDetail;
-    private OpportunityEdit opportunityEdit;
-    String name,newName,type, leadSource,amount,nextStep;
-    String stage,newStage,newType, newLeadSource, newAmount, newNextStep;
 
+    private OpportunityDetails opportunityDetails;
+    private TabPage opportunitiesPage;
+
+    String name, stage, date, type, leadSource, amount;
 
     @BeforeClass
     public void setUp() {
-        name = "LastOpportunity";
+        name = "NewOpportunity01";
         stage = "Prospecting";
-        type ="New Customer";
+        date = "8/8/2015";
+        type = "New Customer";
         leadSource = "Web";
-        amount = "20";
-        nextStep = "Step";
-        loginPage = new LoginPage();
-        mainApp = loginPage.loginAsPrimaryUser();
-        pageMenuBar = mainApp.goToPageMenuBar();
-        opportunitiesPage = pageMenuBar.clickOpportunities();
-        newOpportunityForm = opportunitiesPage.clickNewOpportunity();
-        opportunityDetail = newOpportunityForm.setName(name)
-                .setPrivate()
-                .setType(type)
-                .setLeadSource(leadSource)
-                .setAmount(amount)
-                .setCloseDate()
-                .setNextStep(nextStep)
-                .setStage(stage)
+        amount = "15";
+
+        LoginPage loginPage = new LoginPage();
+        ContentPage contentPage = loginPage.loginAsPrimaryUser();
+        opportunitiesPage = contentPage.tabBar.clickOpportunities();
+        opportunitiesPage.clickNewBtn();
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+        opportunityDetails = new OpportunityForm(driver)
+                .setOpportunityName(name)
+                .setOpportunityCloseDate(date)
+                .setOpportunityStage(stage)
+                .setOpportunityType(type)
+                .setOpportunityLeadSource(leadSource)
+                .setOpportunityAmount(amount)
                 .clickSaveOpportunity();
+        opportunityDetails.editOpportunity();
     }
 
-    @Test (groups = {"BVT, Acceptance, Funcional"})
+    @Test
     public void testUntitled() {
-        newName = "ModifiedOpportunity";
-        newStage = "Qualification";
-        newType ="Existing Customer - Upgrade";
-        newLeadSource = "Other";
-        newAmount = "50";
-        newNextStep = "StepModified";
-        opportunityEdit = opportunityDetail.clickEdit();
-        opportunityDetail = opportunityEdit.setName(newName)
-                .setPrivate()
-                .setType(newType)
-                .setLeadSource(newLeadSource)
-                .setAmount(newAmount)
-                .setCloseDate()
-                .setNextStep(newNextStep)
-                .setStage(stage)
-                .clickSaveOpportunity();
-        assertTrue("Verification Failed:The opportunity name was not correctly changed",opportunityDetail.verifyNewOpportunityName(newName));
-        assertFalse("Verification Failed:The opportunity private data was not correctly changed",opportunityDetail.verifyNewOpportunityPrivate());
-        assertTrue("Verification Failed:The opportunity type was not correctly changed",opportunityDetail.verifyNewOpportunityType(newType));
-        assertTrue("Verification Failed:The opportunity lead source was not correctly changed",opportunityDetail.verifyNewOpportunityLeadSource(newLeadSource));
-        assertTrue("Verification Failed:The opportunity amount was not correctly changed",opportunityDetail.verifyNewOpportunityAmount(newAmount));
-        assertTrue("Verification Failed:The opportunity step data was not correctly changed",opportunityDetail.verifyNewOpportunityStep(newNextStep));
+        name = "OpportunityEdited";
+        stage = "Qualification";
+        date = "9/3/2015";
+        type = "Existing Customer - Upgrade";
+        leadSource = "Other";
+        amount = "1500";
 
+        WebDriver driver = WebDriverManager.getInstance().getDriver();
+
+        opportunityDetails = new OpportunityForm(driver)
+                .setOpportunityName(name)
+                .setOpportunityCloseDate(date)
+                .setOpportunityStage(stage)
+                .setOpportunityType(type)
+                .setOpportunityLeadSource(leadSource)
+                .setOpportunityAmount(amount)
+                .clickSaveOpportunity();
+
+        assertTrue(opportunityDetails.verifyNewOpportunity(name));
     }
 
     @AfterClass
     public void tearDown() {
-        opportunityDetail.deleteOpportunity();
+        opportunitiesPage = opportunityDetails.deleteOpportunity();
+        opportunitiesPage.goToNavigationLinks().clickLogoutBtn();
     }
 }

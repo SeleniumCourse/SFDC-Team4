@@ -1,80 +1,70 @@
 package com.selenium.course.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.course.framework.DriverManager;
+import static com.selenium.course.common.Globals.*;
 
-public class LoginPage {
+public class LoginPage extends Page {
 
-	private WebDriver driver;
-	private WebDriverWait wait;
-	private PageMenuBar pageMenuBar;
-	
+    @FindBy(id = "Login")
+    @CacheLookup
+    private WebElement loginBtn;
 
-	@FindBy(id = "Login")
-	@CacheLookup
-	WebElement loginBtn;
+    @FindBy(id = "username")
+    @CacheLookup
+    private WebElement userTxt;
 
-	@FindBy(id = "username")
-	@CacheLookup
-	WebElement userTxt;
+    @FindBy(id = "password")
+    @CacheLookup
+    private WebElement passwordTxt;
 
-	@FindBy(id = "password")
-	@CacheLookup
-	WebElement passwordTxt;
+    public LoginPage() {
+        super();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(userTxt));
+            wait.until(ExpectedConditions.visibilityOf(passwordTxt));
+            wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
+        } catch (WebDriverException e) {
+            throw new WebDriverException(e);
+        } finally {
 
-	public LoginPage() {
-		driver = DriverManager.getInstance().getDriver();
-		wait = DriverManager.getInstance().getWait();
-		PageFactory.initElements(driver, this);
-		try {
-			wait.until(ExpectedConditions.visibilityOf(userTxt));
-			wait.until(ExpectedConditions.visibilityOf(passwordTxt));
-			wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
-		} catch (WebDriverException e) {
-			throw new WebDriverException(e);
-		} finally {
-			
-		}
-	}
-	
-	 public MainApp loginAs(String email, String password) {
-		 setEmailTxt(email);
-		 setPasswordTxt(password);
-		 return clickLoginBtn();
-
-	    }
-	
-	public void setEmailTxt(String email) {
-        	userTxt.clear();
-        	userTxt.sendKeys(email);
-            driver.switchTo().defaultContent();
-    }
-	
-	public void setPasswordTxt(String password) {
-            passwordTxt.clear();
-            passwordTxt.sendKeys(password);
-            driver.switchTo().defaultContent();
+        }
     }
 
-	public MainApp clickLoginBtn() {
-        	loginBtn.click();
-        return new MainApp(driver);
+    public ContentPage loginAs(String username, String password) {
+        setUsernameTxt(username);
+        setPasswordTxt(password);
+        return clickLoginBtn();
     }
-	
-	public MainApp loginAsPrimaryUser() {
-		String email = "gcavero@hotmail.com";
-        String password = "Gus.jala1";
-		 setEmailTxt(email);
-		 setPasswordTxt(password);	
-		 return clickLoginBtn();
-		
-	}
+
+    public LoginPage setUsernameTxt(String username) {
+        userTxt.clear();
+        userTxt.sendKeys(username);
+        return this;
+    }
+
+    public LoginPage setPasswordTxt(String password) {
+        passwordTxt.clear();
+        passwordTxt.sendKeys(password);
+        return this;
+    }
+
+    public ContentPage clickLoginBtn() {
+        loginBtn.click();
+        return new ContentPage(driver);
+    }
+
+    public ContentPage loginAsPrimaryUser() {
+        return loginAs(PRIMARY_ACCOUNT, PRIMARY_PWD);
+    }
+
+    public String getPrimaryUserNameDisplayedText() {
+        return PRIMARY_USERNAME_DISPLAYED;
+    }
+
 }

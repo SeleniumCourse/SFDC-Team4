@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite_TestDD" verbose="1" >
+    <test name="Final Project - Selenium Course" >
+        <classes>
+            <class name="com.selenium.course.testng.CreateContact" />
+            <class name="com.selenium.course.testng.EditContact" />
+            <class name="com.selenium.course.testng.CreateContactView" />
+            <class name="com.selenium.course.testng.EditContactView" />
+        </classes>
+    </test>
+</suite>

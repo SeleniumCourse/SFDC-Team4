@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1" >
+    <test name="Final Project - Selenium Course" >
+        <classes>
+            <class name="com.selenium.course.testng.CreateAccount" />
+            <class name="com.selenium.course.testng.CreateAccountView" />
+            <class name="com.selenium.course.testng.CreateCampaign" />
+            <class name="com.selenium.course.testng.CreateCampaignView" />
+            <class name="com.selenium.course.testng.CreateLead" />
+            <class name="com.selenium.course.testng.CreateLeadView" />
+            <class name="com.selenium.course.testng.CreateOpportunity" />
+            <class name="com.selenium.course.testng.CreateOpportunityView" />
+            <class name="com.selenium.course.testng.CreatePostChat" />
+            <class name="com.selenium.course.testng.CreateProduct" />
+            <class name="com.selenium.course.testng.CreateProductView" />
+            <class name="com.selenium.course.testng.DeleteAccount" />
+            <class name="com.selenium.course.testng.DeleteAccountView" />
+            <class name="com.selenium.course.testng.EditAccount" />
+            <class name="com.selenium.course.testng.EditAccountView" />
+            <class name="com.selenium.course.testng.EditCampaign" />
+            <class name="com.selenium.course.testng.EditCampaignView" />
+            <class name="com.selenium.course.testng.EditLead" />
+            <class name="com.selenium.course.testng.EditLeadView" />
+            <class name="com.selenium.course.testng.EditOpportunity" />
+            <class name="com.selenium.course.testng.EditOpportunityView" />
+            <class name="com.selenium.course.testng.EditProduct" />
+            <class name="com.selenium.course.testng.EditProductView" />
+        </classes>
+    </test>
+</suite>
